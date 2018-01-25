@@ -1,4 +1,4 @@
-package com.opencityskeleton;
+package com.opencityhelsinki;
 
 import android.app.Application;
 

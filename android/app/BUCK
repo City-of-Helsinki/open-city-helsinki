@@ -45,12 +45,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.opencityskeleton",
+    package = "com.opencityhelsinki",
 )
 
 android_resource(
     name = "res",
-    package = "com.opencityskeleton",
+    package = "com.opencityhelsinki",
     res = "src/main/res",
 )
 
