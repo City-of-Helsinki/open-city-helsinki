@@ -9,7 +9,7 @@ i18n
     resources: {
       en: {
         common: {
-          title: 'Tampere app',
+          title: 'Helsinki app',
           next: 'Next',
           previous: 'Previous',
           finish: 'Finish',
@@ -18,6 +18,8 @@ i18n
         tabs: {
           home: 'Home',
           profile: 'Profile',
+          feedback: 'Feedback',
+          feeds: 'Feeds',
         },
         languageStep: {
           question: 'Choose a language',
@@ -28,15 +30,15 @@ i18n
           },
         },
         userTypeStep: {
-          title: 'Tampere app',
+          title: 'Helsinki app',
           question: 'Are you',
           options: {
-            local: 'Tampere citizen',
+            local: 'Helsinki citizen',
             visitor: 'Visitor',
           },
         },
         interestStep: {
-          title: 'Tampere app',
+          title: 'Helsinki app',
           question: 'What are you interested in?',
           options: {
             restaurants: 'Restaurants',
@@ -56,7 +58,7 @@ i18n
       },
       fi: {
         common: {
-          title: 'Tampere app common',
+          title: 'Helsinki app common',
           next: 'Seuraava',
           previous: 'Edellinen',
           finish: 'Valmis',
@@ -65,17 +67,19 @@ i18n
         tabs: {
           home: 'Koti',
           profile: 'Profiili',
+          feedback: 'Palaute',
+          feeds: 'Ajankohtaista',
         },
         userTypeStep: {
-          title: 'Tampere app',
+          title: 'Helsinki app',
           question: 'Oletko',
           options: {
-            local: 'Tamperelainen',
+            local: 'Helsinkiläinen',
             visitor: 'Vierailija',
           },
         },
         interestStep: {
-          title: 'Tampere app',
+          title: 'Helsinki app',
           question: 'Mitkä aiheet kiinnostavat sinua?',
           options: {
             restaurants: 'Ravintolat',

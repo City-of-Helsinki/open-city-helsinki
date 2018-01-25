@@ -9,6 +9,7 @@ import { withProps } from 'recompose';
 import { initColors } from 'open-city-modules';
 import { translate } from 'react-i18next';
 
+import mapStyles from 'src/style';
 import tabs from 'src/config/tabs';
 import MyOnboarding from 'src/config/onboarding';
 import Header from 'src/config/header';
@@ -20,6 +21,9 @@ import { loadProfile, saveProfile } from 'src/profile';
 import i18n from 'src/config/translations';
 
 initColors(colors);
+
+const MAP_PAGE = 'map';
+const LIST_PAGE = 'list';
 
 const Tabs = TabNavigator(tabs, {
   tabBarComponent: TabBarBottom,
@@ -52,7 +56,10 @@ class App extends React.Component<Props, State> {
       modalVisible: false,
     };
     // $FlowFixMe
-    this.Header = withProps({ defaultRightAction: this.showModal })(Header);
+    this.Header = withProps({
+      defaultRightAction: this.showModal,
+      showSubHeader: false,
+    })(Header);
   }
 
   componentDidMount() {
@@ -98,6 +105,7 @@ class App extends React.Component<Props, State> {
       restartOnboarding: this.restartOnboarding,
       // $FlowFixMe
       Header: this.Header,
+      customMapStyle: mapStyles,
     };
     return (
       <View style={{ flex: 1 }}>
