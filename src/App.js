@@ -19,6 +19,10 @@ import { loadProfile, saveProfile } from 'src/profile';
 // i18n must be imported so that it gets initialized
 // eslint-disable-next-line no-unused-vars
 import i18n from 'src/config/translations';
+import heroBanner from '../img/main-hero-decoration.png';
+import linkedEventDecorator from '../img/main-image-decoration.png';
+import map_marker from '../img/marker_pin.png';
+
 
 initColors(colors);
 
@@ -105,6 +109,9 @@ class App extends React.Component<Props, State> {
       restartOnboarding: this.restartOnboarding,
       // $FlowFixMe
       Header: this.Header,
+      heroBanner: heroBanner,
+      mainImage: linkedEventDecorator,
+      marker: map_marker,
       customMapStyle: mapStyles,
     };
     return (
