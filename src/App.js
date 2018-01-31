@@ -11,11 +11,9 @@ import { translate } from 'react-i18next';
 
 import mapStyles from 'src/style';
 import tabs from 'src/config/tabs';
-import MyOnboarding from 'src/config/onboarding';
 import Header from 'src/config/header';
 import CityChangeModal from 'src/components/CityChangeModal';
 import colors from 'src/config/colors';
-import { loadProfile, saveProfile } from 'src/profile';
 // i18n must be imported so that it gets initialized
 // eslint-disable-next-line no-unused-vars
 import i18n from 'src/config/translations';
@@ -44,9 +42,6 @@ const Tabs = TabNavigator(tabs, {
 
 type Props = { i18n: any };
 type State = {
-  loadingProfile: boolean,
-  showOnboarding: boolean,
-  profile: any,
   modalVisible: boolean,
 };
 class App extends React.Component<Props, State> {
@@ -54,60 +49,21 @@ class App extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      showOnboarding: true,
-      profile: {},
-      loadingProfile: true,
       modalVisible: false,
     };
     // $FlowFixMe
     this.Header = withProps({
       defaultRightAction: this.showModal,
-      showSubHeader: false,
     })(Header);
-  }
-
-  componentDidMount() {
-    loadProfile().then((value) => {
-      if (value !== null) {
-        this.setState({
-          profile: value,
-          showOnboarding: false,
-          loadingProfile: false,
-        });
-      } else {
-        this.setState({
-          loadingProfile: false,
-        });
-      }
-    });
-  }
-
-  handleFinish = (profile: any) => {
-    this.setState({ showOnboarding: false, profile });
-    saveProfile(profile);
-  }
-
-  restartOnboarding = () => {
-    this.setState({ showOnboarding: true });
   }
 
   showModal = () => this.setState({ modalVisible: true });
   hideModal = () => this.setState({ modalVisible: false });
 
   render() {
-    if (this.state.loadingProfile) {
-      return null;
-    }
-    if (this.state.showOnboarding) {
-      return <MyOnboarding onFinish={this.handleFinish} />;
-    }
-    const { profile } = this.state;
     const screenProps = {
       colors,
       locale: this.props.i18n.language,
-      profile,
-      restartOnboarding: this.restartOnboarding,
-      // $FlowFixMe
       Header: this.Header,
       heroBanner: heroBanner,
       mainImage: linkedEventDecorator,
