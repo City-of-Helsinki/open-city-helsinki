@@ -8,10 +8,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature android:name="android.hardware.nfc.hce" android:required="false" />
 
-    <uses-sdk
-        android:minSdkVersion="16"
-        android:targetSdkVersion="22" />
 
     <application
       android:name=".MainApplication"
@@ -23,7 +22,7 @@
         android:name="com.google.android.geo.API_KEY"
         android:value="google maps api key" />
       <activity
-        android:name=".MainActivity"
+        android:name="activities.MainActivity"
         android:label="@string/app_name"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
         android:screenOrientation="portrait"
@@ -33,6 +32,18 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
+        <service
+            android:name="services.HostCardEmulationService"
+            android:exported="true"
+            android:permission="android.permission.BIND_NFC_SERVICE">
+            <intent-filter>
+                <action android:name="android.nfc.cardemulation.action.HOST_APDU_SERVICE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.nfc.cardemulation.HostApduService"
+                android:resource="@xml/apduservice" />
+        </service>
+
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>
 

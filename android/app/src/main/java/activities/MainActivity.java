@@ -1,4 +1,4 @@
-package com.opencityhelsinki;
+package activities;
 
 import com.facebook.react.ReactActivity;
 
