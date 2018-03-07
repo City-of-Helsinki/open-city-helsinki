@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { FeedbackModule, configureFeedback, WebViewModule, HomeViewModule } from 'open-city-modules';
 import feedbackConfig from 'src/config/feedbackConfig.json';
-import ProfileTab from 'src/components/ProfileTab';
+import Profile from 'src/modules/Profile';
 import i18n from 'src/config/translations';
 
 configureFeedback(feedbackConfig);
@@ -30,13 +30,13 @@ const tabs = {
       tabBarIcon: iconProvider('history'),
     }),
   },
-  // Profile: {
-  //   screen: translate('profileTab')(ProfileTab),
-  //   navigationOptions: () => ({
-  //     title: i18n.t('tabs:profile'),
-  //     tabBarIcon: iconProvider('account'),
-  //   }),
-  // },
+  Profile: {
+    screen: translate('profileTab')(Profile),
+    navigationOptions: () => ({
+      title: i18n.t('tabs:profile'),
+      tabBarIcon: iconProvider('account'),
+    }),
+  },
 };
 
 export default tabs;

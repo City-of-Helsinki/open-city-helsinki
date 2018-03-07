@@ -14,18 +14,38 @@ export const saveProfile = async (profile: Profile) => {
   }
 };
 
-export const loadProfile = async () => {
-  try {
-    const valueJSON: string = await AsyncStorage.getItem(key);
-    const profile = JSON.parse(valueJSON);
-    if (profile && profile.locale) {
-      i18n.changeLanguage(profile.locale);
+export const updateProfile = async (profile: Profile) => {
+    try {
+      const oldProfile = await AsyncStorage.getItem(key);
+      if (oldProfile) {
+        const mergedProfile = Object.assign(JSON.parse(oldProfile), profile);
+        await AsyncStorage.setItem(key, JSON.stringify(mergedProfile));
+        return (mergedProfile);
+      }
+
+      // Do a normal save if no saved profile found
+      await AsyncStorage.setItem(key, JSON.stringify(profile));
+      return (profile);
+    } catch (e) {
+      console.error(`Error updating profile to AsyncStorage: ${e.name}: ${e.message}`)
+      return (e);
     }
-    return profile;
-  } catch (e) {
-    console.error(`Error fetching profile from AsyncStorage: ${e.name}: ${e.message}`);
-    return null;
-  }
+};
+
+export const loadProfile = async () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const valueJSON: string = await AsyncStorage.getItem(key);
+      const profile = JSON.parse(valueJSON);
+      if (profile && profile.locale) {
+        i18n.changeLanguage(profile.locale);
+      }
+      resolve(profile);
+    } catch (e) {
+      console.error(`Error fetching profile from AsyncStorage: ${e.name}: ${e.message}`);
+      reject(e);
+    }
+  })
 };
 
 export const deleteProfile = async () => {
