@@ -1,6 +1,5 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-
 styles = EStyleSheet.create({
   text: {
     fontSize: 20,
@@ -13,10 +12,11 @@ styles = EStyleSheet.create({
   title: {
     fontWeight: 'bold',
     fontSize: 24,
+    marginVertical: 16,
     color: '$colors.max',
   },
   subHeader: {
-    backgroundColor: '#D9DADD',
+    backgroundColor: 'gray',
     width: '100%',
     paddingVertical: 8,
     paddingHorizontal: 16,
@@ -32,35 +32,32 @@ styles = EStyleSheet.create({
     backgroundColor: '$colors.med',
     padding: 16,
     marginVertical: 16,
-    marginHorizontal: 36,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  card: {
-    flexDirection: 'row',
-    backgroundColor: '$colors.min',
-    padding: 16,
-    marginVertical: 16,
-    marginHorizontal: 0,
+    marginHorizontal: 32,
     alignItems: 'center',
     justifyContent: 'center'
   },
   buttonText: {
-    color: '$colors.min',
-    fontSize: 24,
-  },
-  cardText: {
     color: '$colors.max',
-    fontWeight: 'bold',
-    fontSize: 24,
+    fontSize: 20,
+    padding: 16,
+    fontWeight: 'bold'
   },
   container: {
     padding: 20,
-    backgroundColor: '#94C2E8',
+    backgroundColor: '$colors.min',
     flex: 1,
   },
   button: {
     marginVertical: 20,
+    borderWidth: 2,
+    width: '50%',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  link: {
+    color: 'royalblue',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
   changeLanguage: {
     alignSelf: 'stretch',

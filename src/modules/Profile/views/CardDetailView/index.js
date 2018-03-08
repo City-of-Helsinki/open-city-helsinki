@@ -10,7 +10,7 @@ import {
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
   ScrollView,
-  NativeModules
+  NativeModules,
 } from 'react-native';
 import { StackNavigator, NavigationActions } from 'react-navigation';
 import { doAuth } from 'opencityHelsinki/src/utils/auth';
@@ -21,7 +21,7 @@ import FormInput from 'opencityHelsinki/src/modules/Profile/components/FormInput
 import CardManager from 'opencityHelsinki/src/modules/Profile/CardManager';
 import styles from './styles';
 
-class AddCardView extends React.Component<Props, State> {
+class CardDetailView extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -64,11 +64,11 @@ class AddCardView extends React.Component<Props, State> {
     this.props.navigation.goBack();
   }
 
-  addCard = async () => {
-    console.warn('adding card')
+  removeCard = () => {
+    const { card } = this.props.navigation.state.params
     const cardInfo = {
-      cardNumber: this.state.cardNumber,
-      cardPin: parseInt(this.state.cardPin),
+      cardNumber: card.cardNumber,
+      cardPin: parseInt(card.cardPin),
     };
 
     const resetAction = NavigationActions.reset({
@@ -76,18 +76,16 @@ class AddCardView extends React.Component<Props, State> {
       actions: [NavigationActions.navigate({ routeName: 'Profile' })],
     });
 
-    NativeModules.HostCardManager.setCardInfo(cardInfo).then((response) => {
-      console.warn(response);
-      NativeModules.HostCardManager.startNfcService();
-      this.props.navigation.dispatch(resetAction)
+    NativeModules.HostCardManager.removeCard(cardInfo).then((success) => {
+      if (success) {
+        this.props.navigation.dispatch(resetAction)
+      }
     })
-    // const cardManager = new CardManager();
-    // const card = await cardManager.addCard(this.state.cardNumber, this.state.cardPin, 'library')
   }
 
   render() {
     const { Header } = this.props.screenProps;
-
+    const { card } = this.props.navigation.state.params
     return (
       <KeyboardAvoidingView style={{flex: 1}}>
         <Header
@@ -100,29 +98,30 @@ class AddCardView extends React.Component<Props, State> {
           }}
         />
 
-        <ScrollView style={{flex: 1, backgroundColor: colors.min,}}>
+        <ScrollView
+          style={{flex: 1, backgroundColor: colors.min,}}
+          keyboardShouldPersistTaps={true}
+          keyboardDismissMode={'on-drag'}
+        >
         <View style={styles.container}>
-          <Text style={styles.title}>Yhdistä kirjastokortti</Text>
+          <Text style={styles.title}>Kirjastokortti</Text>
           <Text style={styles.description}>
-            Yhdistämällä kirjastokorttisi oma.helsinki tiliisi voit käyttää laitettasi lähiluettavana kirjastokorttina kirjastojen itsepalvelupisteillä.
+            Kirjastokorttisi on nyt liitetty oma.helsinki tunnukseesi ja voit käyttää tätä laitetta kirjastokorttina lähilukua tukevilla palvelupisteillä.
           </Text>
 
-          <FormInput
-            label={'Kirjastokortin numero'}
-            keyboardType='numeric'
-            onChangeText={this.cardNumberChangeListener}
-          />
+          <View style={styles.field}>
+            <Text style={styles.fieldLabel}>Kirjastokortin omistaja</Text>
+            <Text style={styles.fieldText}>Keijo Käyttäjä</Text>
+          </View>
 
-          <FormInput
-            keyboardType='numeric'
-            secureTextEntry
-            label={'PIN koodi'}
-            onChangeText={this.cardPinChangeListener}
-          />
+          <View style={styles.field}>
+            <Text style={styles.fieldLabel}>Kirjastokortin numero</Text>
+            <Text style={styles.fieldText}>{card.cardNumber}</Text>
+          </View>
 
-          <TouchableOpacity onPress={() => this.addCard()}>
+          <TouchableOpacity onPress={() => this.removeCard()}>
             <View style={styles.button}>
-              <Text style={styles.buttonText}>Jatka</Text>
+              <Text style={styles.buttonText}>Unohda korttitiedot</Text>
             </View>
           </TouchableOpacity>
 
@@ -140,4 +139,4 @@ class AddCardView extends React.Component<Props, State> {
 }
 
 
-export default AddCardView;
+export default CardDetailView;

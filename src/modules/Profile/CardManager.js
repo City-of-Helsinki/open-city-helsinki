@@ -32,6 +32,22 @@ class CardManager {
     })
   }
 
+  setCards = (cards) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const cardArray = [];
+        for (let i = 0; i < cards.length; i++) {
+          const card = cards[i].split('/');
+          if (card && card.length > 1) cardArray.push({ cardNumber: card[0], cardPin: card[1] })
+        }
+        const profile = await updateProfile({ cards: cardArray });
+        resolve(profile)
+      } catch (error) {
+        reject(error)
+      }
+    })
+  }
+
   removeCard = (cardNumber) => {
     return new Promise(async (resolve, reject) => {
       const profile = await loadProfile();

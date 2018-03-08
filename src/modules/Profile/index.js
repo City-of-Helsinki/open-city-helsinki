@@ -8,6 +8,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  NativeModules
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { doAuth } from 'opencityHelsinki/src/utils/auth';
@@ -15,21 +16,34 @@ import { loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/
 import colors from 'src/config/colors';
 import Cards from './views/Cards';
 import AddCardView from './views/AddCardView';
+import CardDetailView from './views/CardDetailView';
+import CardManager from 'opencityHelsinki/src/modules/Profile/CardManager';
 
 class ProfileModule extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-
+      profile: null,
+      cards: [],
     }
-
-    this.loadProf()
   }
 
-  loadProf = async () => {
-    const profile = await loadProfile();
+  componentWillMount = () => {
+    this.loadCards();
+  }
+
+  loadCards = async () => {
+    console.warn('loading cards')
+    const cards = await NativeModules.HostCardManager.getCards();
+    const cManager = new CardManager()
+    const profile = await cManager.setCards(cards);
     console.warn(profile)
+    this.setState({
+      cards,
+      profile,
+    });
   }
+
 
   authorize = async () => {
     const authorization = await doAuth();
@@ -57,6 +71,7 @@ class ProfileModule extends React.Component<Props, State> {
           </TouchableOpacity>
           <TouchableOpacity onPress={() => {
             this.props.navigation.navigate('Cards', {
+
             })
           }}>
             <View style={styles.menuButton}>
@@ -85,17 +100,18 @@ styles = StyleSheet.create({
   },
   menuButton: {
     flexDirection: 'row',
-    backgroundColor: colors.med,
+    backgroundColor: colors.min,
     padding: 16,
     marginVertical: 4,
   },
   buttonText: {
-    color: colors.min,
+    color: colors.max,
     fontSize: 24,
+    fontWeight: 'bold',
   },
   container: {
     padding: 20,
-    backgroundColor: colors.min,
+    backgroundColor: '#94C2E8',
     flex: 1,
   },
   button: {
@@ -105,9 +121,9 @@ styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   subHeader: {
-    backgroundColor: 'gray',
+    backgroundColor: '#D9DADD',
     width: '100%',
-    paddingVertical: 8,
+    paddingVertical: 24,
     paddingHorizontal: 16,
   },
 });
@@ -122,6 +138,9 @@ const ProfileStack = StackNavigator(
     },
     AddCard: {
       screen: AddCardView
+    },
+    CardDetail: {
+      screen: CardDetailView
     }
   },
   {

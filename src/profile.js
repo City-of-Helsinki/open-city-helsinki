@@ -15,21 +15,23 @@ export const saveProfile = async (profile: Profile) => {
 };
 
 export const updateProfile = async (profile: Profile) => {
+  return new Promise(async (resolve, reject) => {
     try {
       const oldProfile = await AsyncStorage.getItem(key);
       if (oldProfile) {
         const mergedProfile = Object.assign(JSON.parse(oldProfile), profile);
         await AsyncStorage.setItem(key, JSON.stringify(mergedProfile));
-        return (mergedProfile);
+        resolve(mergedProfile);
       }
 
       // Do a normal save if no saved profile found
       await AsyncStorage.setItem(key, JSON.stringify(profile));
-      return (profile);
+      resolve(profile);
     } catch (e) {
       console.error(`Error updating profile to AsyncStorage: ${e.name}: ${e.message}`)
-      return (e);
+      reject(e);
     }
+  })
 };
 
 export const loadProfile = async () => {
