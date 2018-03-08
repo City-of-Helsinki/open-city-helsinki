@@ -1,8 +1,11 @@
 package services;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.nfc.cardemulation.HostApduService;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.ArraySet;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -11,6 +14,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by niko on 6.3.2018.
@@ -19,7 +24,7 @@ import java.util.Arrays;
 public class HostCardEmulationService extends HostApduService {
     private static final String TAG = "CardService";
     // AID for our loyalty card service.
-    private static final String SAMPLE_LOYALTY_CARD_AID = "F222222222";
+    private static final String SAMPLE_LOYALTY_CARD_AID = "F074756E6E697374616D6F";
     // ISO-DEP command HEADER for selecting an AID.
     // Format: [Class | Instruction | Parameter 1 | Parameter 2]
     private static final String SELECT_APDU_HEADER = "00A40400";
@@ -61,10 +66,10 @@ public class HostCardEmulationService extends HostApduService {
         // If the APDU matches the SELECT AID command for this service,
         // send the loyalty card account number, followed by a SELECT_OK status trailer (0x9000).
         if (Arrays.equals(SELECT_APDU, commandApdu)) {
-            String account = "some string random data some string random data some string random data some string random data some string random data some string random data some string random data some string random data some string data some string random data some string";
+            String account = "string";
             byte[] accountBytes = account.getBytes();
             Log.i(TAG, "Sending account number: " + account);
-            readFromFile();
+            HashSet<String> hashSet = (HashSet<String>) readFromPrefs();
             return ConcatArrays(accountBytes, SELECT_OK_SW);
         } else if ((Arrays.equals(GET_DATA_APDU, commandApdu))) {
             String stringToSend;
@@ -94,6 +99,7 @@ public class HostCardEmulationService extends HostApduService {
      * @return APDU for SELECT AID command
      */
     public static byte[] BuildSelectApdu(String aid) {
+        Log.i(TAG, "BuildSelectApdu...");
         // Format: [CLASS | INSTRUCTION | PARAMETER 1 | PARAMETER 2 | LENGTH | DATA]
         return HexStringToByteArray(SELECT_APDU_HEADER + String.format("%02X",
                 aid.length() / 2) + aid);
@@ -105,6 +111,7 @@ public class HostCardEmulationService extends HostApduService {
      * @return APDU for SELECT AID command
      */
     public static byte[] BuildGetDataApdu() {
+        Log.i(TAG, "BuildGetDataApdu...");
         // Format: [CLASS | INSTRUCTION | PARAMETER 1 | PARAMETER 2 | LENGTH | DATA]
         return HexStringToByteArray(GET_DATA_APDU_HEADER + "0FFF");
     }
@@ -116,6 +123,7 @@ public class HostCardEmulationService extends HostApduService {
      * @return String, containing hexadecimal representation.
      */
     public static String ByteArrayToHexString(byte[] bytes) {
+        Log.i(TAG, "ByteArrayToHexString");
         final char[] hexArray = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
         char[] hexChars = new char[bytes.length * 2]; // Each byte has two hex characters (nibbles)
         int v;
@@ -137,6 +145,7 @@ public class HostCardEmulationService extends HostApduService {
      * @throws java.lang.IllegalArgumentException if input length is incorrect
      */
     public static byte[] HexStringToByteArray(String s) throws IllegalArgumentException {
+        Log.i(TAG, "HexStringToByteArray");
         int len = s.length();
         if (len % 2 == 1) {
             throw new IllegalArgumentException("Hex string must have even number of characters");
@@ -170,18 +179,8 @@ public class HostCardEmulationService extends HostApduService {
         return result;
     }
 
-    private void readFromFile() {
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                text.append(line);
-                text.append('\n');
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+    private Set readFromPrefs() {
+        SharedPreferences prefs = getSharedPreferences("local_storage", Context.MODE_PRIVATE);
+        return prefs.getStringSet("LibraryCards", new HashSet<String>());
     }
 }

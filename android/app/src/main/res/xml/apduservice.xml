@@ -4,6 +4,6 @@
     <aid-group
         android:description="@string/aiddescription"
         android:category="other">
-        <aid-filter android:name="F074756E6E697374616D6F" />
+        <aid-filter android:name="F074756E6E697374616D6F"/>
     </aid-group>
 </host-apdu-sercice>
