@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
-  ScrollView
+  ScrollView,
+  NativeModules
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { doAuth } from 'opencityHelsinki/src/utils/auth';
@@ -30,6 +31,9 @@ class AddCardView extends React.Component<Props, State> {
 
   componentWillMount() {
     this.loadCards();
+    NativeModules.HostCardManager.getCards().then((response) => {
+      console.warn(response)
+    })
   }
 
   loadCards = async () => {
@@ -63,9 +67,21 @@ class AddCardView extends React.Component<Props, State> {
 
   addCard = async () => {
     console.warn('adding card')
-    const cardManager = new CardManager();
-    const card = await cardManager.addCard(this.state.cardNumber, this.state.cardPin, 'library')
-    console.warn(card)
+    const cardInfo = {
+      cardNumber: this.state.cardNumber,
+      cardPin: parseInt(this.state.cardPin),
+    };
+
+    NativeModules.HostCardManager.setCardInfo(cardInfo).then((response) => {
+      console.warn(response);
+      if (response === true) {
+        NativeModules.HostCardManager.startNfcService().then((response) => {
+          console.warn(response)
+        });
+      }
+    })
+    // const cardManager = new CardManager();
+    // const card = await cardManager.addCard(this.state.cardNumber, this.state.cardPin, 'library')
   }
 
   render() {

@@ -101,10 +101,13 @@ android {
 
     defaultConfig {
         applicationId "com.opencityhelsinki"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        manifestPlaceholders = [
+          appAuthRedirectScheme: 'opencityhelsinki'
+        ]
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
