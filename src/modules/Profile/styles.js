@@ -1,60 +1,46 @@
-/* @flow */
-import * as React from 'react';
-import {
-  View,
-  Text,
-  Button,
-  Picker,
-  StyleSheet,
-} from 'react-native';
-import { type Profile } from 'src/types';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
-import colors from 'src/config/colors';
-
-type ChoiceListProps = {
-  title: string,
-  choices: Array<string>,
-};
-
-let styles;
-
-class Profile extends component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
-
-  render() {
-    return (
-      <View style={{ flex: 1 }}>
-        <Header />
-
-      </View>
-    );
-  }
-}
-
-
-
-styles = StyleSheet.create({
+styles = EStyleSheet.create({
   text: {
     fontSize: 20,
-    color: colors.max,
+    color: '$colors.max',
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 24,
+    color: '$colors.max',
+  },
+  menuButton: {
+    flexDirection: 'row',
+    backgroundColor: '$colors.min',
+    padding: 16,
+    marginVertical: 4,
+  },
+  buttonText: {
+    color: '$colors.max',
+    fontSize: 24,
+    fontWeight: 'bold',
   },
   container: {
-    flex: 1,
     padding: 20,
-    alignItems: 'flex-start',
-    justifyContent: 'center',
+    backgroundColor: '#94C2E8',
+    flex: 1,
   },
   button: {
     marginVertical: 20,
   },
+  buttonIcon: {
+    marginRight: 8
+  },
   changeLanguage: {
     alignSelf: 'stretch',
   },
+  subHeader: {
+    backgroundColor: '#D9DADD',
+    width: '100%',
+    paddingVertical: 24,
+    paddingHorizontal: 16,
+  },
 });
 
-export default ProfileTab;
+export default styles;

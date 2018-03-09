@@ -30,20 +30,21 @@ styles = EStyleSheet.create({
   connectButton: {
     flexDirection: 'row',
     backgroundColor: '$colors.med',
-    padding: 16,
+    paddingVertical: 16,
     marginVertical: 16,
     marginHorizontal: 36,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: 'flex-start'
+  },
+  buttonIcon: {
+    marginHorizontal: 12
   },
   card: {
     flexDirection: 'row',
     backgroundColor: '$colors.min',
-    padding: 16,
+    paddingVertical: 16,
     marginVertical: 16,
     marginHorizontal: 0,
-    alignItems: 'center',
-    justifyContent: 'center'
+
   },
   buttonText: {
     color: '$colors.min',

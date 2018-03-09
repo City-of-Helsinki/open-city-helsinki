@@ -18,6 +18,8 @@ import Cards from './views/Cards';
 import AddCardView from './views/AddCardView';
 import CardDetailView from './views/CardDetailView';
 import CardManager from 'opencityHelsinki/src/modules/Profile/CardManager';
+import Icon from 'react-native-vector-icons/dist/MaterialIcons';
+import styles from './styles';
 
 class ProfileModule extends React.Component<Props, State> {
   constructor(props) {
@@ -65,7 +67,9 @@ class ProfileModule extends React.Component<Props, State> {
           <TouchableOpacity
             onPress={() => this.authorize()}>
             <View style={styles.menuButton}>
-              <View style={styles.buttonIcon}></View>
+              <View style={styles.buttonIcon}>
+                <Icon name="face" size={32} color="black" />
+              </View>
               <Text style={styles.buttonText}>oma.helsinki</Text>
             </View>
           </TouchableOpacity>
@@ -75,7 +79,9 @@ class ProfileModule extends React.Component<Props, State> {
             })
           }}>
             <View style={styles.menuButton}>
-              <View style={styles.buttonIcon}></View>
+              <View style={styles.buttonIcon}>
+                <Icon name="credit-card" size={32} color="black" />
+              </View>
               <Text style={styles.buttonText}>Kortit</Text>
             </View>
           </TouchableOpacity>
@@ -85,48 +91,6 @@ class ProfileModule extends React.Component<Props, State> {
     );
   }
 }
-
-
-
-styles = StyleSheet.create({
-  text: {
-    fontSize: 20,
-    color: colors.max,
-  },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 24,
-    color: colors.max,
-  },
-  menuButton: {
-    flexDirection: 'row',
-    backgroundColor: colors.min,
-    padding: 16,
-    marginVertical: 4,
-  },
-  buttonText: {
-    color: colors.max,
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  container: {
-    padding: 20,
-    backgroundColor: '#94C2E8',
-    flex: 1,
-  },
-  button: {
-    marginVertical: 20,
-  },
-  changeLanguage: {
-    alignSelf: 'stretch',
-  },
-  subHeader: {
-    backgroundColor: '#D9DADD',
-    width: '100%',
-    paddingVertical: 24,
-    paddingHorizontal: 16,
-  },
-});
 
 const ProfileStack = StackNavigator(
   {
