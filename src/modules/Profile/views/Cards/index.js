@@ -15,6 +15,7 @@ import { doAuth } from 'opencityHelsinki/src/utils/auth';
 import { loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
 import colors from 'src/config/colors';
 import BackIcon from 'opencityHelsinki/img/arrow_back.png';
+import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import styles from './styles'
 
 class Cards extends React.Component<Props, State> {
@@ -70,7 +71,9 @@ class Cards extends React.Component<Props, State> {
                   })}
                   >
                   <View style={styles.card}>
-                    <View style={styles.buttonIcon}></View>
+                    <View style={styles.buttonIcon}>
+                      <Icon name="credit-card" size={32} color="black" />
+                    </View>
                     <Text style={styles.cardText}>{'Kirjastokortti'}</Text>
                   </View>
                 </TouchableOpacity>
@@ -82,7 +85,9 @@ class Cards extends React.Component<Props, State> {
               onPress={() => this.props.navigation.navigate('AddCard')}
               >
               <View style={styles.connectButton}>
-                <View style={styles.buttonIcon}></View>
+                <View style={styles.buttonIcon}>
+                  <Icon name="add-circle-outline" size={32} color="white" />
+                </View>
                 <Text style={styles.buttonText}>Yhdistä kirjastokortti</Text>
               </View>
             </TouchableOpacity>

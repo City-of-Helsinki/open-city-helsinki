@@ -18,6 +18,7 @@ import Cards from './views/Cards';
 import AddCardView from './views/AddCardView';
 import CardDetailView from './views/CardDetailView';
 import CardManager from 'opencityHelsinki/src/modules/Profile/CardManager';
+import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 
 class ProfileModule extends React.Component<Props, State> {
   constructor(props) {
@@ -65,7 +66,9 @@ class ProfileModule extends React.Component<Props, State> {
           <TouchableOpacity
             onPress={() => this.authorize()}>
             <View style={styles.menuButton}>
-              <View style={styles.buttonIcon}></View>
+              <View style={styles.buttonIcon}>
+                <Icon name="face" size={32} color="white" />
+              </View>
               <Text style={styles.buttonText}>oma.helsinki</Text>
             </View>
           </TouchableOpacity>
@@ -75,7 +78,9 @@ class ProfileModule extends React.Component<Props, State> {
             })
           }}>
             <View style={styles.menuButton}>
-              <View style={styles.buttonIcon}></View>
+              <View style={styles.buttonIcon}>
+                <Icon name="credit-card" size={32} color="white" />
+              </View>
               <Text style={styles.buttonText}>Kortit</Text>
             </View>
           </TouchableOpacity>
@@ -116,6 +121,9 @@ styles = StyleSheet.create({
   },
   button: {
     marginVertical: 20,
+  },
+  buttonIcon: {
+    marginRight: 8
   },
   changeLanguage: {
     alignSelf: 'stretch',
