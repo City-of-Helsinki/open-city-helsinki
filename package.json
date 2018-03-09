@@ -18,6 +18,8 @@
 		"react-native-image-picker": "^0.26.7",
 		"react-native-image-resizer": "^1.0.0",
 		"react-native-maps": "^0.18.3",
+		"react-native-svg": "^6.2.2",
+		"react-native-svg-uri": "^1.2.3",
 		"react-native-vector-icons": "^4.4.2",
 		"react-navigation": "^1.0.0-beta.21",
 		"recompose": "^0.26.0"

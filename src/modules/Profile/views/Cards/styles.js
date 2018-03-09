@@ -29,14 +29,15 @@ styles = EStyleSheet.create({
   },
   connectButton: {
     flexDirection: 'row',
-    backgroundColor: '$colors.med',
+    backgroundColor: '#006FC2',
     paddingVertical: 16,
     marginVertical: 16,
     marginHorizontal: 36,
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
   buttonIcon: {
-    marginHorizontal: 12
+    alignSelf: 'center',
+    marginHorizontal: 12,
   },
   card: {
     flexDirection: 'row',
@@ -44,11 +45,10 @@ styles = EStyleSheet.create({
     paddingVertical: 16,
     marginVertical: 16,
     marginHorizontal: 0,
-
   },
   buttonText: {
     color: '$colors.min',
-    fontSize: 24,
+    fontSize: 18,
   },
   cardText: {
     color: '$colors.max',

@@ -3,11 +3,7 @@ import * as React from 'react';
 import {
   View,
   Text,
-  Button,
-  Picker,
-  StyleSheet,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   ScrollView,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
@@ -16,14 +12,14 @@ import { loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/
 import colors from 'src/config/colors';
 import BackIcon from 'opencityHelsinki/img/arrow_back.png';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
-import styles from './styles'
+import styles from './styles';
 
 class Cards extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
       cards: [],
-    }
+    };
   }
 
   componentWillMount() {
@@ -33,9 +29,9 @@ class Cards extends React.Component<Props, State> {
   loadCards = async () => {
     const profile = await loadProfile();
     if (profile.cards) {
-      this.setState({ cards: profile.cards })
+      this.setState({ cards: profile.cards });
     }
-    console.warn(profile)
+    console.warn(profile);
   }
 
   goBack = () => {
@@ -46,54 +42,51 @@ class Cards extends React.Component<Props, State> {
     const { Header } = this.props.screenProps;
 
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <Header
           leftAction={{
             icon: BackIcon,
             action: this.goBack,
             style: {
-              tintColor: colors.max
-            }
+              tintColor: colors.max,
+            },
           }}
         />
         <View style={styles.subHeader}><Text style={styles.title}>Tiedot / Kortit</Text></View>
-        <ScrollView style={{flex: 1, backgroundColor: '#94C2E8',}}>
+        <ScrollView style={{ flex: 1, backgroundColor: '#94C2E8' }}>
           <View style={styles.container}>
             <Text style={styles.description}>
               Voit yhdistää erilaisia kortteja oma.helsinki-tiliisi jolloin voit käyttää mobiililaitettasi kuin lähiluettava korttia.
             </Text>
 
             { this.state.cards.map((card) => {
-              return(
-                <TouchableOpacity
-                  onPress={() => this.props.navigation.navigate('CardDetail', {
-                    card
-                  })}
+                return (
+                  <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate('CardDetail', {
+                      card,
+                    })}
                   >
-                  <View style={styles.card}>
-                    <View style={styles.buttonIcon}>
-                      <Icon name="credit-card" size={32} color="black" />
+                    <View style={styles.card}>
+                      <View style={styles.buttonIcon}>
+                        <Icon name="credit-card" size={32} color="black" />
+                      </View>
+                      <Text style={styles.cardText}>Kirjastokortti</Text>
                     </View>
-                    <Text style={styles.cardText}>{'Kirjastokortti'}</Text>
-                  </View>
-                </TouchableOpacity>
-              )
+                  </TouchableOpacity>
+                );
               })
             }
 
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('AddCard')}
-              >
+            >
               <View style={styles.connectButton}>
                 <View style={styles.buttonIcon}>
-                  <Icon name="add-circle-outline" size={32} color="white" />
+                  <Icon name="add-circle-outline" size={24} color="white" />
                 </View>
                 <Text style={styles.buttonText}>Yhdistä kirjastokortti</Text>
               </View>
             </TouchableOpacity>
-
-
-
           </View>
         </ScrollView>
       </View>

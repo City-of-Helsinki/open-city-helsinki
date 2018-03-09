@@ -3,11 +3,7 @@ import * as React from 'react';
 import {
   View,
   Text,
-  Button,
-  Picker,
-  StyleSheet,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   KeyboardAvoidingView,
   ScrollView,
   NativeModules,
@@ -16,11 +12,13 @@ import {
 import { StackNavigator, NavigationActions } from 'react-navigation';
 import { doAuth } from 'opencityHelsinki/src/utils/auth';
 import { loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
+import SvgUri from 'react-native-svg-uri';
 import colors from 'src/config/colors';
 import BackIcon from 'opencityHelsinki/img/arrow_back.png';
 import FormInput from 'opencityHelsinki/src/modules/Profile/components/FormInput';
 import CardManager from 'opencityHelsinki/src/modules/Profile/CardManager';
 import styles from './styles';
+import trash from '../../../../../img/trash.svg';
 
 class CardDetailView extends React.Component<Props, State> {
   constructor(props) {
@@ -28,7 +26,7 @@ class CardDetailView extends React.Component<Props, State> {
     this.state = {
       cardNumber: '',
       cardPin: '',
-    }
+    };
   }
 
   componentWillMount() {
@@ -100,56 +98,54 @@ class CardDetailView extends React.Component<Props, State> {
     const { Header } = this.props.screenProps;
     const { card } = this.props.navigation.state.params
     return (
-      <KeyboardAvoidingView style={{flex: 1}}>
+      <KeyboardAvoidingView style={{ flex: 1 }}>
         <Header
           leftAction={{
             icon: BackIcon,
             action: this.goBack,
             style: {
-              tintColor: colors.max
-            }
+              tintColor: colors.max,
+            },
           }}
         />
 
         <ScrollView
-          style={{flex: 1, backgroundColor: colors.min,}}
+          style={{ flex: 1, backgroundColor: colors.min }}
           keyboardShouldPersistTaps={true}
           keyboardDismissMode={'on-drag'}
         >
-        <View style={styles.container}>
-          <Text style={styles.title}>Kirjastokortti</Text>
-          <Text style={styles.description}>
-            Kirjastokorttisi on nyt liitetty oma.helsinki tunnukseesi ja voit käyttää tätä laitetta kirjastokorttina lähilukua tukevilla palvelupisteillä.
-          </Text>
+          <View style={styles.container}>
+            <Text style={styles.title}>Kirjastokortti</Text>
+            <Text style={styles.description}>
+              Kirjastokorttisi on nyt liitetty oma.helsinki tunnukseesi ja voit käyttää tätä laitetta kirjastokorttina lähilukua tukevilla palvelupisteillä.
+            </Text>
 
-          <View style={styles.field}>
-            <Text style={styles.fieldLabel}>Kirjastokortin omistaja</Text>
-            <Text style={styles.fieldText}>Keijo Käyttäjä</Text>
-          </View>
-
-          <View style={styles.field}>
-            <Text style={styles.fieldLabel}>Kirjastokortin numero</Text>
-            <Text style={styles.fieldText}>{card.cardNumber}</Text>
-          </View>
-
-          <TouchableOpacity onPress={() => this.onRemovePress()}>
-            <View style={styles.button}>
-              <Text style={styles.buttonText}>Unohda korttitiedot</Text>
+            <View style={styles.field}>
+              <Text style={styles.fieldLabel}>Kirjastokortin omistaja</Text>
+              <Text style={styles.fieldText}>Keijo Käyttäjä</Text>
             </View>
-          </TouchableOpacity>
 
-          <TouchableOpacity>
-            <Text style={styles.link}>Lisätiedot ja ohjeet ></Text>
-          </TouchableOpacity>
+            <View style={styles.field}>
+              <Text style={styles.fieldLabel}>Kirjastokortin numero</Text>
+              <Text style={styles.fieldText}>{card.cardNumber}</Text>
+            </View>
 
+            <TouchableOpacity onPress={() => this.onRemovePress()}>
+              <View style={styles.button}>
+                <SvgUri source={trash} width="32" height="32" />
+                <Text style={styles.buttonText}>Unohda korttitiedot</Text>
+              </View>
+            </TouchableOpacity>
 
-        </View>
+            <TouchableOpacity>
+              <Text style={styles.link}>{'Lisätiedot ja ohjeet >'}</Text>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
 
     );
   }
 }
-
 
 export default CardDetailView;

@@ -41,10 +41,12 @@ styles = EStyleSheet.create({
     fontWeight: 'bold',
   },
   button: {
+    flexDirection: 'row',
     marginVertical: 20,
+    paddingLeft: 10,
     borderWidth: 2,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   buttonText: {
     color: '$colors.max',

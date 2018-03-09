@@ -3,23 +3,20 @@ import * as React from 'react';
 import {
   View,
   Text,
-  Button,
-  Picker,
-  StyleSheet,
   TouchableOpacity,
-  TouchableWithoutFeedback,
-  NativeModules
+  NativeModules,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { doAuth } from 'opencityHelsinki/src/utils/auth';
 import { loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
-import colors from 'src/config/colors';
+import CardManager from 'opencityHelsinki/src/modules/Profile/CardManager';
+import SvgUri from 'react-native-svg-uri';
 import Cards from './views/Cards';
 import AddCardView from './views/AddCardView';
 import CardDetailView from './views/CardDetailView';
-import CardManager from 'opencityHelsinki/src/modules/Profile/CardManager';
-import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import styles from './styles';
+import smile from '../../../img/smile.svg';
+import ticket from '../../../img/ticket.svg';
 
 class ProfileModule extends React.Component<Props, State> {
   constructor(props) {
@@ -27,7 +24,7 @@ class ProfileModule extends React.Component<Props, State> {
     this.state = {
       profile: null,
       cards: [],
-    }
+    };
   }
 
   componentWillMount = () => {
@@ -51,36 +48,47 @@ class ProfileModule extends React.Component<Props, State> {
     const authorization = await doAuth();
     console.warn("authorization " + authorization)
     updateProfile(authorization);
-
   }
 
   render() {
     const { Header } = this.props.screenProps;
 
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <Header />
         <View style={styles.subHeader}><Text style={styles.title}>Tiedot</Text></View>
 
         <View style={styles.container}>
 
           <TouchableOpacity
-            onPress={() => this.authorize()}>
+            onPress={() => this.authorize()}
+          >
             <View style={styles.menuButton}>
               <View style={styles.buttonIcon}>
-                <Icon name="face" size={32} color="black" />
+                <SvgUri
+                  source={smile}
+                  // TODO fix color tint
+                  // fill='red'
+                  width="32"
+                  height="32"
+                />
               </View>
               <Text style={styles.buttonText}>oma.helsinki</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => {
-            this.props.navigation.navigate('Cards', {
-
-            })
-          }}>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('Cards', {
+              });
+            }}
+          >
             <View style={styles.menuButton}>
               <View style={styles.buttonIcon}>
-                <Icon name="credit-card" size={32} color="black" />
+                <SvgUri
+                  source={ticket}
+                  width="32"
+                  height="32"
+                />
               </View>
               <Text style={styles.buttonText}>Kortit</Text>
             </View>
@@ -98,14 +106,14 @@ const ProfileStack = StackNavigator(
       screen: ProfileModule,
     },
     Cards: {
-      screen: Cards
+      screen: Cards,
     },
     AddCard: {
-      screen: AddCardView
+      screen: AddCardView,
     },
     CardDetail: {
-      screen: CardDetailView
-    }
+      screen: CardDetailView,
+    },
   },
   {
     navigationOptions: {
