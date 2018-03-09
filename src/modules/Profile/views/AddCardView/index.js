@@ -27,6 +27,8 @@ class AddCardView extends React.Component<Props, State> {
     this.state = {
       cardNumber: '',
       cardPin: '',
+      cardNumberError: false,
+      cardPinError: false,
     }
   }
 
@@ -44,18 +46,32 @@ class AddCardView extends React.Component<Props, State> {
   }
 
   cardNumberChangeListener = (value) =>{
-    this.setState({ cardNumber: value })
+    this.setState({
+      cardNumber: value,
+      cardNumberError: false,
+    })
   }
 
   cardPinChangeListener = (value) =>{
-    this.setState({ cardPin: value })
+    this.setState({
+      cardPin: value,
+      cardPinError: false,
+    })
   }
 
   validateFields = () => {
-    if (this.state.cardNumber.length <= 0 ||
-      this.state.cardPin.length <= 0) {
-      return false;
+    let errors = false;
+    if (this.state.cardNumber.length !== 14) {
+      this.setState({ cardNumberError: true })
+      errors = true;
     }
+
+    if (this.state.cardPin.length !== 4) {
+      this.setState({ cardPinError: true })
+      errors = true;
+    }
+
+    if (errors) return false;
 
     return true;
   }
@@ -100,7 +116,10 @@ class AddCardView extends React.Component<Props, State> {
           }}
         />
 
-        <ScrollView style={{flex: 1, backgroundColor: colors.min,}}>
+        <ScrollView
+          style={{flex: 1, backgroundColor: colors.min,}}
+          keyboardShouldPersistTaps
+        >
         <View style={styles.container}>
           <Text style={styles.title}>Yhdistä kirjastokortti</Text>
           <Text style={styles.description}>
@@ -111,6 +130,7 @@ class AddCardView extends React.Component<Props, State> {
             label={'Kirjastokortin numero'}
             keyboardType='numeric'
             onChangeText={this.cardNumberChangeListener}
+            error={this.state.cardNumberError ? 'Kortin numero on 14 merkkiä pitkä.' : null}
           />
 
           <FormInput
@@ -118,9 +138,12 @@ class AddCardView extends React.Component<Props, State> {
             secureTextEntry
             label={'PIN koodi'}
             onChangeText={this.cardPinChangeListener}
+            error={this.state.cardPinError ? 'Pin-koodi on 4 merkkiä pitkä.' : null}
           />
 
-          <TouchableOpacity onPress={() => this.addCard()}>
+          <TouchableOpacity onPress={() => {
+            if (this.validateFields()) this.addCard()
+          }}>
             <View style={styles.button}>
               <Text style={styles.buttonText}>Jatka</Text>
             </View>

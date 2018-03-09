@@ -8,6 +8,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  ScrollView,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { doAuth } from 'opencityHelsinki/src/utils/auth';
@@ -55,39 +56,41 @@ class Cards extends React.Component<Props, State> {
           }}
         />
         <View style={styles.subHeader}><Text style={styles.title}>Tiedot / Kortit</Text></View>
-        <View style={styles.container}>
-          <Text style={styles.description}>
-            Voit yhdistää erilaisia kortteja oma.helsinki-tiliisi jolloin voit käyttää mobiililaitettasi kuin lähiluettava korttia.
-          </Text>
+        <ScrollView style={{flex: 1, backgroundColor: '#94C2E8',}}>
+          <View style={styles.container}>
+            <Text style={styles.description}>
+              Voit yhdistää erilaisia kortteja oma.helsinki-tiliisi jolloin voit käyttää mobiililaitettasi kuin lähiluettava korttia.
+            </Text>
 
-          { this.state.cards.map((card) => {
-            return(
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('CardDetail', {
-                  card
-                })}
-                >
-                <View style={styles.card}>
-                  <View style={styles.buttonIcon}></View>
-                  <Text style={styles.cardText}>{'Kirjastokortti'}</Text>
-                </View>
-              </TouchableOpacity>
-            )
-            })
-          }
+            { this.state.cards.map((card) => {
+              return(
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate('CardDetail', {
+                    card
+                  })}
+                  >
+                  <View style={styles.card}>
+                    <View style={styles.buttonIcon}></View>
+                    <Text style={styles.cardText}>{'Kirjastokortti'}</Text>
+                  </View>
+                </TouchableOpacity>
+              )
+              })
+            }
 
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('AddCard')}
-            >
-            <View style={styles.connectButton}>
-              <View style={styles.buttonIcon}></View>
-              <Text style={styles.buttonText}>Yhdistä kirjastokortti</Text>
-            </View>
-          </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('AddCard')}
+              >
+              <View style={styles.connectButton}>
+                <View style={styles.buttonIcon}></View>
+                <Text style={styles.buttonText}>Yhdistä kirjastokortti</Text>
+              </View>
+            </TouchableOpacity>
 
 
 
-        </View>
+          </View>
+        </ScrollView>
       </View>
 
     );

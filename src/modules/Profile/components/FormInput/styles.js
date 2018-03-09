@@ -38,6 +38,9 @@ const styles = EStyleSheet.create({
     right: 8,
     height: '100%',
     top: '35%',
+  },
+  error: {
+    color: 'red'
   }
 });
 

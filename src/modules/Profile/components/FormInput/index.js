@@ -31,6 +31,7 @@ const FormInput = ({
   keyboardType = 'default',
   secureTextEntry = false,
   multiline = false,
+  error,
 }: Props) => (
   <View
     style={styles.row}
@@ -55,6 +56,7 @@ const FormInput = ({
         multiline={multiline}
       />
     </View>
+    { error && <Text style={styles.error}>{error}</Text>}
   </View>
 );
 

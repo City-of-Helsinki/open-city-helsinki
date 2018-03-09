@@ -11,6 +11,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   NativeModules,
+  Alert,
 } from 'react-native';
 import { StackNavigator, NavigationActions } from 'react-navigation';
 import { doAuth } from 'opencityHelsinki/src/utils/auth';
@@ -58,6 +59,18 @@ class CardDetailView extends React.Component<Props, State> {
     }
 
     return true;
+  }
+
+  onRemovePress = () => {
+    Alert.alert(
+      'Korttietojen poistaminen',
+      'Oletko varma että haluat poistaa kortin tiedot laitteesta?',
+      [
+        { text: 'Peruuta', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+        { text: 'OK', onPress: () => this.removeCard() },
+      ],
+      { cancelable: false }
+    )
   }
 
   goBack = () => {
@@ -119,7 +132,7 @@ class CardDetailView extends React.Component<Props, State> {
             <Text style={styles.fieldText}>{card.cardNumber}</Text>
           </View>
 
-          <TouchableOpacity onPress={() => this.removeCard()}>
+          <TouchableOpacity onPress={() => this.onRemovePress()}>
             <View style={styles.button}>
               <Text style={styles.buttonText}>Unohda korttitiedot</Text>
             </View>
