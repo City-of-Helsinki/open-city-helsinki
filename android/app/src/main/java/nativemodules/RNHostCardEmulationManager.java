@@ -1,16 +1,26 @@
 package nativemodules;
 
+import services.HostCardEmulatorService;
+import services.ReactBridgeState;
+
 import android.content.Intent;
+import android.content.ComponentName;
+import android.os.Messenger;
+import android.os.IBinder;
 import android.content.SharedPreferences;
+import android.content.ServiceConnection;
 import android.util.Log;
 
 import com.facebook.react.bridge.Promise;
+import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableArray;
+
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -27,8 +37,11 @@ public class RNHostCardEmulationManager extends ReactContextBaseJavaModule {
     private static final String CARD_NUMBER = "cardNumber";
     private static final String CARD_PIN = "cardPin";
 
+    private static final String TAG = "HelsinkiNFC";
+
     public RNHostCardEmulationManager(ReactApplicationContext reactContext) {
         super(reactContext);
+        ReactBridgeState.INSTANCE.setReactContext(getReactApplicationContext());
     }
 
     @Override
@@ -96,9 +109,14 @@ public class RNHostCardEmulationManager extends ReactContextBaseJavaModule {
 
     }
 
+    @ReactMethod
+    public void sendToken(String value) {
+        ReactBridgeState.INSTANCE.notifyListener(value);
+    }
 
     @ReactMethod
     public void getCards(final Promise promise) {
+        Log.d(TAG, "Get cards");
         WritableArray cardArray = Arguments.createArray();
         Set<String> cards = getPreferences().getStringSet("libraryCards", new HashSet<String>());
         Iterator<String> iterator = cards.iterator();
@@ -110,7 +128,7 @@ public class RNHostCardEmulationManager extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void startNfcService(final Promise promise) {
-        Log.d("HelsinkiNFC", "Starting service...");
+        Log.d(TAG, "Starting service...");
         Intent intent = new Intent(getReactApplicationContext(), HostCardEmulatorService.class);
         getReactApplicationContext().startService(intent);
         promise.resolve(true);
@@ -118,7 +136,7 @@ public class RNHostCardEmulationManager extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void stopNfcService() {
-        Log.d("HelsinkiNFC", "Stopping service...");
+        Log.d(TAG, "Stopping service...");
         Intent intent = new Intent(getReactApplicationContext(), HostCardEmulatorService.class);
         getReactApplicationContext().stopService(intent);
     }

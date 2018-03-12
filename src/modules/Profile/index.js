@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   NativeModules,
+  DeviceEventEmitter
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { doAuth } from 'opencityHelsinki/src/utils/auth';
@@ -17,6 +18,10 @@ import CardDetailView from './views/CardDetailView';
 import styles from './styles';
 import smile from '../../../img/smile.svg';
 import ticket from '../../../img/ticket.svg';
+
+function randomFunction(stuff) {
+  console.warn('calling random function with ' + stuff);
+}
 
 class ProfileModule extends React.Component<Props, State> {
   constructor(props) {
@@ -34,6 +39,7 @@ class ProfileModule extends React.Component<Props, State> {
   loadCards = async () => {
     console.warn('loading cards')
     const cards = await NativeModules.HostCardManager.getCards();
+    NativeModules.HostCardManager.initializeJWTGenerator(randomFunction);
     const cManager = new CardManager()
     const profile = await cManager.setCards(cards);
     console.warn(profile)

@@ -2,6 +2,8 @@
 import * as React from 'react';
 import {
   View,
+  NativeModules,
+  DeviceEventEmitter
 } from 'react-native';
 // $FlowFixMe
 import { TabNavigator, TabBarBottom } from 'react-navigation';
@@ -21,6 +23,11 @@ import heroBanner from '../img/main-hero-decoration.png';
 import linkedEventDecorator from '../img/main-image-decoration.png';
 import map_marker from '../img/marker_pin.png';
 
+import {
+  registerDevice,
+  unregisterDevice,
+  generateToken
+} from 'src/utils/authentication_keys';
 
 initColors(colors);
 
@@ -44,6 +51,14 @@ type Props = { i18n: any };
 type State = {
   modalVisible: boolean,
 };
+
+async function tokenRequestListener (e) {
+  await registerDevice('12345');
+  console.warn('device registered');
+  // const deviceToken = await generateToken('603b7451-9505-4ac5-bdeb-ef6d36c85a76');
+  // NativeModules.HostCardManager.sendToken(deviceToken);
+}
+
 class App extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -59,6 +74,12 @@ class App extends React.Component<Props, State> {
 
   showModal = () => this.setState({ modalVisible: true });
   hideModal = () => this.setState({ modalVisible: false });
+
+
+  componentWillMount() {
+    console.warn('ADDING LISTENER and REGISTERING DEVICE');
+    DeviceEventEmitter.addListener('apdu', tokenRequestListener);
+  }
 
   render() {
     const screenProps = {

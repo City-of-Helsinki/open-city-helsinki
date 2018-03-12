@@ -2,6 +2,7 @@ package services;
 
 import android.nfc.cardemulation.HostApduService
 import android.os.Bundle
+import android.os.Binder
 import android.util.Log
 import java.nio.ByteBuffer
 
@@ -9,11 +10,14 @@ import services.statusResponse
 import services.dataResponse
 import services.defaultErrorResponse
 
+import services.ReactBridgeState
+import services.ChangeListener
+
 
 /**
  * Created by tituomin on 6.2.2018.
  */
-class HostCardEmulatorService: HostApduService() {
+class HostCardEmulatorService: ChangeListener, HostApduService() {
     var applicationSelected = false
     var interfaceDeviceId: ByteArray? = null
     var sendingData = false
@@ -36,7 +40,13 @@ class HostCardEmulatorService: HostApduService() {
         interfaceDeviceId = null
         sendingData = false
     }
+    inner class LocalBinder: Binder() {
+        fun getService(): HostCardEmulatorService {
+            return this@HostCardEmulatorService
+        }
+    }
     override fun processCommandApdu(commandApdu: ByteArray?, extras: Bundle?): ByteArray {
+        Log.d(TAG, this.toString())
         if (commandApdu == null) {
             return defaultErrorResponse()
         }
@@ -64,6 +74,8 @@ class HostCardEmulatorService: HostApduService() {
         if (apdu.instruction == Apdu.Instruction.INTERNAL_AUTHENTICATE &&
             apdu.parameter1 == 1 && apdu.parameter2 == 1 &&
             applicationSelected) {
+                ReactBridgeState.setChangeListener(this);
+                ReactBridgeState.sendEvent();
             dataBuffer = ByteBuffer.wrap(RESPONSE_DATA)
             return logResponse(chainedDataResponse(dataBuffer, apdu.expectedLength))
         }
@@ -71,5 +83,9 @@ class HostCardEmulatorService: HostApduService() {
             return logResponse(chainedDataResponse(dataBuffer, apdu.expectedLength))
         }
         return logResponse(defaultErrorResponse())
+    }
+
+    override fun onChange(value: String) {
+        Log.d(TAG, "I wuz called with " + value )
     }
 }
