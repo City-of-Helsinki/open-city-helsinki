@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import services.HostCardEmulationService;
+import services.HostCardEmulatorService;
 
 /**
  * Created by niko on 7.3.2018.
@@ -111,7 +111,7 @@ public class RNHostCardEmulationManager extends ReactContextBaseJavaModule {
     @ReactMethod
     public void startNfcService(final Promise promise) {
         Log.d("HelsinkiNFC", "Starting service...");
-        Intent intent = new Intent(getReactApplicationContext(), HostCardEmulationService.class);
+        Intent intent = new Intent(getReactApplicationContext(), HostCardEmulatorService.class);
         getReactApplicationContext().startService(intent);
         promise.resolve(true);
     }
@@ -119,7 +119,7 @@ public class RNHostCardEmulationManager extends ReactContextBaseJavaModule {
     @ReactMethod
     public void stopNfcService() {
         Log.d("HelsinkiNFC", "Stopping service...");
-        Intent intent = new Intent(getReactApplicationContext(), HostCardEmulationService.class);
+        Intent intent = new Intent(getReactApplicationContext(), HostCardEmulatorService.class);
         getReactApplicationContext().stopService(intent);
     }
 
