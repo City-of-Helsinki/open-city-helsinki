@@ -18,7 +18,7 @@ class Cards extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      cards: [],
+      cards: this.props.navigation.state.params.cards,
     };
   }
 
@@ -31,7 +31,6 @@ class Cards extends React.Component<Props, State> {
     if (profile.cards) {
       this.setState({ cards: profile.cards });
     }
-    console.warn(profile);
   }
 
   goBack = () => {

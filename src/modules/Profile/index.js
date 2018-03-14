@@ -5,10 +5,11 @@ import {
   Text,
   TouchableOpacity,
   NativeModules,
+  Alert,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import { doAuth } from 'opencityHelsinki/src/utils/auth';
-import { loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
+import { doAuth, doRefresh } from 'opencityHelsinki/src/utils/auth';
+import { isAuthed, loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
 import CardManager from 'opencityHelsinki/src/modules/Profile/CardManager';
 import SvgUri from 'react-native-svg-uri';
 import Cards from './views/Cards';
@@ -29,6 +30,8 @@ class ProfileModule extends React.Component<Props, State> {
 
   componentWillMount = () => {
     this.loadCards();
+    isAuthed();
+
   }
 
   loadCards = async () => {
@@ -36,22 +39,58 @@ class ProfileModule extends React.Component<Props, State> {
     const cards = await NativeModules.HostCardManager.getCards();
     const cManager = new CardManager()
     const profile = await cManager.setCards(cards);
-    console.warn(profile)
+    console.warn(cards)
     this.setState({
-      cards,
-      profile,
+      cards: profile.cards,
+      profile
     });
+  }
+
+  goToCards = async () => {
+    try {
+      const isUserAuthed = await isAuthed();
+
+      if (isUserAuthed) {
+
+        this.props.navigation.navigate('Cards', {
+          cards: this.state.cards,
+        });
+      } else {
+        Alert.alert(
+          'Kirjautuminen vaadittu',
+          'Sinun on oltava kirjautunut sisään hallitaksesi kortteja.',
+          [
+            { text: 'Peruuta', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+            { text: 'Kirjaudu', onPress: async () => {
+              await this.authorize()
+              this.props.navigation.navigate('Cards', {
+                cards: this.state.cards,
+              });
+              }
+            },
+          ],
+          { cancelable: false }
+        )
+      }
+    } catch (error) {
+      console.warn(error)
+    }
+
+
   }
 
 
   authorize = async () => {
-    const authorization = await doAuth();
-    console.warn("authorization " + authorization)
-    updateProfile(authorization);
+    return new Promise(async (resolve, reject) => {
+      const authorization = await doAuth();
+      updateProfile(authorization);
+      resolve(true)
+    })
   }
 
   render() {
     const { Header } = this.props.screenProps;
+    const { cards } = this.state;
 
     return (
       <View style={{ flex: 1 }}>
@@ -77,10 +116,7 @@ class ProfileModule extends React.Component<Props, State> {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Cards', {
-              });
-            }}
+            onPress={() => this.goToCards()}
           >
             <View style={styles.menuButton}>
               <View style={styles.buttonIcon}>

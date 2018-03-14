@@ -40,7 +40,15 @@ class CardManager {
           const card = cards[i].split('/');
           if (card && card.length > 1) cardArray.push({ cardNumber: card[0], cardPin: card[1] })
         }
-        const profile = await updateProfile({ cards: cardArray });
+
+        let profile = await loadProfile();
+
+        if (profile) {
+          profile.cards = cardArray
+        } else {
+          profile = { cards: cardarray }
+        }
+
         resolve(profile)
       } catch (error) {
         reject(error)

@@ -57,3 +57,30 @@ export const deleteProfile = async () => {
     console.error(`Error deleting profile from AsyncStorage: ${e.name}: ${e.message}`);
   }
 };
+
+export const isAuthed = async () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const valueJSON: string = await AsyncStorage.getItem(key);
+      const profile = JSON.parse(valueJSON);
+      if (
+        profile &&
+        profile.auth &&
+        profile.auth.accessTokenExpirationDate
+      ) {
+        const now = new Date();
+        const expire = new Date(profile.auth.accessTokenExpirationDate)
+
+        if (expire > now) {
+          resolve(true);
+        } else {
+          await doRefresh(profile.auth.refreshToken);
+          resolve(true);
+        }
+      }
+      resolve(false);
+    } catch (error) {
+      reject(error);
+    }
+  })
+};
