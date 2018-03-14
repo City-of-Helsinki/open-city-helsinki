@@ -53,10 +53,9 @@ type State = {
 };
 
 async function tokenRequestListener (e) {
-  await registerDevice('12345');
-  console.warn('device registered');
-  // const deviceToken = await generateToken('603b7451-9505-4ac5-bdeb-ef6d36c85a76');
-  // NativeModules.HostCardManager.sendToken(deviceToken);
+  // FIXME: move shared uuid for library automaton device to config
+  const deviceToken = await generateToken('603b7451-9505-4ac5-bdeb-ef6d36c85a76');
+  NativeModules.HostCardManager.sendToken(deviceToken);
 }
 
 class App extends React.Component<Props, State> {
@@ -77,8 +76,13 @@ class App extends React.Component<Props, State> {
 
 
   componentWillMount() {
-    console.warn('ADDING LISTENER and REGISTERING DEVICE');
     DeviceEventEmitter.addListener('apdu', tokenRequestListener);
+
+    // FIXME: move this registerDevice right after succesful login
+    // FIXME: use actual access token for tunnistamo (received from login)
+    registerDevice('12345').then(
+      () => {console.debug('Devices registered ok');},
+      () => {console.debug('Device register fail');});
   }
 
   render() {

@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.os.Binder
 import android.util.Log
 import java.nio.ByteBuffer
+import java.nio.CharBuffer
+import java.nio.charset.Charset
+import java.nio.charset.CharsetEncoder
 
 import services.statusResponse
 import services.dataResponse
@@ -22,30 +25,34 @@ class HostCardEmulatorService: ChangeListener, HostApduService() {
     var interfaceDeviceId: ByteArray? = null
     var sendingData = false
     var dataBuffer: ByteBuffer? = null
+    var apdu: Apdu? = null
+
     companion object {
         val TAG = "HelsinkiHostCardEmulator"
         val AID = Utils.hexStringToByteArray("F074756E6E697374616D6F")
         val RESPONSE_DATA = ByteArray(700, {i -> (0x41 + i % 58).toByte()})
+        val ASCII_CHARSET = Charset.forName("US-ASCII")
     }
+
     fun logResponse(data: ByteArray): ByteArray {
         Log.d(TAG, "Responding with: " + Utils.toHex(data))
         return data
     }
+
     override fun onDeactivated(reason: Int) {
         resetState()
         Log.d(TAG, "Deactivated: " + reason)
     }
+
     fun resetState() {
         applicationSelected = false
         interfaceDeviceId = null
         sendingData = false
+        dataBuffer = null
+        apdu = null
     }
-    inner class LocalBinder: Binder() {
-        fun getService(): HostCardEmulatorService {
-            return this@HostCardEmulatorService
-        }
-    }
-    override fun processCommandApdu(commandApdu: ByteArray?, extras: Bundle?): ByteArray {
+
+    override fun processCommandApdu(commandApdu: ByteArray?, extras: Bundle?): ByteArray? {
         Log.d(TAG, this.toString())
         if (commandApdu == null) {
             return defaultErrorResponse()
@@ -76,8 +83,9 @@ class HostCardEmulatorService: ChangeListener, HostApduService() {
             applicationSelected) {
                 ReactBridgeState.setChangeListener(this);
                 ReactBridgeState.sendEvent();
-            dataBuffer = ByteBuffer.wrap(RESPONSE_DATA)
-            return logResponse(chainedDataResponse(dataBuffer, apdu.expectedLength))
+                this.sendingData = true
+                this.apdu = apdu
+                return null
         }
         if (apdu.instruction == Apdu.Instruction.GET_RESPONSE) {
             return logResponse(chainedDataResponse(dataBuffer, apdu.expectedLength))
@@ -86,6 +94,13 @@ class HostCardEmulatorService: ChangeListener, HostApduService() {
     }
 
     override fun onChange(value: String) {
-        Log.d(TAG, "I wuz called with " + value )
+        val apdu = this.apdu
+        if (!this.sendingData || apdu == null) {
+            return
+        }
+        this.dataBuffer = ASCII_CHARSET.encode(value)
+        this.sendingData = false
+        sendResponseApdu(logResponse(chainedDataResponse(dataBuffer, apdu.expectedLength)))
+        this.apdu = null
     }
 }
