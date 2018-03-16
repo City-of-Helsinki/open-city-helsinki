@@ -30,20 +30,22 @@ class ProfileModule extends React.Component<Props, State> {
 
   componentWillMount = () => {
     this.loadCards();
-    isAuthed();
-
   }
 
   loadCards = async () => {
     console.warn('loading cards')
     const cards = await NativeModules.HostCardManager.getCards();
     const cManager = new CardManager()
-    const profile = await cManager.setCards(cards);
-    console.warn(cards)
-    this.setState({
-      cards: profile.cards,
-      profile
-    });
+    try {
+      const profile = await cManager.setCards(cards);
+      this.setState({
+        cards: profile.cards,
+        profile
+      });
+    } catch (error) {
+      console.warn(error)
+    }
+
   }
 
   goToCards = async () => {

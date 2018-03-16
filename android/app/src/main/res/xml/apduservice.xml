@@ -1,4 +1,4 @@
-<host-apdu-sercice xmlns:android="http://schemas.android.com/apk/res/android"
+<host-apdu-service xmlns:android="http://schemas.android.com/apk/res/android"
     android:description="@string/servicedesc">
     <!--android:requiredDeviceUnlock="true">-->
     <aid-group
@@ -6,4 +6,4 @@
         android:category="other">
         <aid-filter android:name="F074756E6E697374616D6F"/>
     </aid-group>
-</host-apdu-sercice>
+</host-apdu-service>

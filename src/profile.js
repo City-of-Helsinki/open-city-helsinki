@@ -74,8 +74,8 @@ export const isAuthed = async () => {
         if (expire > now) {
           resolve(true);
         } else {
-          await doRefresh(profile.auth.refreshToken);
-          resolve(true);
+          //await doRefresh(profile.auth.refreshToken);
+          resolve(false);
         }
       }
       resolve(false);

@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import { doAuth } from 'opencityHelsinki/src/utils/auth';
 import { loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
+import { makeRequest } from 'opencityHelsinki/src/utils/requests';
 
 
 class CardManager {
@@ -68,6 +69,36 @@ class CardManager {
 
       await updateProfile({ cards });
       resolve(cards);
+    })
+  }
+
+
+  registerCard = (card) => {
+    return new Promise(async (resolve, reject) => {
+      const url = 'https://api.hel.fi/sso-test/v1/user_device/';
+      try {
+        const profile = await loadProfile();
+        if (profile.auth) {
+          const token = profile.auth.accessToken;
+          const headers = {
+            'Content-Type': 'multipart/form-data',
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+          };
+          const body = {
+            service: 'library',
+            identifier: card.cardNumber,
+            secret: card.cardPin
+          }
+          const result = await makeRequest(url, 'POST', headers, body);
+          resolve(result)
+        }
+
+
+      } catch (error) {
+        console.warn(error)
+        reject(error);
+      }
     })
   }
 }
