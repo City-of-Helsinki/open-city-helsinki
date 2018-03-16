@@ -62,6 +62,11 @@ styles = EStyleSheet.create({
   changeLanguage: {
     alignSelf: 'stretch',
   },
+  error: {
+    color: 'red',
+    fontSize: 14,
+    marginBottom: 4,
+  }
 });
 
 export default styles;

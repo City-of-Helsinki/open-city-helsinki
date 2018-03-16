@@ -20,6 +20,7 @@ import BackIcon from 'opencityHelsinki/img/arrow_back.png';
 import FormInput from 'opencityHelsinki/src/modules/Profile/components/FormInput';
 import CardManager from 'opencityHelsinki/src/modules/Profile/CardManager';
 import styles from './styles';
+import { makeRequest } from 'opencityHelsinki/src/utils/requests';
 
 class AddCardView extends React.Component<Props, State> {
   constructor(props) {
@@ -29,6 +30,7 @@ class AddCardView extends React.Component<Props, State> {
       cardPin: '',
       cardNumberError: false,
       cardPinError: false,
+      commonError: '',
     }
   }
 
@@ -49,6 +51,7 @@ class AddCardView extends React.Component<Props, State> {
     this.setState({
       cardNumber: value,
       cardNumberError: false,
+      commonError: '',
     })
   }
 
@@ -56,6 +59,7 @@ class AddCardView extends React.Component<Props, State> {
     this.setState({
       cardPin: value,
       cardPinError: false,
+      commonError: '',
     })
   }
 
@@ -80,25 +84,70 @@ class AddCardView extends React.Component<Props, State> {
     this.props.navigation.goBack();
   }
 
+  registerCard = (card) => {
+    console.warn(card)
+    return new Promise(async (resolve, reject) => {
+      const url = 'https://api.hel.fi/sso-test/v1/user_identity/';
+      try {
+        const profile = await loadProfile();
+        if (profile.auth) {
+          const token = profile.auth.accessToken;
+
+          let body = {
+            service: 'helmet',
+            identifier: card.cardNumber,
+            secret: card.cardPin
+          }
+
+          try {
+            console.warn("fetching...")
+            let res = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(body),
+                headers: {
+                  'Content-Type': 'application/json',
+                  Accept: 'application/json',
+                  Authorization: `Bearer ${token}`
+                },
+            });
+
+            if (res.status != 200 && res.status != 201) {
+                throw new Error("User device registration failed");
+            }
+            resolve(res);
+          } catch (error) {
+            reject(error)
+          }
+        }
+      } catch (error) {
+        reject(error);
+      }
+    })
+  }
+
   addCard = async () => {
+    this.setState({commonError: ''})
     console.warn('adding card')
     const cardInfo = {
       cardNumber: this.state.cardNumber,
       cardPin: parseInt(this.state.cardPin),
     };
+    try {
+      await this.registerCard(cardInfo)
 
-    const resetAction = NavigationActions.reset({
-      index: 0,
-      actions: [NavigationActions.navigate({ routeName: 'Profile' })],
-    });
-
-    NativeModules.HostCardManager.setCardInfo(cardInfo).then((response) => {
-      console.warn(response);
       NativeModules.HostCardManager.startNfcService();
-      this.props.navigation.dispatch(resetAction)
-    })
-    // const cardManager = new CardManager();
-    // const card = await cardManager.addCard(this.state.cardNumber, this.state.cardPin, 'library')
+      const resetAction = NavigationActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Profile' })],
+      });
+
+      NativeModules.HostCardManager.setCardInfo(cardInfo).then((response) => {
+        console.warn(response);
+        this.props.navigation.dispatch(resetAction)
+      })
+    } catch (error) {
+      this.setState({ commonError: 'Jokin meni pieleen, tarkista kortin tiedot ja yritä uudelleen.' })
+    }
   }
 
   render() {
@@ -148,7 +197,7 @@ class AddCardView extends React.Component<Props, State> {
               <Text style={styles.buttonText}>Jatka</Text>
             </View>
           </TouchableOpacity>
-
+          <Text style={styles.error}>{this.state.commonError}</Text>
           <TouchableOpacity>
             <Text style={styles.link}>Lisätiedot ja ohjeet ></Text>
           </TouchableOpacity>

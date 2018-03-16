@@ -10,7 +10,7 @@ import {
 import { StackNavigator } from 'react-navigation';
 import { doAuth, doRefresh } from 'opencityHelsinki/src/utils/auth';
 import { isAuthed, loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
-import CardManager from 'opencityHelsinki/src/modules/Profile/CardManager';
+import { setCards } from 'opencityHelsinki/src/modules/Profile/CardManager';
 import SvgUri from 'react-native-svg-uri';
 import Cards from './views/Cards';
 import AddCardView from './views/AddCardView';
@@ -18,6 +18,9 @@ import CardDetailView from './views/CardDetailView';
 import styles from './styles';
 import smile from '../../../img/smile.svg';
 import ticket from '../../../img/ticket.svg';
+import {
+  registerDevice,
+} from 'opencityHelsinki/src/utils/authentication_keys';
 
 class ProfileModule extends React.Component<Props, State> {
   constructor(props) {
@@ -35,9 +38,9 @@ class ProfileModule extends React.Component<Props, State> {
   loadCards = async () => {
     console.warn('loading cards')
     const cards = await NativeModules.HostCardManager.getCards();
-    const cManager = new CardManager()
     try {
-      const profile = await cManager.setCards(cards);
+
+      const profile = await setCards(cards);
       this.setState({
         cards: profile.cards,
         profile
@@ -85,6 +88,9 @@ class ProfileModule extends React.Component<Props, State> {
   authorize = async () => {
     return new Promise(async (resolve, reject) => {
       const authorization = await doAuth();
+      registerDevice(authorization.auth.accessToken).then(
+        () => {console.warn('Devices registered ok');},
+        () => {console.warn('Device register fail');});
       updateProfile(authorization);
       resolve(true)
     })

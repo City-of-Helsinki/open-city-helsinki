@@ -80,9 +80,7 @@ class App extends React.Component<Props, State> {
 
     // FIXME: move this registerDevice right after succesful login
     // FIXME: use actual access token for tunnistamo (received from login)
-    registerDevice('12345').then(
-      () => {console.debug('Devices registered ok');},
-      () => {console.debug('Device register fail');});
+
   }
 
   render() {

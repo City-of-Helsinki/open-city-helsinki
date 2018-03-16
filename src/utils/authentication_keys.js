@@ -18,7 +18,7 @@ class MockSecureStore {
 }
 const secureStore = new MockSecureStore();
 
-const TUNNISTAMO_API_BASE = 'http://192.168.0.104:8000';
+const TUNNISTAMO_API_BASE = 'https://api.hel.fi/sso-test';
 const STORE_PREFIX = 'tunnistamo/';
 
 let keystore = jose.JWK.createKeyStore();
