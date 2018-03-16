@@ -1,9 +1,9 @@
 {
-  "asyncStoragePrefix": "HelsinkiApp"
   "asyncStoragePrefix": "HelsinkiApp",
   "TIMEOUT_TRESHOLD": 5000,
   "TIMEOUT_MESSAGE": "Connection timed out",
   "OPENID_ISSUER": "https://api.hel.fi/sso-test/openid",
+  "OPENID_CLIENT_ID": "OPENID CLIENT ID",
   "OPENID_REDIRECT_URL": "opencityhelsinki://auth/callback",
   "OPENID_SCOPES": ["openid", "profile", "identities", "devices"],
 }
