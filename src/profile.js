@@ -70,13 +70,18 @@ export const isAuthed = async () => {
       ) {
         const now = new Date();
         const expire = new Date(profile.auth.accessTokenExpirationDate)
+        // FIXME: Check token expiration
+        // if (expire > now) {
+        //   console.warn("expiration ok")
+        //   resolve(true);
+        // } else {
+        //   console.warn("expiration not ok")
+        //
+        //   //await doRefresh(profile.auth.refreshToken);
+        //   resolve(false);
+        // }
 
-        if (expire > now) {
-          resolve(true);
-        } else {
-          //await doRefresh(profile.auth.refreshToken);
-          resolve(false);
-        }
+        resolve(true)
       }
       resolve(false);
     } catch (error) {
