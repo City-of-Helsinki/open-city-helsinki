@@ -5,6 +5,7 @@ import {
   NativeModules,
   DeviceEventEmitter
 } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 // $FlowFixMe
 import { TabNavigator, TabBarBottom } from 'react-navigation';
 import { withProps } from 'recompose';
@@ -52,7 +53,7 @@ type State = {
   modalVisible: boolean,
 };
 
-async function tokenRequestListener (e) {
+async function tokenRequestListener(e) {
   // FIXME: move shared uuid for library automaton device to config
   const deviceToken = await generateToken('603b7451-9505-4ac5-bdeb-ef6d36c85a76');
   NativeModules.HostCardManager.sendToken(deviceToken);
@@ -77,10 +78,6 @@ class App extends React.Component<Props, State> {
 
   componentWillMount() {
     DeviceEventEmitter.addListener('apdu', tokenRequestListener);
-
-    // FIXME: move this registerDevice right after succesful login
-    // FIXME: use actual access token for tunnistamo (received from login)
-
   }
 
   render() {

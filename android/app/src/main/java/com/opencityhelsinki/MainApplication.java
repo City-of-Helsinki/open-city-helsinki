@@ -9,7 +9,7 @@ import com.dylanvann.fastimage.FastImageViewPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import fr.bamlab.rnimageresizer.ImageResizerPackage;
 import nativemodules.RNHostCardEmulationPackage;
-
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.imagepicker.ImagePickerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
@@ -39,7 +39,8 @@ public class MainApplication extends Application implements ReactApplication {
             new ImageResizerPackage(),
             new ImagePickerPackage(),
             new VectorIconsPackage(),
-	    new RNHostCardEmulationPackage()
+	    new RNHostCardEmulationPackage(),
+              new RNDeviceInfo()
       );
     }
 
