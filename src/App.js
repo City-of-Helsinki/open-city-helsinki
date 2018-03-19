@@ -3,37 +3,25 @@ import * as React from 'react';
 import {
   View,
   NativeModules,
-  DeviceEventEmitter
+  DeviceEventEmitter,
 } from 'react-native';
-import DeviceInfo from 'react-native-device-info';
-// $FlowFixMe
 import { TabNavigator, TabBarBottom } from 'react-navigation';
 import { withProps } from 'recompose';
 import { initColors } from 'open-city-modules';
 import { translate } from 'react-i18next';
-
+import { generateToken } from 'src/utils/authentication_keys';
 import mapStyles from 'src/style';
 import tabs from 'src/config/tabs';
 import Header from 'src/config/header';
 import CityChangeModal from 'src/components/CityChangeModal';
 import colors from 'src/config/colors';
-// i18n must be imported so that it gets initialized
 // eslint-disable-next-line no-unused-vars
 import i18n from 'src/config/translations';
 import heroBanner from '../img/main-hero-decoration.png';
 import linkedEventDecorator from '../img/main-image-decoration.png';
 import map_marker from '../img/marker_pin.png';
 
-import {
-  registerDevice,
-  unregisterDevice,
-  generateToken
-} from 'src/utils/authentication_keys';
-
 initColors(colors);
-
-const MAP_PAGE = 'map';
-const LIST_PAGE = 'list';
 
 const Tabs = TabNavigator(tabs, {
   tabBarComponent: TabBarBottom,
@@ -53,9 +41,8 @@ type State = {
   modalVisible: boolean,
 };
 
-async function tokenRequestListener(e) {
-  // FIXME: move shared uuid for library automaton device to config
-  const deviceToken = await generateToken('603b7451-9505-4ac5-bdeb-ef6d36c85a76');
+async function tokenRequestListener() {
+  const deviceToken = await generateToken();
   NativeModules.HostCardManager.sendToken(deviceToken);
 }
 
@@ -72,13 +59,12 @@ class App extends React.Component<Props, State> {
     })(Header);
   }
 
-  showModal = () => this.setState({ modalVisible: true });
-  hideModal = () => this.setState({ modalVisible: false });
-
-
   componentWillMount() {
     DeviceEventEmitter.addListener('apdu', tokenRequestListener);
   }
+
+  showModal = () => this.setState({ modalVisible: true });
+  hideModal = () => this.setState({ modalVisible: false });
 
   render() {
     const screenProps = {

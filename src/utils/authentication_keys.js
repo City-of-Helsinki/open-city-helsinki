@@ -1,4 +1,5 @@
 import jose from 'node-jose';
+import Config from 'opencityHelsinki/src/config/config.json';
 import DeviceInfo from 'react-native-device-info';
 
 // FIXME: replace with https://github.com/pradeep1991singh/react-native-secure-key-store
@@ -130,16 +131,16 @@ const getUserUUID = async () => {
   return await secureStore.get(STORE_PREFIX + 'userId');
 };
 
-export const generateToken = async (interfaceDeviceId) => {
+export const generateToken = async () => {
   const payload = {
     iss: await getDeviceID(),
     sub: await getUserUUID(),
     cnt: await getAndIncrementCounter(),
     iat: Math.floor(Date.now() / 1000),
-    azp: interfaceDeviceId,
+    azp: Config.LIBRARY_DEVICE_UUID,
   };
 
-  const nonce = Math.floor(Math.random()*1000000000000000);
+  const nonce = Math.floor(Math.random() * 1000000000000000);
 
   await secureStore.set(STORE_PREFIX + 'nonce', nonce);
   payload.nonce = nonce;

@@ -6,4 +6,5 @@
   "OPENID_CLIENT_ID": "OPENID CLIENT ID",
   "OPENID_REDIRECT_URL": "opencityhelsinki://auth/callback",
   "OPENID_SCOPES": ["openid", "profile", "identities", "devices"],
+  "LIBRARY_DEVICE_UUID": "603b7451-9505-4ac5-bdeb-ef6d36c85a76",
 }
