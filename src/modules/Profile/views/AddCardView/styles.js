@@ -52,7 +52,8 @@ styles = EStyleSheet.create({
     borderWidth: 2,
     width: '50%',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    height: 64,
   },
   link: {
     color: 'royalblue',
@@ -66,7 +67,16 @@ styles = EStyleSheet.create({
     color: 'red',
     fontSize: 14,
     marginBottom: 4,
-  }
+  },
+  loading: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
 });
 
 export default styles;

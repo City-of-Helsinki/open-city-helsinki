@@ -7,8 +7,11 @@ import {
   NativeModules,
   Alert,
   Image,
+  ActivityIndicator,
+  ToastAndroid
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import { doAuth, doRefresh } from 'opencityHelsinki/src/utils/auth';
 import { isAuthed, loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
 import { setCards } from 'opencityHelsinki/src/modules/Profile/CardManager';
@@ -28,6 +31,7 @@ class ProfileModule extends React.Component<Props, State> {
     this.state = {
       profile: null,
       cards: [],
+      loading: false,
     };
   }
 
@@ -86,14 +90,33 @@ class ProfileModule extends React.Component<Props, State> {
 
 
   authorize = async () => {
-    return new Promise(async (resolve, reject) => {
-      const authorization = await doAuth();
-      registerDevice(authorization.auth.accessToken).then(
-        () => {console.warn('Devices registered ok');},
-        () => {console.warn('Device register fail');});
-      updateProfile(authorization);
-      resolve(true)
-    })
+    try {
+      this.setState({ loading: true })
+
+      return new Promise(async (resolve, reject) => {
+        doAuth().then((authorization) => {
+          registerDevice(authorization.auth.accessToken).then(
+            () => {
+              this.setState({ loading: false })
+              updateProfile(authorization).then((success) => {
+                resolve(true)
+              }, (error) => {
+                reject(new Error("Failed updating profile"));
+              });
+            },
+            () => {
+              reject(new Error('Failed registering device.'))
+            });
+        }, (error) => {
+          this.setState({ loading: false })
+          reject(error)
+        });
+      })
+    } catch (error) {
+      this.setState({ loading: false })
+      console.log(error)
+      reject(error)
+    }
   }
 
   render() {
@@ -108,7 +131,17 @@ class ProfileModule extends React.Component<Props, State> {
         <View style={styles.container}>
 
           <TouchableOpacity
-            onPress={() => this.authorize()}
+            disabled={this.state.loading}
+            onPress={async () => {
+              try {
+                const result = await this.authorize();
+                if (result) {
+                  ToastAndroid.show('Tunnistautuminen onnistui', ToastAndroid.SHORT);
+                }
+              } catch (error) {
+                ToastAndroid.show('Tunnistautuminen epäonnistui', ToastAndroid.SHORT);
+              }
+            }}
           >
             <View style={styles.menuButton}>
               <View style={styles.buttonIcon}>
@@ -123,6 +156,7 @@ class ProfileModule extends React.Component<Props, State> {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
+            disabled={this.state.loading}
             onPress={() => this.goToCards()}
           >
             <View style={styles.menuButton}>
@@ -136,6 +170,14 @@ class ProfileModule extends React.Component<Props, State> {
             </View>
           </TouchableOpacity>
         </View>
+        { this.state.loading &&
+          <View style={styles.loading}>
+            <ActivityIndicator
+              size={'large'}
+              color={EStyleSheet.value('$colors.med')}
+            />
+          </View>
+        }
       </View>
 
     );

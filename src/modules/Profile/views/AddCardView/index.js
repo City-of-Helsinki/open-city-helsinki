@@ -10,11 +10,13 @@ import {
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
   ScrollView,
-  NativeModules
+  NativeModules,
+  ActivityIndicator
 } from 'react-native';
 import { StackNavigator, NavigationActions } from 'react-navigation';
 import { doAuth } from 'opencityHelsinki/src/utils/auth';
 import { loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import colors from 'src/config/colors';
 import BackIcon from 'opencityHelsinki/img/arrow_back.png';
 import FormInput from 'opencityHelsinki/src/modules/Profile/components/FormInput';
@@ -31,6 +33,7 @@ class AddCardView extends React.Component<Props, State> {
       cardNumberError: false,
       cardPinError: false,
       commonError: '',
+      loading: false,
     }
   }
 
@@ -126,7 +129,10 @@ class AddCardView extends React.Component<Props, State> {
   }
 
   addCard = async () => {
-    this.setState({commonError: ''})
+    this.setState({
+      commonError: '',
+      loading: true
+    })
     console.warn('adding card')
     const cardInfo = {
       cardNumber: this.state.cardNumber,
@@ -143,9 +149,15 @@ class AddCardView extends React.Component<Props, State> {
 
       NativeModules.HostCardManager.setCardInfo(cardInfo).then((response) => {
         console.warn(response);
+        this.setState({
+          loading: false
+        })
         this.props.navigation.dispatch(resetAction)
       })
     } catch (error) {
+      this.setState({
+        loading: false
+      })
       this.setState({ commonError: 'Jokin meni pieleen, tarkista kortin tiedot ja yritä uudelleen.' })
     }
   }
@@ -190,11 +202,22 @@ class AddCardView extends React.Component<Props, State> {
             error={this.state.cardPinError ? 'Pin-koodi on 4 merkkiä pitkä.' : null}
           />
 
-          <TouchableOpacity onPress={() => {
-            if (this.validateFields()) this.addCard()
-          }}>
+          <TouchableOpacity
+            disabled={this.state.loading}
+            onPress={() => {
+              if (this.validateFields()) this.addCard()
+            }}
+          >
             <View style={styles.button}>
-              <Text style={styles.buttonText}>Jatka</Text>
+              { this.state.loading &&
+                <ActivityIndicator
+                  size={'small'}
+                  color={EStyleSheet.value('$colors.med')}
+                />
+              }
+              { !this.state.loading &&
+                <Text style={styles.buttonText}>Jatka</Text>
+              }
             </View>
           </TouchableOpacity>
           <Text style={styles.error}>{this.state.commonError}</Text>
@@ -205,6 +228,7 @@ class AddCardView extends React.Component<Props, State> {
 
         </View>
         </ScrollView>
+
       </KeyboardAvoidingView>
 
     );

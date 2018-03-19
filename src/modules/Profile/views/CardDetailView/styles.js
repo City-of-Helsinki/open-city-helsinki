@@ -47,6 +47,7 @@ styles = EStyleSheet.create({
     borderWidth: 2,
     alignItems: 'center',
     justifyContent: 'flex-start',
+    height: 64,
   },
   buttonText: {
     color: '$colors.max',

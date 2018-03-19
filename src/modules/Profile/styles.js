@@ -41,6 +41,15 @@ styles = EStyleSheet.create({
     paddingVertical: 24,
     paddingHorizontal: 16,
   },
+  loading: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
 });
 
 export default styles;
