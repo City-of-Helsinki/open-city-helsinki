@@ -40,21 +40,22 @@ export const registerDevice = async (accessToken) => {
   // Save keypair
   await secureStore.set(STORE_PREFIX + 'privateKey', JSON.stringify(signKey.toJSON(true)));
 
-  // const data = {
-  //   os: os,
-  //   os_version: systemVersion,
-  //   app_version: appVersion,
-  //   device_model: deviceModel,
-  //   public_key: signKey.toJSON(),
-  // };
-
   const data = {
-    os: 'android', // FIXME
-    os_version: '7.1', // FIXME
-    app_version: '0.1.1', // FIXME
-    device_model: 'LG G5', // FIXME
+    os: 'android',
+    os_version: systemVersion,
+    app_version: appVersion,
+    device_model: deviceModel,
     public_key: signKey.toJSON(),
   };
+
+  //
+  // const data = {
+  //   os: 'android', // FIXME
+  //   os_version: '7.1', // FIXME
+  //   app_version: '0.1.1', // FIXME
+  //   device_model: 'LG G5', // FIXME
+  //   public_key: signKey.toJSON(),
+  // };
 
   let res = await fetch(url, {
     method: 'POST',
