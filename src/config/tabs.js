@@ -1,36 +1,59 @@
 /*  @flow */
 import React from 'react';
+import { Image } from 'react-native';
 import { translate } from 'react-i18next';
 import { withProps } from 'recompose';
 // import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import SvgUri from 'react-native-svg-uri';
-import { FeedbackModule, configureFeedback, WebViewModule, HomeViewModule } from 'open-city-modules';
+import { FeedbackModule, configureFeedback, WebViewModule, HomeViewModule, configureHomeView } from 'open-city-modules';
 import feedbackConfig from 'src/config/feedbackConfig.json';
 import Profile from 'src/modules/Profile';
 // import i18n from 'src/config/translations';
-import home from '../../img/home.svg';
-import pencil from '../../img/pencil.svg';
-import profile from '../../img/profile.svg';
+import home from '../../img/home.png';
+import pencil from '../../img/pencil.png';
+import profile from '../../img/profile.png';
+import CardImage from '../../img/hand_card.png'
 
 configureFeedback(feedbackConfig);
+
+const defaultPromotions = [
+  {
+    id: 'prom_001',
+    title: 'Puhelimesta kirjastokortiksi',
+    body: 'Voit käyttää nyt puhelimesi lähilukuominaisuutta kirjastokorttina',
+    image: CardImage,
+    footer: 'Ota kirjastokortti käyttöön',
+    bgColor: 'orange',
+    textColor: 'white',
+  },
+  {
+    id: 'prom_002',
+    title: 'Toinen mainos',
+    body: 'Tässä toinen geneerinen mainosteksti',
+    bgColor: 'purple',
+    textColor: 'white',
+  }
+]
+
+configureHomeView(null, null, defaultPromotions)
+
 
 const tabs = {
   HomeView: {
     screen: withProps({})(HomeViewModule),
     navigationOptions: () => ({
-      tabBarIcon: () => (<SvgUri source={home} width="32" height="32" />),
+      tabBarIcon: () => (<Image style={{height: 32, width: 32}} source={home} />),
     }),
   },
   Feedback: {
     screen: withProps({ showSubHeader: false })(FeedbackModule),
     navigationOptions: () => ({
-      tabBarIcon: () => (<SvgUri source={pencil} width="32" height="32" />),
+      tabBarIcon: () => (<Image source={pencil} style={{height: 32, width: 32}} />),
     }),
   },
   Profile: {
     screen: translate('profileTab')(Profile),
     navigationOptions: () => ({
-      tabBarIcon: () => (<SvgUri source={profile} width="32" height="32" />),
+      tabBarIcon: () => (<Image source={profile} style={{height: 32, width: 32}} />),
     }),
   },
 };

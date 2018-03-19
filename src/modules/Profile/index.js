@@ -6,18 +6,18 @@ import {
   TouchableOpacity,
   NativeModules,
   Alert,
+  Image,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { doAuth, doRefresh } from 'opencityHelsinki/src/utils/auth';
 import { isAuthed, loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
 import { setCards } from 'opencityHelsinki/src/modules/Profile/CardManager';
-import SvgUri from 'react-native-svg-uri';
 import Cards from './views/Cards';
 import AddCardView from './views/AddCardView';
 import CardDetailView from './views/CardDetailView';
 import styles from './styles';
-import smile from '../../../img/smile.svg';
-import ticket from '../../../img/ticket.svg';
+import smile from '../../../img/smile.png';
+import ticket from '../../../img/ticket.png';
 import {
   registerDevice,
 } from 'opencityHelsinki/src/utils/authentication_keys';
@@ -112,12 +112,11 @@ class ProfileModule extends React.Component<Props, State> {
           >
             <View style={styles.menuButton}>
               <View style={styles.buttonIcon}>
-                <SvgUri
+                <Image
+                  style={{height: 32, width: 32}}
                   source={smile}
                   // TODO fix color tint
                   // fill='red'
-                  width="32"
-                  height="32"
                 />
               </View>
               <Text style={styles.buttonText}>oma.helsinki</Text>
@@ -128,10 +127,9 @@ class ProfileModule extends React.Component<Props, State> {
           >
             <View style={styles.menuButton}>
               <View style={styles.buttonIcon}>
-                <SvgUri
+                <Image
                   source={ticket}
-                  width="32"
-                  height="32"
+                  style={{height: 32, width: 32}}
                 />
               </View>
               <Text style={styles.buttonText}>Kortit</Text>

@@ -8,17 +8,17 @@ import {
   ScrollView,
   NativeModules,
   Alert,
+  Image,
 } from 'react-native';
 import { StackNavigator, NavigationActions } from 'react-navigation';
 import { doAuth } from 'opencityHelsinki/src/utils/auth';
 import { loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
-import SvgUri from 'react-native-svg-uri';
 import colors from 'src/config/colors';
 import BackIcon from 'opencityHelsinki/img/arrow_back.png';
 import FormInput from 'opencityHelsinki/src/modules/Profile/components/FormInput';
 import CardManager from 'opencityHelsinki/src/modules/Profile/CardManager';
 import styles from './styles';
-import trash from '../../../../../img/trash.svg';
+import trash from '../../../../../img/trash.png';
 
 class CardDetailView extends React.Component<Props, State> {
   constructor(props) {
@@ -132,7 +132,7 @@ class CardDetailView extends React.Component<Props, State> {
 
             <TouchableOpacity onPress={() => this.onRemovePress()}>
               <View style={styles.button}>
-                <SvgUri source={trash} width="32" height="32" />
+                <Image source={trash} style={{height: 32, width: 32}} />
                 <Text style={styles.buttonText}>Unohda korttitiedot</Text>
               </View>
             </TouchableOpacity>
