@@ -18,6 +18,7 @@ import { setCards } from 'opencityHelsinki/src/modules/Profile/CardManager';
 import Cards from './views/Cards';
 import AddCardView from './views/AddCardView';
 import CardDetailView from './views/CardDetailView';
+import ProfileDetailView from './views/ProfileDetailView';
 import styles from './styles';
 import smile from '../../../img/smile.png';
 import ticket from '../../../img/ticket.png';
@@ -84,8 +85,25 @@ class ProfileModule extends React.Component<Props, State> {
     } catch (error) {
       console.warn(error)
     }
+  }
 
+  onAuthPressed = async () => {
+    const authed = await isAuthed();
 
+    if (authed) {
+      this.props.navigation.navigate('ProfileDetail', {
+        profile: this.state.profile,
+      });
+    } else if (!authed) {
+      try {
+        const result = await this.authorize();
+        if (result) {
+          ToastAndroid.show('Tunnistautuminen onnistui', ToastAndroid.SHORT);
+        }
+      } catch (error) {
+        ToastAndroid.show('Tunnistautuminen epäonnistui', ToastAndroid.SHORT);
+      }
+    }
   }
 
 
@@ -132,16 +150,7 @@ class ProfileModule extends React.Component<Props, State> {
 
           <TouchableOpacity
             disabled={this.state.loading}
-            onPress={async () => {
-              try {
-                const result = await this.authorize();
-                if (result) {
-                  ToastAndroid.show('Tunnistautuminen onnistui', ToastAndroid.SHORT);
-                }
-              } catch (error) {
-                ToastAndroid.show('Tunnistautuminen epäonnistui', ToastAndroid.SHORT);
-              }
-            }}
+            onPress={() => this.onAuthPressed()}
           >
             <View style={styles.menuButton}>
               <View style={styles.buttonIcon}>
@@ -197,6 +206,9 @@ const ProfileStack = StackNavigator(
     },
     CardDetail: {
       screen: CardDetailView,
+    },
+    ProfileDetail: {
+      screen: ProfileDetailView,
     },
   },
   {
