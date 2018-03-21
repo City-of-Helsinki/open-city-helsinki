@@ -6,6 +6,7 @@ import { withProps } from 'recompose';
 // import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { FeedbackModule, configureFeedback, WebViewModule, HomeViewModule, configureHomeView } from 'open-city-modules';
 import feedbackConfig from 'src/config/feedbackConfig.json';
+import homeviewConfig from 'src/config/homeviewConfig.json';
 import Profile from 'src/modules/Profile';
 // import i18n from 'src/config/translations';
 import home from '../../img/home.png';
@@ -13,7 +14,6 @@ import pencil from '../../img/pencil.png';
 import profile from '../../img/profile.png';
 import CardImage from '../../img/hand_card.png'
 
-configureFeedback(feedbackConfig);
 
 const defaultPromotions = [
   {
@@ -34,7 +34,9 @@ const defaultPromotions = [
   }
 ]
 
-configureHomeView(null, null, defaultPromotions)
+configureFeedback(feedbackConfig);
+
+configureHomeView(homeviewConfig, null, defaultPromotions)
 
 
 const tabs = {

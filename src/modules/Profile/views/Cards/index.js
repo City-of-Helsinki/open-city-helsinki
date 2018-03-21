@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, NavigationActions } from 'react-navigation';
 import { doAuth } from 'opencityHelsinki/src/utils/auth';
 import { loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
 import colors from 'src/config/colors';
@@ -18,7 +18,7 @@ class Cards extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      cards: this.props.navigation.state.params.cards,
+      cards: this.props.navigation.state.params ? this.props.navigation.state.params.cards : [],
     };
   }
 

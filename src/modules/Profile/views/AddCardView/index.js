@@ -11,7 +11,8 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   NativeModules,
-  ActivityIndicator
+  ActivityIndicator,
+  ToastAndroid
 } from 'react-native';
 import { StackNavigator, NavigationActions } from 'react-navigation';
 import { doAuth } from 'opencityHelsinki/src/utils/auth';
@@ -28,7 +29,7 @@ class AddCardView extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      cardNumber: '',
+      cardNumber: '200000',
       cardPin: '',
       cardNumberError: false,
       cardPinError: false,
@@ -152,6 +153,8 @@ class AddCardView extends React.Component<Props, State> {
         this.setState({
           loading: false
         })
+        ToastAndroid.show('Kortti lisätty', ToastAndroid.SHORT);
+
         this.props.navigation.dispatch(resetAction)
       })
     } catch (error) {
@@ -190,6 +193,7 @@ class AddCardView extends React.Component<Props, State> {
           <FormInput
             label={'Kirjastokortin numero'}
             keyboardType='numeric'
+            value={this.state.cardNumber}
             onChangeText={this.cardNumberChangeListener}
             error={this.state.cardNumberError ? 'Kortin numero on 14 merkkiä pitkä.' : null}
           />
@@ -197,6 +201,7 @@ class AddCardView extends React.Component<Props, State> {
           <FormInput
             keyboardType='numeric'
             secureTextEntry
+            value={this.state.cardPin}
             label={'PIN koodi'}
             onChangeText={this.cardPinChangeListener}
             error={this.state.cardPinError ? 'Pin-koodi on 4 merkkiä pitkä.' : null}

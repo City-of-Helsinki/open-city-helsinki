@@ -1,0 +1,21 @@
+{
+  "APP_NAME": "Helsinki",
+  "APP_VERSION": "v0.2.3",
+
+  // API URLs
+  "OPENAHJO_API_BASE_URL": "http://dev.hel.fi/openahjo/v1/",
+  "PROFILE_URL": "https://profile.dev.hel.ninja/own-profile",
+  "FEATURED_EVENT_API_BASE_URL": "https://www.myhelsinki.fi/api/path/%2Ffi%2Fnae-ja-koe%2Ftapahtumat",
+  "HEARINGS_API_BASE_URL": "https://api.hel.fi/kerrokantasi/v1/hearing/",
+  "HEARINGS_WEB_URL": "https://kerrokantasi.hel.fi/",
+  "LINKED_EVENTS_API_BASE_URL": "https://api.hel.fi/linkedevents/v1/event/",
+  "LINKED_EVENTS_GET_PARAMS": "?include=location&sort=start_time",
+
+
+  // OTHER URLs
+  "PRIVACY_POLICY_URL": "https://digi.hel.fi/helsinki-app-privacy-policy",
+
+  // Requests
+  "TIMEOUT_THRESHOLD": 40000,
+  "TIMEOUT_MESSAGE": "timeout",
+}

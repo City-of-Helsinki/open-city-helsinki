@@ -26,6 +26,7 @@ type Props = {
 const FormInput = ({
   label,
   placeholder,
+  value = '',
   inputHeight,
   onChangeText,
   keyboardType = 'default',
@@ -54,6 +55,7 @@ const FormInput = ({
         underlineColorAndroid="black"
         onChangeText={(text) => { onChangeText(text); }}
         multiline={multiline}
+        value={value}
       />
     </View>
     { error && <Text style={styles.error}>{error}</Text>}

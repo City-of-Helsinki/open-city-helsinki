@@ -20,6 +20,7 @@ const styles = EStyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     textAlignVertical: 'top',
+    fontSize: 18,
   },
   picker: {
     paddingHorizontal: 16,
