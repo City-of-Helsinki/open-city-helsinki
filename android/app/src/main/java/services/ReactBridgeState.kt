@@ -23,9 +23,9 @@ object ReactBridgeState {
         this.listener = listener
     }
 
-    fun sendEvent() {
+    fun sendEvent(deviceId: String) {
         Log.d("BRIDGE", "sending event")
-        this.context?.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)?.emit("apdu", null)
+        this.context?.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)?.emit("apdu", deviceId)
     }
 
     fun notifyListener(value: String) {

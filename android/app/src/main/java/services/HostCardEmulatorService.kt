@@ -22,7 +22,7 @@ import services.ChangeListener
  */
 class HostCardEmulatorService: ChangeListener, HostApduService() {
     var applicationSelected = false
-    var interfaceDeviceId: ByteArray? = null
+    var interfaceDeviceId: String? = null
     var sendingData = false
     var dataBuffer: ByteBuffer? = null
     var apdu: Apdu? = null
@@ -74,15 +74,16 @@ class HostCardEmulatorService: ChangeListener, HostApduService() {
         if (apdu.instruction == Apdu.Instruction.EXTERNAL_AUTHENTICATE &&
             apdu.parameter1 == 1 && apdu.parameter2 == 1) {
             if (apdu.data != null) {
-                interfaceDeviceId = apdu.data
+                interfaceDeviceId = ASCII_CHARSET.decode(ByteBuffer.wrap(apdu.data)).toString()
                 return logResponse(statusResponse(Apdu.Status.SUCCESS))
             }
         }
+        val interfaceDeviceId = this.interfaceDeviceId
         if (apdu.instruction == Apdu.Instruction.INTERNAL_AUTHENTICATE &&
             apdu.parameter1 == 1 && apdu.parameter2 == 1 &&
-            applicationSelected) {
+            applicationSelected && interfaceDeviceId != null) {
                 ReactBridgeState.setChangeListener(this);
-                ReactBridgeState.sendEvent();
+                ReactBridgeState.sendEvent(interfaceDeviceId);
                 this.sendingData = true
                 this.apdu = apdu
                 return null
@@ -93,12 +94,12 @@ class HostCardEmulatorService: ChangeListener, HostApduService() {
         return logResponse(defaultErrorResponse())
     }
 
-    override fun onChange(value: String) {
+    override fun onChange(token: String) {
         val apdu = this.apdu
         if (!this.sendingData || apdu == null) {
             return
         }
-        this.dataBuffer = ASCII_CHARSET.encode(value)
+        this.dataBuffer = ASCII_CHARSET.encode(token)
         this.sendingData = false
         sendResponseApdu(logResponse(chainedDataResponse(dataBuffer, apdu.expectedLength)))
         this.apdu = null
