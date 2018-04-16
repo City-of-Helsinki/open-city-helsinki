@@ -59,6 +59,8 @@ i18n
           customerShip: 'Customerships',
           info: 'Info',
           myHelsinki: 'my.helsinki',
+          loginRequired: 'Login required',
+          cardManageAlert: 'You must be logged in to manage cards.',
         },
       },
       fi: {
@@ -105,6 +107,8 @@ i18n
           customerShip: 'Asiakkuudet',
           info: 'Tiedot',
           myHelsinki: 'oma.helsinki',
+          loginRequired: 'Kirjautuminen vaadittu',
+          cardManageAlert: 'Sinun on oltava kirjautunut sisään hallitaksesi kortteja.',
         },
       },
     },
