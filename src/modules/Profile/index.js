@@ -8,12 +8,24 @@ import {
   Alert,
   Image,
   ActivityIndicator,
-  ToastAndroid
+  ToastAndroid,
 } from 'react-native';
+import {
+  registerDevice,
+} from 'opencityHelsinki/src/utils/authentication_keys';
 import { StackNavigator } from 'react-navigation';
+import i18n from 'i18next';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { doAuth, doRefresh } from 'opencityHelsinki/src/utils/auth';
-import { isAuthed, loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
+import {
+  doAuth,
+  // doRefresh,
+} from 'opencityHelsinki/src/utils/auth';
+import {
+  isAuthed,
+  // loadProfile,
+  updateProfile,
+  // deleteProfile
+} from 'opencityHelsinki/src/profile';
 import { setCards } from 'opencityHelsinki/src/modules/Profile/CardManager';
 import Cards from './views/Cards';
 import AddCardView from './views/AddCardView';
@@ -22,9 +34,6 @@ import ProfileDetailView from './views/ProfileDetailView';
 import styles from './styles';
 import smile from '../../../img/smile.png';
 import ticket from '../../../img/ticket.png';
-import {
-  registerDevice,
-} from 'opencityHelsinki/src/utils/authentication_keys';
 
 class ProfileModule extends React.Component<Props, State> {
   constructor(props) {
@@ -38,53 +47,6 @@ class ProfileModule extends React.Component<Props, State> {
 
   componentWillMount = () => {
     this.loadCards();
-  }
-
-  loadCards = async () => {
-    console.warn('loading cards')
-    const cards = await NativeModules.HostCardManager.getCards();
-    try {
-
-      const profile = await setCards(cards);
-      this.setState({
-        cards: profile.cards,
-        profile
-      });
-    } catch (error) {
-      console.warn(error)
-    }
-
-  }
-
-  goToCards = async () => {
-    try {
-      const isUserAuthed = await isAuthed();
-
-      if (isUserAuthed) {
-
-        this.props.navigation.navigate('Cards', {
-          cards: this.state.cards,
-        });
-      } else {
-        Alert.alert(
-          'Kirjautuminen vaadittu',
-          'Sinun on oltava kirjautunut sisään hallitaksesi kortteja.',
-          [
-            { text: 'Peruuta', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-            { text: 'Kirjaudu', onPress: async () => {
-              await this.authorize()
-              this.props.navigation.navigate('Cards', {
-                cards: this.state.cards,
-              });
-              }
-            },
-          ],
-          { cancelable: false }
-        )
-      }
-    } catch (error) {
-      console.warn(error)
-    }
   }
 
   onAuthPressed = async () => {
@@ -106,45 +68,91 @@ class ProfileModule extends React.Component<Props, State> {
     }
   }
 
+  goToCards = async () => {
+    try {
+      const isUserAuthed = await isAuthed();
+
+      if (isUserAuthed) {
+        this.props.navigation.navigate('Cards', {
+          cards: this.state.cards,
+        });
+      } else {
+        Alert.alert(
+          `${i18n.t('profileTab:loginRequired')}`,
+          `${i18n.t('profileTab:cardManageAlert')}`,
+          [
+            { text: `${i18n.t('common:cancel')}`, onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+            {
+              text: `${i18n.t('common:logIn')}`,
+              onPress: async () => {
+                await this.authorize();
+                this.props.navigation.navigate('Cards', {
+                  cards: this.state.cards,
+                });
+              },
+            },
+          ],
+          { cancelable: false },
+        );
+      }
+    } catch (error) {
+      console.warn(error);
+    }
+  }
+
+
+  loadCards = async () => {
+    // console.warn('loading cards')
+    const cards = await NativeModules.HostCardManager.getCards();
+    try {
+      const profile = await setCards(cards);
+      this.setState({
+        cards: profile.cards,
+        profile,
+      });
+    } catch (error) {
+      console.warn(error);
+    }
+  }
 
   authorize = async () => {
     try {
-      this.setState({ loading: true })
+      this.setState({ loading: true });
 
       return new Promise(async (resolve, reject) => {
         doAuth().then((authorization) => {
           registerDevice(authorization.auth.accessToken).then(
             () => {
-              this.setState({ loading: false })
+              this.setState({ loading: false });
               updateProfile(authorization).then((success) => {
-                resolve(true)
+                resolve(true);
               }, (error) => {
-                reject(new Error("Failed updating profile"));
+                reject(new Error('Failed updating profile'));
               });
             },
             () => {
-              reject(new Error('Failed registering device.'))
-            });
+              reject(new Error('Failed registering device.'));
+            },
+          );
         }, (error) => {
-          this.setState({ loading: false })
-          reject(error)
+          this.setState({ loading: false });
+          reject(error);
         });
-      })
+      });
     } catch (error) {
-      this.setState({ loading: false })
-      console.log(error)
-      reject(error)
+      this.setState({ loading: false });
+      console.log(error);
+      reject(error);
     }
   }
 
   render() {
     const { Header } = this.props.screenProps;
-    const { cards } = this.state;
 
     return (
       <View style={{ flex: 1 }}>
         <Header />
-        <View style={styles.subHeader}><Text style={styles.title}>Tiedot</Text></View>
+        <View style={styles.subHeader}><Text style={styles.title}>{i18n.t('profileTab:info')}</Text></View>
 
         <View style={styles.container}>
 
@@ -153,15 +161,12 @@ class ProfileModule extends React.Component<Props, State> {
             onPress={() => this.onAuthPressed()}
           >
             <View style={styles.menuButton}>
-              <View style={styles.buttonIcon}>
-                <Image
-                  style={{height: 32, width: 32}}
-                  source={smile}
-                  // TODO fix color tint
-                  // fill='red'
-                />
-              </View>
-              <Text style={styles.buttonText}>oma.helsinki</Text>
+              <Image
+                style={styles.buttonIcon}
+                source={smile}
+                // TODO fix color tint
+              />
+              <Text style={styles.buttonText}> {i18n.t('profileTab:myHelsinki')}</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
@@ -169,13 +174,11 @@ class ProfileModule extends React.Component<Props, State> {
             onPress={() => this.goToCards()}
           >
             <View style={styles.menuButton}>
-              <View style={styles.buttonIcon}>
-                <Image
-                  source={ticket}
-                  style={{height: 32, width: 32}}
-                />
-              </View>
-              <Text style={styles.buttonText}>Kortit</Text>
+              <Image
+                source={ticket}
+                style={styles.buttonIcon}
+              />
+              <Text style={styles.buttonText}>{i18n.t('profileTab:customerShip')}</Text>
             </View>
           </TouchableOpacity>
         </View>
