@@ -30,7 +30,9 @@ styles = EStyleSheet.create({
     marginVertical: 20,
   },
   buttonIcon: {
-    marginRight: 8
+    marginRight: 8,
+    height: 32,
+    width: 32,
   },
   changeLanguage: {
     alignSelf: 'stretch',

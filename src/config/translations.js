@@ -14,6 +14,8 @@ i18n
           previous: 'Previous',
           finish: 'Finish',
           'city-change-title': 'Open another city\'s app',
+          logIn: 'Log in',
+          cancel: 'Cancel',
         },
         tabs: {
           home: 'Home',
@@ -54,6 +56,9 @@ i18n
           interests: 'Interests',
           restartOnboarding: 'Edit your choices',
           changeLanguage: 'Change language',
+          customerShip: 'Customerships',
+          info: 'Info',
+          myHelsinki: 'my.helsinki',
         },
       },
       fi: {
@@ -63,6 +68,8 @@ i18n
           previous: 'Edellinen',
           finish: 'Valmis',
           'city-change-title': 'Avaa toisen kaupungin sovellus',
+          logIn: 'Kirjaudu',
+          cancel: 'Peruuta',
         },
         tabs: {
           home: 'Koti',
@@ -95,6 +102,9 @@ i18n
           interests: 'Kiinnostuksen kohteet',
           restartOnboarding: 'Muuta valintojasi',
           changeLanguage: 'Vaihda kieltä',
+          customerShip: 'Asiakkuudet',
+          info: 'Tiedot',
+          myHelsinki: 'oma.helsinki',
         },
       },
     },
