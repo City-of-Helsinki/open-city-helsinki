@@ -52,6 +52,7 @@ export const loadProfile = async () => {
 
 export const deleteProfile = async () => {
   try {
+    console.warn("deleting profile")
     await AsyncStorage.removeItem(key);
   } catch (e) {
     console.error(`Error deleting profile from AsyncStorage: ${e.name}: ${e.message}`);

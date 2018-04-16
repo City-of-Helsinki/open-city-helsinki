@@ -3,7 +3,6 @@ package com.opencityhelsinki;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.horcrux.svg.SvgPackage;
 import com.reactlibrary.RNAppAuthPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.airbnb.android.react.maps.MapsPackage;
@@ -32,7 +31,6 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new SvgPackage(),
             new RNAppAuthPackage(),
             new FastImageViewPackage(),
             new MapsPackage(),

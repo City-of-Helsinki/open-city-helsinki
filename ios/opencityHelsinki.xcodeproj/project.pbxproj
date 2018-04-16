@@ -1560,6 +1560,7 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
+					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/opencityHelsinki.app/opencityHelsinki";
@@ -1595,6 +1596,7 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
+					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/opencityHelsinki.app/opencityHelsinki";
@@ -1626,6 +1628,7 @@
 				);
 				PRODUCT_NAME = opencityHelsinki;
 				VERSIONING_SYSTEM = "apple-generic";
+					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 			};
 			name = Debug;
 		};
@@ -1653,6 +1656,7 @@
 				);
 				PRODUCT_NAME = opencityHelsinki;
 				VERSIONING_SYSTEM = "apple-generic";
+					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 			};
 			name = Release;
 		};
@@ -1697,6 +1701,8 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 			};
 			name = Debug;
 		};
@@ -1741,6 +1747,8 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 			};
 			name = Release;
 		};
@@ -1789,6 +1797,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

@@ -1,12 +1,11 @@
 {
-  // Default region set as Tampere
+  // Default region set as Helsinki
   "DEFAULT_LATITUDE" : 60.1680574,
   "DEFAULT_LONGITUDE": 24.9339746,
   "DEFAULT_LATITUDE_DELTA": 0.02208,
   "DEFAULT_LONGITUDE_DELTA": 0.01010,
 
   // API URLs
-  /* "OPEN311_API_URL": "http://feedback.tampere.fi/v1/", */
   "OPEN311_API_URL": "https://asiointi.hel.fi/palautews/rest/v1/",
   "OPEN311_SERVICES": "services.json",
   "OPEN311_SERVICE_LIST_LOCALE": "?locale=",

@@ -13,8 +13,10 @@ export const doAuth = () => {
       try {
         const result = await authorize(config)
         const profile = { auth: result };
+        updateProfile(profile);
         resolve(profile)
       } catch (error) {
+        console.warn(error)
         reject(error)
       }
   });

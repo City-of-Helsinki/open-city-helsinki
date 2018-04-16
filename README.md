@@ -1,23 +1,82 @@
 
-# Open City Skeleton
+# Open City Helsinki
 
-Open City Skeleton is a reusable React Native application skeleton for creating Open City Apps with whitelabel-model.
-This repository includes the RN project structure and implements fundamental parts of the application, including UI flow.
-Open City Modules (https://github.com/haltu/open-city-modules) are separate packages that implement some specific functionality and can be installed to the derivate app.
+Open City Helsinki is white-labeled application for City of Helsinki developed on [`open-city-skeleton` repository](https://github.com/6aika/open-city-skeleton).
+
+Open City Helsinki has been developed using:
 
 
-## Features
+`"react": "16.0.0"`
 
-- Onboarding flow (Stack navigation)
-  - Navigation through configured onboarding steps. (https://github.com/haltu/open-city-modules) includes views to create customized views for:
-    - Splash screen
-    - Single choice selection (eg language selection)
-    - Multichoice selection (eg interests)
+`"react-native": "0.50.3"`
+
+
+## Usage
+
+To start using codebase, clone this repository.
+It is advisable to keep Skeleton vanilla code in separate branch, named "skeleton" for example.
+This way it's easier to pull changes to skeleton and merge to feature/master branch of the product repo.
+Also bugfixes etc are easier to contribute upstream.
+
+
+### Step-by-step tutorial to develop Open City Helsinki
+
+Pre-install requirements:
+  - React Native https://facebook.github.io/react-native/docs/getting-started.html
+  - Android SDK Build-Tools version `25.0.1`
+  - Android emulator or device running version 4.1.2 or higher
+  - Xcode version 8.0 or higher
+  - iOS simulator or device runnin version 8.0 or higher
+
+This step-by-step tutorial's purpose is to help developers to start developing Open City Helsinki application. Check instructios on [`open-city-skeleton` repository](https://github.com/6aika/open-city-skeleton) how to develop new white-labeled application based on Open City Skeleton.
+
+* Clone the `open-city-helsinki` repository
+  `git clone https://github.com/City-of-Helsinki/open-city-helsinki.git`
+* Cd to project directory `cd open-city-helsinki`
+* Run `npm install`(note: Always use npm instead of yarn on `open-city-helsinki` project.)
+* Remove `node_modules/oidc-client-fetch/.babelrc`
+
+* FeedbackModule uses `react-native-maps` Google Maps to show the map for the user, which means we have to create a new API key foor Google Maps API and add it to `AndroidManifest.xml` as shown [here](https://developers.google.com/maps/documentation/ios-sdk/get-api-key)
+
+* Run the project with `react-native run-android`
+
+
+## Architecture
+
+![Optional Text](../develop/doc/open-city-helsinki-general-architecture.png)
+
+
+## Basic functionalities
+
+### Theming and UI customization
+In `src/config/colors.js` change the `max, med, min` values of the `colors` object.
+
+More colors can also be added to the object to be used in custom components and modules.
+
+
+### Configuration
+Onboarding, tabs, headers, translations and navigation components can be configured with the above instructios and by modifying the `App.js` file.
+
+To configure each module, check the default configuration for the module shown in [`open-city-modules` documentation](https://github.com/6aika/open-city-modules). In the file you can change module settings you wish to override by using for example `configureFeedback` function:
+
+```
+import feedbackConfig from './feedbackConfig.json'
+
+configureFeedback(feedbackConfig)
+```
+
+
+## Functionalities in Open City Helsinki
 - Module UI (Tab Navigation)
-    - Modules, default one from (https://github.com/haltu/open-city-modules) or custom ones,  are shown as tabs
+    - HomeViewModule
+      - HeroEvent
+      - LinkedEvents
+      - Hearings
+    - FeedbackModule
+    - Profile
 - City selection
     - Possibility for user to change active city by switching using another Open City App derivate application. Selection launches the desired app, if installed, otherwise market application for download.
-- Profile
+- Tunnistamo
 
 
 ### Onboarding
@@ -68,22 +127,29 @@ The default header has a button that opens a list of other cities' apps.
 
 The profile tab shows the choices made in the onboarding.
 
+### Tunnistamo
 
-## Usage
-
-To start using skeleton codebase, fork this repository and make new one for white labeled product.
-It is advisable to keep Skeleton vanilla code in separate branch, named "skeleton" for example.
-This way it's easier to pull changes to skeleton and merge to feature/master branch of the product repo.
-Also bugfixes etc are easier to contribute upstream.
+Skeleton layer provides functions to communicate with Tunnistamo API and saving authorization details to the device
 
 
-### Theming and UI customization
-TODO
+### Troubleshooting
+
+* Modules might have native dependencies which have to be manually installed to the base project. See [`open-city-modules` repository](https://github.com/6aika/open-city-modules) for instructions how to install native dependencies and customize each module.
+  * In this case the Feedback and Homeview modules have the following native dependencies:
+    - [react-native-maps](https://github.com/react-community/react-native-maps)
+    - [react-native-image-picker](https://github.com/react-community/react-native-image-picker)
+    - [react-native-image-resizer](https://github.com/bamlab/react-native-image-resizer)
+
+* If npm install fails to install above packages install them manually using `npm install --save <package>`
+* After that run `react-native link` to link the native dependencies.
 
 
-### Configuration
-TODO
+## Contributing to open-city-skeleton and open-city-modules
+If you've built a new module or feature that you think would support the two base projects, you can merge the changes in the `skeleton` branch of your forked repository and send a pull request for your changes. If you want to build new modules to your application only, you could fork the modules repository and create a new module there or then just create the needed components straight to your forked project, just as in any other normal React Native project.
 
-
-## Contributing
-TODO
+instructions to add vanilla skeleton branch:
+* Add Open City Skeleton as remote repository
+  `git remote add <remote-name> git@github.com:6aika/open-city-skeleton.git`
+* Run `git fetch <remote-name>`
+*  Create a new branch named `skeleton` from your local `master`. This branch should have the `open-city-skeleton` repository as upstream, so skeleton updates can be pulled to the branch and merged to the cloned application.
+  - `git branch --set-upstream skeleton <remote-name>/master`
