@@ -10,13 +10,11 @@ import {
   Alert,
   Image,
 } from 'react-native';
-import { StackNavigator, NavigationActions } from 'react-navigation';
-import { doAuth } from 'opencityHelsinki/src/utils/auth';
-import { loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
+import { NavigationActions } from 'react-navigation';
+import i18n from 'i18next';
+import { loadProfile } from 'opencityHelsinki/src/profile';
 import colors from 'src/config/colors';
 import BackIcon from 'opencityHelsinki/img/arrow_back.png';
-import FormInput from 'opencityHelsinki/src/modules/Profile/components/FormInput';
-import CardManager from 'opencityHelsinki/src/modules/Profile/CardManager';
 import styles from './styles';
 import trash from '../../../../../img/trash.png';
 
@@ -31,23 +29,10 @@ class CardDetailView extends React.Component<Props, State> {
 
   componentWillMount() {
     this.loadCards();
-
   }
 
-  loadCards = async () => {
-    const profile = await loadProfile();
-    if (profile.cards) {
-      this.setState({ cards: profile.cards })
-    }
-    console.warn(profile)
-  }
-
-  cardNumberChangeListener = (value) =>{
-    this.setState({ cardNumber: value })
-  }
-
-  cardPinChangeListener = (value) =>{
-    this.setState({ cardPin: value })
+  cardPinChangeListener = (value) => {
+    this.setState({ cardPin: value });
   }
 
   validateFields = () => {
@@ -61,14 +46,26 @@ class CardDetailView extends React.Component<Props, State> {
 
   onRemovePress = () => {
     Alert.alert(
-      'Korttietojen poistaminen',
-      'Oletko varma että haluat poistaa kortin tiedot laitteesta?',
+      `${i18n.t('customerShip:cardRemove')}`,
+      `${i18n.t('customerShip:cardRemovePrompt')}`,
       [
-        { text: 'Peruuta', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+        { text: `${i18n.t('common:cancel')}`, onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
         { text: 'OK', onPress: () => this.removeCard() },
       ],
-      { cancelable: false }
-    )
+      { cancelable: false },
+    );
+  }
+
+  cardNumberChangeListener = (value) => {
+    this.setState({ cardNumber: value });
+  }
+
+  loadCards = async () => {
+    const profile = await loadProfile();
+    if (profile.cards) {
+      this.setState({ cards: profile.cards });
+    }
+    console.warn(profile);
   }
 
   goBack = () => {
@@ -76,7 +73,7 @@ class CardDetailView extends React.Component<Props, State> {
   }
 
   removeCard = () => {
-    const { card } = this.props.navigation.state.params
+    const { card } = this.props.navigation.state.params;
     const cardInfo = {
       cardNumber: card.cardNumber,
       cardPin: parseInt(card.cardPin),
@@ -89,14 +86,14 @@ class CardDetailView extends React.Component<Props, State> {
 
     NativeModules.HostCardManager.removeCard(cardInfo).then((success) => {
       if (success) {
-        this.props.navigation.dispatch(resetAction)
+        this.props.navigation.dispatch(resetAction);
       }
-    })
+    });
   }
 
   render() {
     const { Header } = this.props.screenProps;
-    const { card } = this.props.navigation.state.params
+    const { card } = this.props.navigation.state.params;
     return (
       <KeyboardAvoidingView style={{ flex: 1 }}>
         <Header
@@ -115,35 +112,29 @@ class CardDetailView extends React.Component<Props, State> {
           keyboardDismissMode={'on-drag'}
         >
           <View style={styles.container}>
-            <Text style={styles.title}>Kirjastokortti</Text>
+            <Text style={styles.title}>{i18n.t('customerShip:libraryCard')}</Text>
             <Text style={styles.description}>
-              Kirjastokorttisi on nyt liitetty oma.helsinki tunnukseesi ja voit käyttää tätä laitetta kirjastokorttina lähilukua tukevilla palvelupisteillä.
+              {i18n.t('customerShip:libraryCardInfo')}
             </Text>
 
             <View style={styles.field}>
-              <Text style={styles.fieldLabel}>Kirjastokortin omistaja</Text>
-              <Text style={styles.fieldText}>Keijo Käyttäjä</Text>
-            </View>
-
-            <View style={styles.field}>
-              <Text style={styles.fieldLabel}>Kirjastokortin numero</Text>
+              <Text style={styles.fieldLabel}>{i18n.t('customerShip:libraryCardNumber')}</Text>
               <Text style={styles.fieldText}>{card.cardNumber}</Text>
             </View>
 
             <TouchableOpacity onPress={() => this.onRemovePress()}>
               <View style={styles.button}>
-                <Image source={trash} style={{height: 32, width: 32}} />
-                <Text style={styles.buttonText}>Unohda korttitiedot</Text>
+                <Image source={trash} style={{ height: 32, width: 32 }} />
+                <Text style={styles.buttonText}>{i18n.t('customerShip:forgetInfo')}</Text>
               </View>
             </TouchableOpacity>
 
             <TouchableOpacity>
-              <Text style={styles.link}>{'Lisätiedot ja ohjeet >'}</Text>
+              <Text style={styles.link}>{`${i18n.t('customerShip:infoAndGuide')} >`}</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
-
     );
   }
 }
