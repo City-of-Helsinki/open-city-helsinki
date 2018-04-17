@@ -6,9 +6,8 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import { StackNavigator, NavigationActions } from 'react-navigation';
-import { doAuth } from 'opencityHelsinki/src/utils/auth';
-import { loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
+import i18n from 'i18next';
+import { loadProfile } from 'opencityHelsinki/src/profile';
 import colors from 'src/config/colors';
 import BackIcon from 'opencityHelsinki/img/arrow_back.png';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
@@ -51,11 +50,11 @@ class Cards extends React.Component<Props, State> {
             },
           }}
         />
-        <View style={styles.subHeader}><Text style={styles.title}>Tiedot / Kortit</Text></View>
+        <View style={styles.subHeader}><Text style={styles.title}>{i18n.t('profileTab:info') + ' / ' + i18n.t('customerShip:cards')}</Text></View>
         <ScrollView style={{ flex: 1, backgroundColor: '#94C2E8' }}>
           <View style={styles.container}>
             <Text style={styles.description}>
-              Voit yhdistää erilaisia kortteja oma.helsinki-tiliisi jolloin voit käyttää mobiililaitettasi kuin lähiluettava korttia.
+              {i18n.t('customerShip:linkInfo')}
             </Text>
 
             { this.state.cards.map((card) => {
@@ -69,23 +68,25 @@ class Cards extends React.Component<Props, State> {
                       <View style={styles.buttonIcon}>
                         <Icon name="credit-card" size={32} color="black" />
                       </View>
-                      <Text style={styles.cardText}>Kirjastokortti</Text>
+                      <Text style={styles.cardText}>{i18n.t('customerShip:libraryCard')}</Text>
                     </View>
                   </TouchableOpacity>
                 );
               })
             }
-
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('AddCard')}
-            >
-              <View style={styles.connectButton}>
-                <View style={styles.buttonIcon}>
-                  <Icon name="add-circle-outline" size={24} color="white" />
+            {/* TODO proper card hangling by cardType when several cards are supported */}
+            {!this.state.cards[0] &&
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('AddCard')}
+              >
+                <View style={styles.connectButton}>
+                  <View style={styles.buttonIcon}>
+                    <Icon name="add-circle-outline" size={24} color="white" />
+                  </View>
+                  <Text style={styles.buttonText}>{i18n.t('customerShip:linkLibraryCard')}</Text>
                 </View>
-                <Text style={styles.buttonText}>Yhdistä kirjastokortti</Text>
-              </View>
-            </TouchableOpacity>
+              </TouchableOpacity>
+            }
           </View>
         </ScrollView>
       </View>

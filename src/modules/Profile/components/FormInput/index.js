@@ -33,6 +33,7 @@ const FormInput = ({
   secureTextEntry = false,
   multiline = false,
   error,
+  maxLength,
 }: Props) => (
   <View
     style={styles.row}
@@ -50,6 +51,7 @@ const FormInput = ({
       <TextInput
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
+        maxLength={maxLength}
         style={[styles.input, { height: inputHeight }]}
         placeholder={placeholder}
         underlineColorAndroid="black"
