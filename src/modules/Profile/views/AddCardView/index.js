@@ -3,79 +3,66 @@ import * as React from 'react';
 import {
   View,
   Text,
-  Button,
-  Picker,
-  StyleSheet,
+  TextInput,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   KeyboardAvoidingView,
   ScrollView,
   NativeModules,
   ActivityIndicator,
-  ToastAndroid
+  ToastAndroid,
 } from 'react-native';
-import { StackNavigator, NavigationActions } from 'react-navigation';
-import { doAuth } from 'opencityHelsinki/src/utils/auth';
-import { loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
+import i18n from 'i18next';
+import { NavigationActions } from 'react-navigation';
+import { loadProfile } from 'opencityHelsinki/src/profile';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import colors from 'src/config/colors';
 import BackIcon from 'opencityHelsinki/img/arrow_back.png';
 import FormInput from 'opencityHelsinki/src/modules/Profile/components/FormInput';
-import CardManager from 'opencityHelsinki/src/modules/Profile/CardManager';
 import styles from './styles';
-import { makeRequest } from 'opencityHelsinki/src/utils/requests';
 
 class AddCardView extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      cardNumber: '200000',
-      cardPin: '',
+      cardNumber: '2 0000 0',
       cardNumberError: false,
       cardPinError: false,
       commonError: '',
       loading: false,
-    }
+    };
   }
 
   componentWillMount() {
     this.loadCards();
-
   }
 
   loadCards = async () => {
     const profile = await loadProfile();
     if (profile.cards) {
-      this.setState({ cards: profile.cards })
+      this.setState({ cards: profile.cards });
     }
-    console.warn(profile)
   }
 
-  cardNumberChangeListener = (value) =>{
+  cardNumberChangeListener = (value) => {
+    const label = value.replace(/(\d{1})\D?(\d{4})\D?(\d{5})\D?(\d{4})\D?/, '$1 $2 $3 $4')
     this.setState({
-      cardNumber: value,
+      cardNumber: label,
       cardNumberError: false,
       commonError: '',
-    })
-  }
-
-  cardPinChangeListener = (value) =>{
-    this.setState({
-      cardPin: value,
-      cardPinError: false,
-      commonError: '',
-    })
+    });
   }
 
   validateFields = () => {
+    const pin = this.state.firstChar + this.state.secondChar + this.state.thirdChar + this.state.fourthChar;
+    const number = this.state.cardNumber.replace(/\s/g, '');
     let errors = false;
-    if (this.state.cardNumber.length !== 14) {
-      this.setState({ cardNumberError: true })
+    if (number.length !== 14) {
+      this.setState({ cardNumberError: true });
       errors = true;
     }
 
-    if (this.state.cardPin.length !== 4) {
-      this.setState({ cardPinError: true })
+    if (pin.length !== 4) {
+      this.setState({ cardPinError: true });
       errors = true;
     }
 
@@ -89,7 +76,6 @@ class AddCardView extends React.Component<Props, State> {
   }
 
   registerCard = (card) => {
-    console.warn(card)
     return new Promise(async (resolve, reject) => {
       const url = 'https://api.hel.fi/sso-test/v1/user_identity/';
       try {
@@ -97,50 +83,55 @@ class AddCardView extends React.Component<Props, State> {
         if (profile.auth) {
           const token = profile.auth.accessToken;
 
-          let body = {
+          const body = {
             service: 'helmet',
             identifier: card.cardNumber,
-            secret: card.cardPin
-          }
+            secret: card.cardPin,
+          };
 
           try {
-            console.warn("fetching...")
-            let res = await fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(body),
-                headers: {
-                  'Content-Type': 'application/json',
-                  Accept: 'application/json',
-                  Authorization: `Bearer ${token}`
-                },
+            const res = await fetch(url, {
+              method: 'POST',
+              body: JSON.stringify(body),
+              headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`,
+              },
             });
 
-            if (res.status != 200 && res.status != 201) {
-                throw new Error("User device registration failed");
+            if (res.status !== 200 && res.status !== 201) {
+              throw new Error('User device registration failed');
             }
             resolve(res);
           } catch (error) {
-            reject(error)
+            reject(error);
           }
         }
       } catch (error) {
         reject(error);
       }
-    })
+    });
+  }
+
+  focusNextField = (nextField) => {
+    this.refs[nextField].focus();
   }
 
   addCard = async () => {
+    const pin = this.state.firstChar + this.state.secondChar +
+    this.state.thirdChar + this.state.fourthChar;
+
     this.setState({
       commonError: '',
-      loading: true
-    })
-    console.warn('adding card')
+      loading: true,
+    });
     const cardInfo = {
-      cardNumber: this.state.cardNumber,
-      cardPin: parseInt(this.state.cardPin),
+      cardNumber: this.state.cardNumber.replace(/\s/g, ''),
+      cardPin: parseInt(pin),
     };
     try {
-      await this.registerCard(cardInfo)
+      await this.registerCard(cardInfo);
 
       NativeModules.HostCardManager.startNfcService();
       const resetAction = NavigationActions.reset({
@@ -149,19 +140,18 @@ class AddCardView extends React.Component<Props, State> {
       });
 
       NativeModules.HostCardManager.setCardInfo(cardInfo).then((response) => {
-        console.warn(response);
         this.setState({
-          loading: false
-        })
-        ToastAndroid.show('Kortti lisätty', ToastAndroid.SHORT);
+          loading: false,
+        });
+        ToastAndroid.show(`${i18n.t('customerShip:added')}`, ToastAndroid.SHORT);
 
-        this.props.navigation.dispatch(resetAction)
-      })
+        this.props.navigation.dispatch(resetAction);
+      });
     } catch (error) {
       this.setState({
-        loading: false
-      })
-      this.setState({ commonError: 'Jokin meni pieleen, tarkista kortin tiedot ja yritä uudelleen.' })
+        loading: false,
+      });
+      this.setState({ commonError: `${i18n.t('error:genericCardError')}` });
     }
   }
 
@@ -169,69 +159,130 @@ class AddCardView extends React.Component<Props, State> {
     const { Header } = this.props.screenProps;
 
     return (
-      <KeyboardAvoidingView style={{flex: 1}}>
+      <KeyboardAvoidingView style={{ flex: 1 }}>
         <Header
           leftAction={{
             icon: BackIcon,
             action: this.goBack,
             style: {
-              tintColor: colors.max
-            }
+              tintColor: colors.max,
+            },
           }}
         />
 
         <ScrollView
-          style={{flex: 1, backgroundColor: colors.min,}}
+          style={{ flex: 1, backgroundColor: colors.min }}
           keyboardShouldPersistTaps
         >
-        <View style={styles.container}>
-          <Text style={styles.title}>Yhdistä kirjastokortti</Text>
-          <Text style={styles.description}>
-            Yhdistämällä kirjastokorttisi oma.helsinki tiliisi voit käyttää laitettasi lähiluettavana kirjastokorttina kirjastojen itsepalvelupisteillä.
-          </Text>
+          <View style={styles.container}>
+            <Text style={styles.title}>{i18n.t('customerShip:linkLibraryCard')}</Text>
+            <Text style={styles.description}>
+              {i18n.t('customerShip:linkInfo')}
+            </Text>
 
-          <FormInput
-            label={'Kirjastokortin numero'}
-            keyboardType='numeric'
-            value={this.state.cardNumber}
-            onChangeText={this.cardNumberChangeListener}
-            error={this.state.cardNumberError ? 'Kortin numero on 14 merkkiä pitkä.' : null}
-          />
-
-          <FormInput
-            keyboardType='numeric'
-            secureTextEntry
-            value={this.state.cardPin}
-            label={'PIN koodi'}
-            onChangeText={this.cardPinChangeListener}
-            error={this.state.cardPinError ? 'Pin-koodi on 4 merkkiä pitkä.' : null}
-          />
-
-          <TouchableOpacity
-            disabled={this.state.loading}
-            onPress={() => {
-              if (this.validateFields()) this.addCard()
-            }}
-          >
-            <View style={styles.button}>
-              { this.state.loading &&
-                <ActivityIndicator
-                  size={'small'}
-                  color={EStyleSheet.value('$colors.med')}
+            <FormInput
+              label={i18n.t('customerShip:libraryCardNumber')}
+              keyboardType="numeric"
+              maxLength={17}
+              value={this.state.cardNumber}
+              onChangeText={this.cardNumberChangeListener}
+              error={this.state.cardNumberError ? `${i18n.t('error:cardNumberError')}` : null}
+            />
+            <Text style={styles.text}>{i18n.t('customerShip:pin')}</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <View style={styles.pinCodeContainer}>
+                <TextInput
+                  containerStyle={styles.pinInput}
+                  ref={3}
+                  maxLength={1}
+                  keyboardType="numeric"
+                  returnKeyType="next"
+                  blurOnSubmit={false}
+                  secureTextEntry
+                  value={this.state.firstChar}
+                  onChangeText={(text) => {
+                    this.setState({
+                      firstChar: text,
+                    });
+                    if (text.length === 1) this.focusNextField(4);
+                  }}
                 />
-              }
-              { !this.state.loading &&
-                <Text style={styles.buttonText}>Jatka</Text>
-              }
+              </View>
+              <View style={styles.pinCodeContainer}>
+                <TextInput
+                  containerStyle={styles.pinInput}
+                  ref={4}
+                  maxLength={1}
+                  keyboardType="numeric"
+                  returnKeyType="next"
+                  blurOnSubmit={false}
+                  secureTextEntry
+                  value={this.state.secondChar}
+                  onChangeText={(text) => {
+                    this.setState({
+                      secondChar: text,
+                    });
+                    if (text.length === 1) this.focusNextField(5);
+                  }}
+                />
+              </View>
+              <View style={styles.pinCodeContainer}>
+                <TextInput
+                  containerStyle={styles.pinInput}
+                  ref={5}
+                  maxLength={1}
+                  keyboardType="numeric"
+                  returnKeyType="next"
+                  blurOnSubmit={false}
+                  secureTextEntry
+                  value={this.state.thirdChar}
+                  onChangeText={(text) => {
+                    this.setState({
+                      thirdChar: text,
+                    });
+                    if (text.length === 1) this.focusNextField(6);
+                  }}
+                />
+              </View>
+              <View style={styles.pinCodeContainer}>
+                <TextInput
+                  containerStyle={styles.pinInput}
+                  ref={6}
+                  maxLength={1}
+                  keyboardType="numeric"
+                  returnKeyType="next"
+                  blurOnSubmit={true}
+                  secureTextEntry
+                  value={this.state.fourthChar}
+                  onChangeText={(text) => {
+                    this.setState({
+                      fourthChar: text,
+                    });
+                  }}
+                />
+              </View>
             </View>
-          </TouchableOpacity>
-          <Text style={styles.error}>{this.state.commonError}</Text>
-          <TouchableOpacity>
-            <Text style={styles.link}>Lisätiedot ja ohjeet ></Text>
-          </TouchableOpacity>
 
-
-        </View>
+            <TouchableOpacity
+              disabled={this.state.loading}
+              onPress={() => {
+                if (this.validateFields()) this.addCard();
+              }}
+            >
+              <View style={styles.button}>
+                { this.state.loading &&
+                  <ActivityIndicator
+                    size={'small'}
+                    color={EStyleSheet.value('$colors.med')}
+                  />
+                }
+                { !this.state.loading &&
+                  <Text style={styles.buttonText}>{i18n.t('common:continue')}</Text>
+                }
+              </View>
+            </TouchableOpacity>
+            <Text style={styles.error}>{this.state.commonError}</Text>
+          </View>
         </ScrollView>
 
       </KeyboardAvoidingView>
