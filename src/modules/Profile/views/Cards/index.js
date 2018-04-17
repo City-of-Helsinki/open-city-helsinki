@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { StackNavigator, NavigationActions } from 'react-navigation';
 import { doAuth } from 'opencityHelsinki/src/utils/auth';
+import { fetchRegisteredCards } from 'src/modules/Profile/CardManager';
 import { loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
 import colors from 'src/config/colors';
 import BackIcon from 'opencityHelsinki/img/arrow_back.png';
@@ -27,9 +28,19 @@ class Cards extends React.Component<Props, State> {
   }
 
   loadCards = async () => {
-    const profile = await loadProfile();
-    if (profile.cards) {
-      this.setState({ cards: profile.cards });
+    // const profile = await loadProfile();
+    // if (profile.cards) {
+    //   this.setState({ cards: profile.cards });
+    // }
+
+    try {
+      let { profile } = this.props.navigation.state.params;
+      if (!profile) profile = await loadProfile();
+      const newProfile = await fetchRegisteredCards(profile)
+      this.setState({ cards: newProfile.cards, profile: newProfile });
+      // this.setState({ cards: profile.cards })
+    } catch (error) {
+      console.warn(error)
     }
   }
 

@@ -3,6 +3,7 @@ import { AsyncStorage } from 'react-native';
 import config from 'src/config/config.json';
 import { type Profile } from 'src/types';
 import i18n from 'src/config/translations';
+import { doRefresh } from 'src/utils/auth';
 
 const key = `@${config.asyncStoragePrefix}:profile`;
 
@@ -72,19 +73,15 @@ export const isAuthed = async () => {
         const now = new Date();
         const expire = new Date(profile.auth.accessTokenExpirationDate)
         // FIXME: Check token expiration
-        // if (expire > now) {
-        //   console.warn("expiration ok")
-        //   resolve(true);
-        // } else {
-        //   console.warn("expiration not ok")
-        //
-        //   //await doRefresh(profile.auth.refreshToken);
-        //   resolve(false);
-        // }
+        if (expire > now) {
+          resolve({ isAuthed: true, profile: profile });
+        } else {
 
-        resolve(true)
+          const refreshedProfile = await doRefresh(profile.auth.refreshToken);
+          resolve({ isAuthed: true, profile: refreshedProfile });
+        }
       }
-      resolve(false);
+      resolve({ isAuthed: false, profile: profile });
     } catch (error) {
       reject(error);
     }
