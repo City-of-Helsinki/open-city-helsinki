@@ -84,13 +84,15 @@ public class RNHostCardEmulationManager extends ReactContextBaseJavaModule {
         try {
             cardInfo = new CardInfo(
                     map.getString(CARD_NUMBER),
-                    map.getInt(CARD_PIN)
+                    0000
             );
             Set<String> cards = getPreferences().getStringSet("libraryCards", new HashSet<String>());
-            String cardStr = cardInfo.getCardNumber() + "/" + Integer.toString(cardInfo.getCardPin());
+            String cardStr = cardInfo.getCardNumber();
             Iterator<String> iterator = cards.iterator();
             while(iterator.hasNext()) {
-                if (iterator.next().equals(cardStr)) {
+              String nextString = iterator.next();
+              nextString = nextString.split("/")[0];
+                if (nextString.equals(cardStr)) {
                     iterator.remove();
                     listChanged = true;
                 }

@@ -29,6 +29,7 @@ class ProfileDetailView extends React.Component<Props, State> {
 
   getUserDetails = async () => {
     const { profile } = this.props.navigation.state.params;
+
     try {
       const data = await getUserData(profile.auth.accessToken);
       this.setState({ name: data.name })
@@ -86,7 +87,7 @@ class ProfileDetailView extends React.Component<Props, State> {
             </Text>
 
             <View style={styles.field}>
-              <Text style={styles.fieldLabel}>Kirjastokortin omistaja</Text>
+              <Text style={styles.fieldLabel}>Nimi</Text>
               <Text style={styles.fieldText}>{this.state.name}</Text>
             </View>
 
