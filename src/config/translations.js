@@ -63,6 +63,7 @@ i18n
           cardManageAlert: 'You must be logged in to manage cards.',
         },
         customerShip: {
+          cards: 'Cards',
           libraryCard: 'Library card',
           libraryCardInfo: 'Your library card has been attached to your my.helsinki -account. You can use this device as a library card at service desks supporting contactless smart cards',
           forgetInfo: 'Forget  card details',
@@ -70,6 +71,8 @@ i18n
           infoAndGuide: 'More info and guide',
           cardRemove: 'Removing card info',
           cardRemovePrompt: 'Are you sure you want to remove card info from device?',
+          linkLibraryCard: 'Link library card',
+          linkInfo: 'You can link different cards which you can use as contactless smart cards.',
         },
       },
       fi: {
@@ -120,6 +123,7 @@ i18n
           cardManageAlert: 'Sinun on oltava kirjautunut sisään hallitaksesi kortteja.',
         },
         customerShip: {
+          cards: 'Kortit',
           libraryCard: 'Kirjastokortti',
           libraryCardInfo: 'Kirjastokorttisi on nyt liitetty oma.helsinki tunnukseesi ja voit käyttää tätä laitetta kirjastokorttina lähilukua tukevilla palvelupisteillä.',
           forgetInfo: 'Unohda korttitiedot',
@@ -127,6 +131,8 @@ i18n
           infoAndGuide: 'Lisätiedot ja ohjeet',
           cardRemove: 'Korttietojen poistaminen',
           cardRemovePrompt: 'Oletko varma että haluat poistaa kortin tiedot laitteesta?',
+          linkLibraryCard: 'Yhistä kirjastokortti',
+          linkInfo: 'Voit yhdistää erilaisia kortteja oma.helsinki-tiliisi jolloin voit käyttää mobiililaitettasi kuin lähiluettava korttia.',
         },
       },
     },
