@@ -54,18 +54,22 @@ export const setCards = (cards) => {
   })
 };
 
-export const removeCard = (cardNumber) => {
+export const removeCardFromTunnistamo = (card) => {
   return new Promise(async (resolve, reject) => {
     const profile = await loadProfile();
-    const cards = profile.cards;
-    for (let i = 0; i < cards.length; i++) {
-      if (cards[i].cardNumber === cardNumber) {
-        cards[i].pop();
-      }
-    }
+    const url = 'https://api.hel.fi/sso-test/v1/user_identity/' + card.tunnistamoData.id + '/';
+    const headers = {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${profile.auth.accessToken}`,
+    };
 
-    await updateProfile({ cards });
-    resolve(cards);
+    try {
+      const result = await makeRequest(url, 'DELETE', headers, null);
+      resolve(result);
+    } catch (error) {
+      reject(error)
+    }
   })
 };
 
@@ -140,15 +144,16 @@ export const fetchRegisteredCards = async (profile) => {
           for (let i = 0; i < serviceCardArray.length; i += 1) {
             if (item.identifier === serviceCardArray[i].cardNumber) {
               found = true;
-              cardArray.push(profile.cards[i]);
+              serviceCardArray[i].tunnistamoData = item;
+              cardArray.push(serviceCardArray[i]);
             }
           }
 
           if (!found) {
-            cardArray.push({ cardNumber: item.identifier });
+            cardArray.push({ cardNumber: item.identifier, tunnistamoData: item });
           }
         } else {
-          cardArray.push({ cardNumber: item.identifier });
+          cardArray.push({ cardNumber: item.identifier, tunnistamoData: item });
         }
       });
 

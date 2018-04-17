@@ -46,7 +46,6 @@ class ProfileModule extends React.Component<Props, State> {
   }
 
   componentWillMount = () => {
-    this.loadCards();
   }
 
   onAuthPressed = async () => {
@@ -97,21 +96,6 @@ class ProfileModule extends React.Component<Props, State> {
           { cancelable: false },
         );
       }
-    } catch (error) {
-      console.warn(error);
-    }
-  }
-
-
-  loadCards = async () => {
-    // console.warn('loading cards')
-    const cards = await NativeModules.HostCardManager.getCards();
-    try {
-      const profile = await setCards(cards);
-      this.setState({
-        cards: profile.cards,
-        profile,
-      });
     } catch (error) {
       console.warn(error);
     }

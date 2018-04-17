@@ -13,6 +13,7 @@ import {
 import { NavigationActions } from 'react-navigation';
 import i18n from 'i18next';
 import { loadProfile } from 'opencityHelsinki/src/profile';
+import { removeCardFromTunnistamo } from 'src/modules/Profile/CardManager';
 import colors from 'src/config/colors';
 import BackIcon from 'opencityHelsinki/img/arrow_back.png';
 import styles from './styles';
@@ -72,23 +73,27 @@ class CardDetailView extends React.Component<Props, State> {
     this.props.navigation.goBack();
   }
 
-  removeCard = () => {
-    const { card } = this.props.navigation.state.params;
-    const cardInfo = {
-      cardNumber: card.cardNumber,
-      cardPin: parseInt(card.cardPin),
-    };
+  removeCard = async () => {
+    try {
+      const { card } = this.props.navigation.state.params;
+      const cardInfo = {
+        cardNumber: card.cardNumber,
+        cardPin: parseInt(card.cardPin),
+      };
+      await removeCardFromTunnistamo(card);
+      const resetAction = NavigationActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Profile' })],
+      });
 
-    const resetAction = NavigationActions.reset({
-      index: 0,
-      actions: [NavigationActions.navigate({ routeName: 'Profile' })],
-    });
-
-    NativeModules.HostCardManager.removeCard(cardInfo).then((success) => {
-      if (success) {
-        this.props.navigation.dispatch(resetAction);
-      }
-    });
+      NativeModules.HostCardManager.removeCard(cardInfo).then(async (success) => {
+        if (success) {
+          this.props.navigation.dispatch(resetAction);
+        }
+      });
+    } catch (error) {
+      console.warn(error)
+    }
   }
 
   render() {
