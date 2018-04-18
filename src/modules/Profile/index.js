@@ -32,9 +32,11 @@ import AddCardView from './views/AddCardView';
 import CardDetailView from './views/CardDetailView';
 import ProfileDetailView from './views/ProfileDetailView';
 import CardUsage from './views/CardUsage';
+import AboutApp from './views/AboutApp';
 import styles from './styles';
 import smile from '../../../img/smile.png';
 import ticket from '../../../img/ticket.png';
+import globe from '../../../img/globe.png';
 
 class ProfileModule extends React.Component<Props, State> {
   constructor(props) {
@@ -77,7 +79,6 @@ class ProfileModule extends React.Component<Props, State> {
       } catch (error) {
         ToastAndroid.show('Tunnistautuminen epäonnistui', ToastAndroid.SHORT);
       }    });
-
   }
 
   loadCards = async (profile) => {
@@ -91,7 +92,7 @@ class ProfileModule extends React.Component<Props, State> {
       } catch (error) {
         reject(error)
       }
-    })
+    });
   }
 
   goToCards = async () => {
@@ -131,6 +132,10 @@ class ProfileModule extends React.Component<Props, State> {
 
       console.warn(error);
     }
+  }
+
+  goToInfo = () => {
+    this.props.navigation.navigate('AboutApp');
   }
 
   authorize = async () => {
@@ -200,6 +205,24 @@ class ProfileModule extends React.Component<Props, State> {
               <Text style={styles.buttonText}>{i18n.t('profileTab:customerShip')}</Text>
             </View>
           </TouchableOpacity>
+          <TouchableOpacity
+            disabled={this.state.loading}
+            onPress={() => this.goToInfo()}
+          >
+            <View style={styles.menuButton}>
+              <Image
+                source={globe}
+                style={styles.buttonIcon}
+              />
+              <Text
+                numberOfLines={2}
+                ellipsizeMode="middle"
+                style={styles.buttonText}
+              >
+                {i18n.t('profileTab:appInfo')}
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
         { this.state.loading &&
           <View style={styles.loading}>
@@ -232,8 +255,11 @@ const ProfileStack = StackNavigator(
     ProfileDetail: {
       screen: ProfileDetailView,
     },
-    InfoScreen: {
+    CardInfoScreen: {
       screen: CardUsage,
+    },
+    AboutApp: {
+      screen: AboutApp,
     },
   },
   {
