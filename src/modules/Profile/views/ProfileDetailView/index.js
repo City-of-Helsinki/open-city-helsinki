@@ -8,10 +8,10 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
-import { deleteProfile, loadProfile } from 'opencityHelsinki/src/profile';
+import { deleteProfile, loadProfile } from 'Helsinki/src/profile';
 import { getUserData } from 'src/utils/auth';
 import colors from 'src/config/colors';
-import BackIcon from 'opencityHelsinki/img/arrow_back.png';
+import BackIcon from 'Helsinki/img/arrow_back.png';
 import styles from './styles';
 
 class ProfileDetailView extends React.Component<Props, State> {

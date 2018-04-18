@@ -83,6 +83,7 @@ i18n
           genericCardError: 'Something went wrong. Pleace check card details and try again.',
           pinCodeError: 'Length of pin code is 4 digits.',
           cardNumberError: 'Length of library card is 14 digits.',
+          noPinError: 'translate me'
         },
         info: {
           phoneUsage: "Place your phone on the small NFC reader connected to the lending machine. The application doesn't have to be opened during the lending process, but the phone must be unlocked. You don't need to enter your PIN-code during the process.",
@@ -161,6 +162,7 @@ i18n
           genericCardError: 'Jokin meni pieleen, tarkista kortin tiedot ja yritä uudelleen.',
           pinCodeError: 'Pin-koodi on 4 merkkiä pitkä.',
           cardNumberError: 'Kortin numero on 14 merkkiä pitkä.',
+          noPinError: 'Kortille ei ole asetettu Pin-koodia'
         },
         info: {
           phoneUsage: 'Aseta puhelimesi lainausautomaatin yhteydessä olevan pienen nfc-lukijan päälle. Sovelluksen ei tarvitse olla auki lainaustapahtuman aikana, mutta puhelimen tulee olla avattuna. Kirjastokortin PIN-koodia tarvitse syöttää automaattiin.',

@@ -4,9 +4,9 @@ import {
   View,
   NativeModules,
 } from 'react-native';
-import { doAuth, doRefresh} from 'opencityHelsinki/src/utils/auth';
-import { loadProfile, updateProfile, deleteProfile, saveProfile } from 'opencityHelsinki/src/profile';
-import { makeRequest } from 'opencityHelsinki/src/utils/requests';
+import { doAuth, doRefresh} from 'Helsinki/src/utils/auth';
+import { loadProfile, updateProfile, deleteProfile, saveProfile } from 'Helsinki/src/profile';
+import { makeRequest } from 'Helsinki/src/utils/requests';
 
 
 

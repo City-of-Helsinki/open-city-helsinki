@@ -10,7 +10,7 @@ import {
 import i18n from 'i18next';
 import { NavigationActions } from 'react-navigation';
 import colors from 'src/config/colors';
-import BackIcon from 'opencityHelsinki/img/arrow_back.png';
+import BackIcon from 'Helsinki/img/arrow_back.png';
 import styles from '../styles';
 
 class AboutApp extends Component {

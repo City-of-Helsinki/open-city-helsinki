@@ -1,6 +1,6 @@
-import Config from 'opencityHelsinki/src/config/config.json';
+import Config from 'Helsinki/src/config/config.json';
 import { authorize, refresh } from 'react-native-app-auth';
-import { updateProfile, loadProfile } from 'opencityHelsinki/src/profile';
+import { updateProfile, loadProfile } from 'Helsinki/src/profile';
 import { makeRequest } from 'src/utils/requests';
 
 const config = {

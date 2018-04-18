@@ -1,5 +1,5 @@
 import jose from 'node-jose';
-import Config from 'opencityHelsinki/src/config/config.json';
+import Config from 'Helsinki/src/config/config.json';
 import DeviceInfo from 'react-native-device-info';
 
 // FIXME: replace with https://github.com/pradeep1991singh/react-native-secure-key-store

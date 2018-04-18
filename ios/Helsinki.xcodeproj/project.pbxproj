@@ -11,7 +11,7 @@
 		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
-		00E356F31AD99517003FC87E /* opencityHelsinkiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* opencityHelsinkiTests.m */; };
+		00E356F31AD99517003FC87E /* HelsinkiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HelsinkiTests.m */; };
 		0E217175A8844A74B7262D81 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99ED3C66D9A941C8894DA51C /* MaterialIcons.ttf */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -36,13 +36,13 @@
 		2D02E4C71E0B4AEC006451C7 /* libRCTText-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E941DF850E9000B6D8A /* libRCTText-tvOS.a */; };
 		2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */; };
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
-		2DCD954D1E0B4F2C00145EB5 /* opencityHelsinkiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* opencityHelsinkiTests.m */; };
+		2DCD954D1E0B4F2C00145EB5 /* HelsinkiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HelsinkiTests.m */; };
 		33AB7EC2E0E6494BBF04EBE4 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 874869BA008E40E4A14F03C1 /* EvilIcons.ttf */; };
 		4F60169EBFD54024B89D147E /* libRCTImageResizer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E51FE05C971B454AADCF3B9E /* libRCTImageResizer.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		5EE3A926B25146BC8C9839CA /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D14B06E8DD4443D686F56CB2 /* FontAwesome.ttf */; };
 		7531A2ED1EF4488D9A2D4F5E /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9180820504CB4A5D957C4A18 /* Feather.ttf */; };
-		7718A3FA925BBB9A984E7616 /* libPods-opencityHelsinki.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A52FF5A3488CC40EF5EC2588 /* libPods-opencityHelsinki.a */; };
+		7718A3FA925BBB9A984E7616 /* libPods-Helsinki.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A52FF5A3488CC40EF5EC2588 /* libPods-Helsinki.a */; };
 		7E77065EC4174B39BAEDE515 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB12FFC797AD49CC95228BD0 /* MaterialCommunityIcons.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8CDFCF8A9D78473AB3760EEC /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B222F53290424451ADB92E39 /* SimpleLineIcons.ttf */; };
@@ -115,7 +115,7 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = opencityHelsinki;
+			remoteInfo = Helsinki;
 		};
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -143,7 +143,7 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "opencityHelsinki-tvOS";
+			remoteInfo = "Helsinki-tvOS";
 		};
 		3DAD3E831DF850E9000B6D8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -371,22 +371,22 @@
 		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
 		00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "../node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
 		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* opencityHelsinkiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = opencityHelsinkiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* HelsinkiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelsinkiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* opencityHelsinkiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = opencityHelsinkiTests.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* HelsinkiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelsinkiTests.m; sourceTree = "<group>"; };
 		06D41C58880445D194CF935E /* FastImage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = FastImage.xcodeproj; path = "../node_modules/react-native-fast-image/ios/FastImage.xcodeproj"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* opencityHelsinki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = opencityHelsinki.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = opencityHelsinki/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = opencityHelsinki/AppDelegate.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* Helsinki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Helsinki.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Helsinki/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Helsinki/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = opencityHelsinki/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = opencityHelsinki/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = opencityHelsinki/main.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Helsinki/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Helsinki/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Helsinki/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* opencityHelsinki-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "opencityHelsinki-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* opencityHelsinki-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "opencityHelsinki-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E47B1E0B4A5D006451C7 /* Helsinki-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helsinki-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* Helsinki-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Helsinki-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		345469F14C8746F2AE293FC1 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		44C701395C094FB096662698 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		45F4C975660F471F8C66A635 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
@@ -401,10 +401,10 @@
 		874869BA008E40E4A14F03C1 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		9180820504CB4A5D957C4A18 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		99ED3C66D9A941C8894DA51C /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		A52FF5A3488CC40EF5EC2588 /* libPods-opencityHelsinki.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-opencityHelsinki.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A52FF5A3488CC40EF5EC2588 /* libPods-Helsinki.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Helsinki.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		B222F53290424451ADB92E39 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
-		C4482F6B09AE9495FAD48D7A /* Pods-opencityHelsinki.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-opencityHelsinki.release.xcconfig"; path = "Pods/Target Support Files/Pods-opencityHelsinki/Pods-opencityHelsinki.release.xcconfig"; sourceTree = "<group>"; };
+		C4482F6B09AE9495FAD48D7A /* Pods-Helsinki.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helsinki.release.xcconfig"; path = "Pods/Target Support Files/Pods-Helsinki/Pods-Helsinki.release.xcconfig"; sourceTree = "<group>"; };
 		CB3C6C72A79F48FFA89A5220 /* libFastImage.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libFastImage.a; sourceTree = "<group>"; };
 		D14B06E8DD4443D686F56CB2 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		D15C6E39B44B4BFC9E7D5EBC /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
@@ -447,7 +447,7 @@
 		D5A85AAC201B6812003E9BC2 /* RCTConvert+GMSMapViewType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTConvert+GMSMapViewType.h"; sourceTree = "<group>"; };
 		D5A85AAD201B6812003E9BC2 /* RCTConvert+GMSMapViewType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+GMSMapViewType.m"; sourceTree = "<group>"; };
 		DB12FFC797AD49CC95228BD0 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
-		E49289A56A6658D4042D4594 /* Pods-opencityHelsinki.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-opencityHelsinki.debug.xcconfig"; path = "Pods/Target Support Files/Pods-opencityHelsinki/Pods-opencityHelsinki.debug.xcconfig"; sourceTree = "<group>"; };
+		E49289A56A6658D4042D4594 /* Pods-Helsinki.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helsinki.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Helsinki/Pods-Helsinki.debug.xcconfig"; sourceTree = "<group>"; };
 		E51FE05C971B454AADCF3B9E /* libRCTImageResizer.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTImageResizer.a; sourceTree = "<group>"; };
 		EC70AABDD32746108E80134E /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		FF54CFCEAF99481081F41085 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
@@ -485,7 +485,7 @@
 				942284A722414B29AA5E843A /* libRNImagePicker.a in Frameworks */,
 				4F60169EBFD54024B89D147E /* libRCTImageResizer.a in Frameworks */,
 				FAFAF81477354857B935C207 /* libFastImage.a in Frameworks */,
-				7718A3FA925BBB9A984E7616 /* libPods-opencityHelsinki.a in Frameworks */,
+				7718A3FA925BBB9A984E7616 /* libPods-Helsinki.a in Frameworks */,
 				68D59851844340928900318A /* libRNAppAuth.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -557,13 +557,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		00E356EF1AD99517003FC87E /* opencityHelsinkiTests */ = {
+		00E356EF1AD99517003FC87E /* HelsinkiTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* opencityHelsinkiTests.m */,
+				00E356F21AD99517003FC87E /* HelsinkiTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = opencityHelsinkiTests;
+			path = HelsinkiTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -594,7 +594,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* opencityHelsinki */ = {
+		13B07FAE1A68108700A75B9A /* Helsinki */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -605,7 +605,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = opencityHelsinki;
+			name = Helsinki;
 			sourceTree = "<group>";
 		};
 		146834001AC3E56700842450 /* Products */ = {
@@ -684,9 +684,9 @@
 			isa = PBXGroup;
 			children = (
 				D5A85A87201B6812003E9BC2 /* AirGoogleMaps */,
-				13B07FAE1A68108700A75B9A /* opencityHelsinki */,
+				13B07FAE1A68108700A75B9A /* Helsinki */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* opencityHelsinkiTests */,
+				00E356EF1AD99517003FC87E /* HelsinkiTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				CA75CE6530614446B71202C6 /* Resources */,
 				D5A85957201B60CB003E9BC2 /* Recovered References */,
@@ -701,10 +701,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* opencityHelsinki.app */,
-				00E356EE1AD99517003FC87E /* opencityHelsinkiTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* opencityHelsinki-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* opencityHelsinki-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* Helsinki.app */,
+				00E356EE1AD99517003FC87E /* HelsinkiTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* Helsinki-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* Helsinki-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -721,7 +721,7 @@
 		C15309D969B1326DFA2D65AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A52FF5A3488CC40EF5EC2588 /* libPods-opencityHelsinki.a */,
+				A52FF5A3488CC40EF5EC2588 /* libPods-Helsinki.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -747,8 +747,8 @@
 		D2009270D012A13737148FE2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E49289A56A6658D4042D4594 /* Pods-opencityHelsinki.debug.xcconfig */,
-				C4482F6B09AE9495FAD48D7A /* Pods-opencityHelsinki.release.xcconfig */,
+				E49289A56A6658D4042D4594 /* Pods-Helsinki.debug.xcconfig */,
+				C4482F6B09AE9495FAD48D7A /* Pods-Helsinki.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -846,9 +846,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* opencityHelsinkiTests */ = {
+		00E356ED1AD99517003FC87E /* HelsinkiTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "opencityHelsinkiTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "HelsinkiTests" */;
 			buildPhases = (
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
@@ -859,14 +859,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = opencityHelsinkiTests;
-			productName = opencityHelsinkiTests;
-			productReference = 00E356EE1AD99517003FC87E /* opencityHelsinkiTests.xctest */;
+			name = HelsinkiTests;
+			productName = HelsinkiTests;
+			productReference = 00E356EE1AD99517003FC87E /* HelsinkiTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* opencityHelsinki */ = {
+		13B07F861A680F5B00A75B9A /* Helsinki */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "opencityHelsinki" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Helsinki" */;
 			buildPhases = (
 				AD587809AE6080CEA719D099 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
@@ -880,14 +880,14 @@
 			);
 			dependencies = (
 			);
-			name = opencityHelsinki;
+			name = Helsinki;
 			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* opencityHelsinki.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* Helsinki.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* opencityHelsinki-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* Helsinki-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "opencityHelsinki-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Helsinki-tvOS" */;
 			buildPhases = (
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -898,14 +898,14 @@
 			);
 			dependencies = (
 			);
-			name = "opencityHelsinki-tvOS";
-			productName = "opencityHelsinki-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* opencityHelsinki-tvOS.app */;
+			name = "Helsinki-tvOS";
+			productName = "Helsinki-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* Helsinki-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* opencityHelsinki-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* Helsinki-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "opencityHelsinki-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Helsinki-tvOSTests" */;
 			buildPhases = (
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
@@ -916,9 +916,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "opencityHelsinki-tvOSTests";
-			productName = "opencityHelsinki-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* opencityHelsinki-tvOSTests.xctest */;
+			name = "Helsinki-tvOSTests";
+			productName = "Helsinki-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* Helsinki-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -945,7 +945,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "opencityHelsinki" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Helsinki" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1024,10 +1024,10 @@
 			);
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* opencityHelsinki */,
-				00E356ED1AD99517003FC87E /* opencityHelsinkiTests */,
-				2D02E47A1E0B4A5D006451C7 /* opencityHelsinki-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* opencityHelsinki-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* Helsinki */,
+				00E356ED1AD99517003FC87E /* HelsinkiTests */,
+				2D02E47A1E0B4A5D006451C7 /* Helsinki-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* Helsinki-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1388,7 +1388,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-opencityHelsinki/Pods-opencityHelsinki-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Helsinki/Pods-Helsinki-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -1408,7 +1408,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-opencityHelsinki/Pods-opencityHelsinki-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Helsinki/Pods-Helsinki-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4FBAD8144B47A64E801D2742 /* [CP] Embed Pods Frameworks */ = {
@@ -1423,7 +1423,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-opencityHelsinki/Pods-opencityHelsinki-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Helsinki/Pods-Helsinki-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AD587809AE6080CEA719D099 /* [CP] Check Pods Manifest.lock */ = {
@@ -1437,7 +1437,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-opencityHelsinki-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Helsinki-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1451,7 +1451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* opencityHelsinkiTests.m in Sources */,
+				00E356F31AD99517003FC87E /* HelsinkiTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1496,7 +1496,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* opencityHelsinkiTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* HelsinkiTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1505,12 +1505,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* opencityHelsinki */;
+			target = 13B07F861A680F5B00A75B9A /* Helsinki */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* opencityHelsinki-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* Helsinki-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1522,7 +1522,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = opencityHelsinki;
+			path = Helsinki;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1545,7 +1545,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
-				INFOPLIST_FILE = opencityHelsinkiTests/Info.plist;
+				INFOPLIST_FILE = HelsinkiTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1563,7 +1563,7 @@
 					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/opencityHelsinki.app/opencityHelsinki";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Helsinki.app/Helsinki";
 			};
 			name = Debug;
 		};
@@ -1581,7 +1581,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
-				INFOPLIST_FILE = opencityHelsinkiTests/Info.plist;
+				INFOPLIST_FILE = HelsinkiTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1599,13 +1599,13 @@
 					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/opencityHelsinki.app/opencityHelsinki";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Helsinki.app/Helsinki";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E49289A56A6658D4042D4594 /* Pods-opencityHelsinki.debug.xcconfig */;
+			baseConfigurationReference = E49289A56A6658D4042D4594 /* Pods-Helsinki.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1619,14 +1619,14 @@
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
-				INFOPLIST_FILE = opencityHelsinki/Info.plist;
+				INFOPLIST_FILE = Helsinki/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_NAME = opencityHelsinki;
+				PRODUCT_NAME = Helsinki;
 				VERSIONING_SYSTEM = "apple-generic";
 					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 			};
@@ -1634,7 +1634,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4482F6B09AE9495FAD48D7A /* Pods-opencityHelsinki.release.xcconfig */;
+			baseConfigurationReference = C4482F6B09AE9495FAD48D7A /* Pods-Helsinki.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1647,14 +1647,14 @@
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
-				INFOPLIST_FILE = opencityHelsinki/Info.plist;
+				INFOPLIST_FILE = Helsinki/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_NAME = opencityHelsinki;
+				PRODUCT_NAME = Helsinki;
 				VERSIONING_SYSTEM = "apple-generic";
 					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 			};
@@ -1681,7 +1681,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
-				INFOPLIST_FILE = "opencityHelsinki-tvOS/Info.plist";
+				INFOPLIST_FILE = "Helsinki-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1696,7 +1696,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.opencityHelsinki-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Helsinki-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -1727,7 +1727,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
-				INFOPLIST_FILE = "opencityHelsinki-tvOS/Info.plist";
+				INFOPLIST_FILE = "Helsinki-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1742,7 +1742,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.opencityHelsinki-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Helsinki-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -1763,7 +1763,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "opencityHelsinki-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "Helsinki-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1774,10 +1774,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.opencityHelsinki-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Helsinki-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/opencityHelsinki-tvOS.app/opencityHelsinki-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Helsinki-tvOS.app/Helsinki-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
@@ -1793,7 +1793,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "opencityHelsinki-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "Helsinki-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1805,10 +1805,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.opencityHelsinki-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Helsinki-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/opencityHelsinki-tvOS.app/opencityHelsinki-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Helsinki-tvOS.app/Helsinki-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -1892,7 +1892,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "opencityHelsinkiTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "HelsinkiTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -1901,7 +1901,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "opencityHelsinki" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Helsinki" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -1910,7 +1910,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "opencityHelsinki-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Helsinki-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -1919,7 +1919,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "opencityHelsinki-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Helsinki-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -1928,7 +1928,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "opencityHelsinki" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Helsinki" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
