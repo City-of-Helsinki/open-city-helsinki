@@ -5,7 +5,9 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
-  ActivityIndicator
+  ActivityIndicator,
+  UIManager,
+  LayoutAnimation
 } from 'react-native';
 import i18n from 'i18next';
 import { StackNavigator, NavigationActions } from 'react-navigation';
@@ -17,19 +19,22 @@ import BackIcon from 'opencityHelsinki/img/arrow_back.png';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import styles from './styles';
 import EStyleSheet from 'react-native-extended-stylesheet';
-
 class Cards extends React.Component<Props, State> {
+
   constructor(props) {
     super(props);
+    UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
+
     this.state = {
       loading: true,
-      cards: this.props.navigation.state.params ? this.props.navigation.state.params.cards : [],
+      cards: (this.props.navigation.state.params && this.props.navigation.state.params.cards)
+        ? this.props.navigation.state.params.cards
+        : [],
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { cards } = this.props.navigation.state.params;
-    console.warn(cards)
     if (!cards || cards.length === 0) {
       this.loadCards()
     } else {
@@ -40,10 +45,8 @@ class Cards extends React.Component<Props, State> {
   }
 
   loadCards = async () => {
-    // const profile = await loadProfile();
-    // if (profile.cards) {
-    //   this.setState({ cards: profile.cards });
-    // }
+
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
 
     try {
       let { profile } = this.props.navigation.state.params;
@@ -88,14 +91,14 @@ class Cards extends React.Component<Props, State> {
               {i18n.t('customerShip:linkInfo')}
             </Text>
 
-            { this.state.loading &&
+            {/* { this.state.loading &&
               <View style={{ marginTop: 32, }}>
                 <ActivityIndicator
                   size='large'
                   color={EStyleSheet.value('$colors.med')}
                 />
               </View>
-            }
+            } */}
 
             { !this.state.loading && this.state.cards.map((card) => {
                 return (

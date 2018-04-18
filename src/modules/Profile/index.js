@@ -99,11 +99,11 @@ class ProfileModule extends React.Component<Props, State> {
       const isUserAuthed = await isAuthed();
 
       if (isUserAuthed.isAuthed) {
-        const result = await this.loadCards(isUserAuthed.profile);
+        // const result = await this.loadCards(isUserAuthed.profile);
 
         this.props.navigation.navigate('Cards', {
-          cards: result.cards,
-          profile: result.profile,
+          // cards: result.cards,
+          profile: isUserAuthed.profile,
         });
       } else {
         Alert.alert(
@@ -115,11 +115,11 @@ class ProfileModule extends React.Component<Props, State> {
               text: `${i18n.t('common:logIn')}`,
               onPress: async () => {
                 const mProfile = await this.authorize();
-                const result = await this.loadCards(mProfile).cards;
+                // const result = await this.loadCards(mProfile).cards;
 
                 this.props.navigation.navigate('Cards', {
-                  cards: result.cards,
-                  profile: result.profile,
+                  // cards: result.cards,
+                  profile: mProfile,
                 });
               },
             },
