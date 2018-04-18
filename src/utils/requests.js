@@ -15,6 +15,8 @@ export const makeRequest = (url, method, headers, body, data) => {
       clearTimeout(timeoutId);
       if (response.status === 200 || response.status === 201) {
         resolve(response.json());
+      } else if (response.status === 204) {
+        resolve(true);
       } else {
         reject(new Error);
       }

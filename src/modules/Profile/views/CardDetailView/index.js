@@ -16,6 +16,7 @@ import { NavigationActions } from 'react-navigation';
 import i18n from 'i18next';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { loadProfile } from 'opencityHelsinki/src/profile';
+import { removeCardFromTunnistamo } from 'src/modules/Profile/CardManager';
 import colors from 'src/config/colors';
 import BackIcon from 'opencityHelsinki/img/arrow_back.png';
 import styles from './styles';
@@ -163,7 +164,7 @@ class CardDetailView extends React.Component<Props, State> {
       actions: [NavigationActions.navigate({ routeName: 'Profile' })],
     });
 
-    NativeModules.HostCardManager.removeCard(cardInfo).then((success) => {
+    NativeModules.HostCardManager.removeCard(cardInfo).then(async (success) => {
       if (success) {
         this.props.navigation.dispatch(resetAction);
       }

@@ -27,17 +27,12 @@ export const doAuth = () => {
 export const doRefresh = (refreshToken) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const mRefreshToken = refreshToken;
-      if (!mRefreshToken) {
-        const profile = await loadProfile();
-        mRefreshToken = profile.auth.refreshToken;
-      }
 
       const result = await refresh(config, {
-        refreshToken: mRefreshToken,
+        refreshToken: refreshToken,
       });
       const profile = { auth: result };
-
+      profile = await updateProfile(profile);
       resolve(profile);
     } catch (error) {
       console.warn(error)

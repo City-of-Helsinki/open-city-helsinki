@@ -47,15 +47,14 @@ class ProfileModule extends React.Component<Props, State> {
   }
 
   componentWillMount = () => {
-    this.loadCards();
   }
 
   onAuthPressed = async () => {
     const authed = await isAuthed();
-
-    if (authed) {
+    this.setState({ profile: authed.profile })
+    if (authed.isAuthed) {
       this.props.navigation.navigate('ProfileDetail', {
-        profile: this.state.profile,
+        profile: authed.profile,
       });
     } else if (!authed) {
       try {
@@ -73,9 +72,10 @@ class ProfileModule extends React.Component<Props, State> {
     try {
       const isUserAuthed = await isAuthed();
 
-      if (isUserAuthed) {
+      if (isUserAuthed.isAuthed) {
         this.props.navigation.navigate('Cards', {
           cards: this.state.cards,
+          profile: isUserAuthed.profile,
         });
       } else {
         Alert.alert(
@@ -86,9 +86,10 @@ class ProfileModule extends React.Component<Props, State> {
             {
               text: `${i18n.t('common:logIn')}`,
               onPress: async () => {
-                await this.authorize();
+                const mProfile = await this.authorize();
                 this.props.navigation.navigate('Cards', {
                   cards: this.state.cards,
+                  profile: mProfile,
                 });
               },
             },
@@ -96,20 +97,6 @@ class ProfileModule extends React.Component<Props, State> {
           { cancelable: false },
         );
       }
-    } catch (error) {
-      console.warn(error);
-    }
-  }
-
-
-  loadCards = async () => {
-    const cards = await NativeModules.HostCardManager.getCards();
-    try {
-      const profile = await setCards(cards);
-      this.setState({
-        cards: profile.cards,
-        profile,
-      });
     } catch (error) {
       console.warn(error);
     }
@@ -124,8 +111,9 @@ class ProfileModule extends React.Component<Props, State> {
           registerDevice(authorization.auth.accessToken).then(
             () => {
               this.setState({ loading: false });
-              updateProfile(authorization).then((success) => {
-                resolve(true);
+              updateProfile(authorization).then((profile) => {
+                this.setState({ profile })
+                resolve(profile);
               }, (error) => {
                 reject(new Error('Failed updating profile'));
               });
