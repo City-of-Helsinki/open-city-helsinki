@@ -65,11 +65,12 @@ class App extends React.Component<Props, State> {
 
   showModal = () => this.setState({ modalVisible: true });
   hideModal = () => this.setState({ modalVisible: false });
-
   render() {
+
     const screenProps = {
       colors,
-      locale: this.props.i18n.language,
+      locale: 'fi',
+      // locale: this.props.i18n.language,
       Header: this.Header,
       heroBanner: heroBanner,
       mainImage: linkedEventDecorator,

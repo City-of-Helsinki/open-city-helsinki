@@ -103,9 +103,12 @@ class Cards extends React.Component<Props, State> {
             { !this.state.loading && this.state.cards.map((card) => {
                 return (
                   <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('CardDetail', {
-                      card,
-                    })}
+                    onPress={() => {
+                      this.props.navigation.navigate('CardDetail', {
+                        card,
+                        refresh: () => this.loadCards()
+                      });
+                    }}
                   >
                     <View style={styles.card}>
                       <View style={styles.buttonIcon}>

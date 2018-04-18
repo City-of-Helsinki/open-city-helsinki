@@ -251,13 +251,13 @@ type ModuleProps = {
 class Profile extends React.Component<ModuleProps> {
   componentWillMount() {
     if (this.props.screenProps.locale) {
-      changeLanguage(this.props.screenProps.locale);
+      i18n.changeLanguage(this.props.screenProps.locale);
     }
   }
 
   componentWillReceiveProps(nextProps: ModuleProps) {
     if (this.props.screenProps.locale !== nextProps.screenProps.locale) {
-      changeLanguage(nextProps.screenProps.locale);
+      i18n.changeLanguage(nextProps.screenProps.locale);
     }
   }
 

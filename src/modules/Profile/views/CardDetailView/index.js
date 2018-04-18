@@ -32,9 +32,6 @@ class CardDetailView extends React.Component<Props, State> {
     };
   }
 
-  componentWillMount() {
-    this.loadCards();
-  }
 
   cardPinChangeListener = (value) => {
     this.setState({ cardPin: value });
@@ -65,12 +62,6 @@ class CardDetailView extends React.Component<Props, State> {
     this.setState({ cardNumber: value });
   }
 
-  loadCards = async () => {
-    const profile = await loadProfile();
-    if (profile.cards) {
-      this.setState({ cards: profile.cards });
-    }
-  }
 
   goBack = () => {
     this.props.navigation.goBack();
@@ -116,7 +107,7 @@ class CardDetailView extends React.Component<Props, State> {
   }
 
   reLinkCard = async () => {
-    const { card } = this.props.navigation.state.params;
+    const { card, refresh } = this.props.navigation.state.params;
     const pin = this.state.firstChar + this.state.secondChar +
     this.state.thirdChar + this.state.fourthChar;
 
@@ -141,6 +132,7 @@ class CardDetailView extends React.Component<Props, State> {
         this.setState({
           loading: false,
         });
+        refresh();
         ToastAndroid.show(`${i18n.t('customerShip:added')}`, ToastAndroid.SHORT);
 
       });
