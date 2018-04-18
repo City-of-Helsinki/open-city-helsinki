@@ -76,11 +76,17 @@ i18n
           pin: 'PIN code',
           linkLibraryCard: 'Link library card',
           linkInfo: 'You can link different cards which you can use as contactless smart cards.',
+          resetPin: 'Re-set pin',
         },
         error: {
           genericCardError: 'Something went wrong. Pleace check card details and try again.',
           pinCodeError: 'Length of pin code is 4 digits.',
           cardNumberError: 'Length of library card is 14 digits.',
+        },
+        info: {
+          phoneUsage: "Place your phone on the small NFC reader connected to the lending machine. The application doesn't have to be opened during the lending process, but the phone must be unlocked. You don't need to enter your PIN-code during the process.",
+          borrowing: 'Set the book on the lending machine level. The machine will notify a successful lending event.',
+          followOrders: 'Follow the instructions on the lending machine in order to cancel the lending event.',
         },
       },
       fi: {
@@ -144,12 +150,18 @@ i18n
           pin: 'PIN koodi',
           linkLibraryCard: 'Yhistä kirjastokortti',
           linkInfo: 'Voit yhdistää erilaisia kortteja oma.helsinki-tiliisi jolloin voit käyttää mobiililaitettasi kuin lähiluettava korttia.',
+          resetPin: 'Aseta pin -koodi',
         },
         error: {
           genericCardError: 'Jokin meni pieleen, tarkista kortin tiedot ja yritä uudelleen.',
           pinCodeError: 'Pin-koodi on 4 merkkiä pitkä.',
           cardNumberError: 'Kortin numero on 14 merkkiä pitkä.',
         },
+        info: {
+          phoneUsage: 'Aseta puhelimesi lainausautomaatin yhteydessä olevan pienen nfc-lukijan päälle. Sovelluksen ei tarvitse olla auki lainaustapahtuman aikana, mutta puhelimen tulee olla avattuna. Kirjastokortin PIN-koodia tarvitse syöttää automaattiin.',
+          borrowing: 'Aseta lainaamasi kirja lainausautomaatin tason päälle. Automaatti ilmoittaa onnistuneesta lainaustapahtumasta.',
+          followOrders: 'Seuraa lainausautomaatin näytön ohjeita lopettaaksesi lainaustapahtuman.',
+        }
       },
     },
 

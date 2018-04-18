@@ -10,6 +10,17 @@ styles = EStyleSheet.create({
     fontSize: 24,
     color: '$colors.max',
   },
+  infoTitle: {
+    // fontWeight: 'bold',
+    fontSize: 16,
+    color: '$colors.max',
+    marginRight: 12,
+  },
+  bulletPoint: {
+    fontSize: 16,
+    color: '$colors.max',
+    marginRight: 8,
+  },
   menuButton: {
     flexDirection: 'row',
     backgroundColor: '$colors.min',
@@ -50,7 +61,12 @@ styles = EStyleSheet.create({
     top: 0,
     bottom: 0,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+  },
+  row: {
+    marginTop: 24,
+    flexDirection: 'row',
+    marginHorizontal: 12,
   },
 });
 

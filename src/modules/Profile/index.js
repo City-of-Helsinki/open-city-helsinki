@@ -31,6 +31,7 @@ import Cards from './views/Cards';
 import AddCardView from './views/AddCardView';
 import CardDetailView from './views/CardDetailView';
 import ProfileDetailView from './views/ProfileDetailView';
+import CardUsage from './views/CardUsage';
 import styles from './styles';
 import smile from '../../../img/smile.png';
 import ticket from '../../../img/ticket.png';
@@ -102,7 +103,6 @@ class ProfileModule extends React.Component<Props, State> {
 
 
   loadCards = async () => {
-    // console.warn('loading cards')
     const cards = await NativeModules.HostCardManager.getCards();
     try {
       const profile = await setCards(cards);
@@ -212,6 +212,9 @@ const ProfileStack = StackNavigator(
     },
     ProfileDetail: {
       screen: ProfileDetailView,
+    },
+    InfoScreen: {
+      screen: CardUsage,
     },
   },
   {
