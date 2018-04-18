@@ -11,9 +11,13 @@ styles = EStyleSheet.create({
     color: '$colors.max',
   },
   infoTitle: {
-    // fontWeight: 'bold',
     fontSize: 16,
     color: '$colors.max',
+    marginRight: 12,
+  },
+  linkTitle: {
+    color: 'royalblue',
+    fontSize: 16,
     marginRight: 12,
   },
   bulletPoint: {

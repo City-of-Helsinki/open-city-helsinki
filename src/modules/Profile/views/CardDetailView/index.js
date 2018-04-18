@@ -337,7 +337,7 @@ class CardDetailView extends React.Component<Props, State> {
 
             <TouchableOpacity
               onPress={() => {
-                this.props.navigation.navigate('InfoScreen');
+                this.props.navigation.navigate('CardInfoScreen');
               }}
             >
               <Text style={styles.link}>{`${i18n.t('customerShip:infoAndGuide')} >`}</Text>

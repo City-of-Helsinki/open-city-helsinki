@@ -59,6 +59,7 @@ i18n
           changeLanguage: 'Change language',
           customerShip: 'Customerships',
           info: 'Info',
+          appInfo: 'Information about this app',
           myHelsinki: 'my.helsinki',
           loginRequired: 'Login required',
           cardManageAlert: 'You must be logged in to manage cards.',
@@ -87,6 +88,9 @@ i18n
           phoneUsage: "Place your phone on the small NFC reader connected to the lending machine. The application doesn't have to be opened during the lending process, but the phone must be unlocked. You don't need to enter your PIN-code during the process.",
           borrowing: 'Set the book on the lending machine level. The machine will notify a successful lending event.',
           followOrders: 'Follow the instructions on the lending machine in order to cancel the lending event.',
+          appInfo: 'Helsinki application is a mobile platform to promote citizen participation. It is currently in the piloting phase. Application is open source so users can participate in the development but also suggest improvements',
+          privacyPolicy: 'translate me',
+          sourceCode: 'translate me',
         },
       },
       fi: {
@@ -133,6 +137,7 @@ i18n
           changeLanguage: 'Vaihda kieltä',
           customerShip: 'Asiakkuudet',
           info: 'Tiedot',
+          appInfo: 'Tietoa sovelluksesta',
           myHelsinki: 'oma.helsinki',
           loginRequired: 'Kirjautuminen vaadittu',
           cardManageAlert: 'Sinun on oltava kirjautunut sisään hallitaksesi kortteja.',
@@ -161,7 +166,10 @@ i18n
           phoneUsage: 'Aseta puhelimesi lainausautomaatin yhteydessä olevan pienen nfc-lukijan päälle. Sovelluksen ei tarvitse olla auki lainaustapahtuman aikana, mutta puhelimen tulee olla avattuna. Kirjastokortin PIN-koodia tarvitse syöttää automaattiin.',
           borrowing: 'Aseta lainaamasi kirja lainausautomaatin tason päälle. Automaatti ilmoittaa onnistuneesta lainaustapahtumasta.',
           followOrders: 'Seuraa lainausautomaatin näytön ohjeita lopettaaksesi lainaustapahtuman.',
-        }
+          appInfo: 'Helsinki-sovellus on osallistumista edistävä kokeiluvaiheen mobiilialusta kaupunkilaisille. Sovellus on avointa lähdekoodia, joten käyttäjät voivat myös kehittää ja ehdottaa parannuksia.',
+          privacyPolicy: 'Käyttäjäehdot',
+          sourceCode: 'Sovelluksen lähdekoodi',
+        },
       },
     },
 
