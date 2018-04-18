@@ -1,7 +1,9 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-
+import Color from 'color';
 
 styles = EStyleSheet.create({
+  $inputBackground: () => Color(EStyleSheet.value('$colors.max')).alpha(0.03),
+
   text: {
     fontSize: 20,
     color: '$colors.max',
@@ -53,7 +55,26 @@ styles = EStyleSheet.create({
     color: '$colors.max',
     fontSize: 20,
     padding: 16,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+  },
+  error: {
+    color: 'red',
+  },
+  pinInput: {
+    lineHeight: 32,
+    width: 32,
+    fontSize: 16,
+    marginHorizontal: 4,
+    textAlign: 'center',
+  },
+  pinCodeContainer: {
+    width: 42,
+    height: 42,
+    marginHorizontal: 4,
+    backgroundColor: '$inputBackground',
+    borderWidth: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

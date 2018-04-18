@@ -41,8 +41,8 @@ const styles = EStyleSheet.create({
     top: '35%',
   },
   error: {
-    color: 'red'
-  }
+    color: 'red',
+  },
 });
 
 export default styles;

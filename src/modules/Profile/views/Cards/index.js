@@ -69,6 +69,11 @@ class Cards extends React.Component<Props, State> {
                         <Icon name="credit-card" size={32} color="black" />
                       </View>
                       <Text style={styles.cardText}>{i18n.t('customerShip:libraryCard')}</Text>
+                      {!card.cardPin &&
+                        <View style={styles.buttonIcon}>
+                          <Icon name="error-outline" size={32} color="red" />
+                        </View>
+                      }
                     </View>
                   </TouchableOpacity>
                 );
@@ -84,6 +89,9 @@ class Cards extends React.Component<Props, State> {
                     <Icon name="add-circle-outline" size={24} color="white" />
                   </View>
                   <Text style={styles.buttonText}>{i18n.t('customerShip:linkLibraryCard')}</Text>
+                  <View style={styles.buttonIcon}>
+                    <Icon name="add-circle-outline" size={24} color="white" />
+                  </View>
                 </View>
               </TouchableOpacity>
             }

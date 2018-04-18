@@ -155,6 +155,95 @@ class AddCardView extends React.Component<Props, State> {
     }
   }
 
+  renderPinForm() {
+    return (
+      <View style={{ flexDirection: 'row' }}>
+        <View style={styles.pinCodeContainer}>
+          <TextInput
+            style={styles.pinInput}
+            ref={3}
+            maxLength={1}
+            underlineColorAndroid="transparent"
+            keyboardType="numeric"
+            returnKeyType="next"
+            blurOnSubmit={false}
+            secureTextEntry
+            value={this.state.firstChar}
+            onChangeText={(text) => {
+              this.setState({
+                firstChar: text,
+                cardPinError: false,
+              });
+              if (text.length === 1) this.focusNextField(4);
+            }}
+          />
+        </View>
+        <View style={styles.pinCodeContainer}>
+          <TextInput
+            style={styles.pinInput}
+            ref={4}
+            maxLength={1}
+            underlineColorAndroid="transparent"
+            keyboardType="numeric"
+            returnKeyType="next"
+            blurOnSubmit={false}
+            secureTextEntry
+            value={this.state.secondChar}
+            onChangeText={(text) => {
+              this.setState({
+                secondChar: text,
+                cardPinError: false,
+              });
+              if (text.length === 1) this.focusNextField(5);
+              if (text.length === 0) this.focusNextField(3);
+            }}
+          />
+        </View>
+        <View style={styles.pinCodeContainer}>
+          <TextInput
+            style={styles.pinInput}
+            ref={5}
+            maxLength={1}
+            underlineColorAndroid="transparent"
+            keyboardType="numeric"
+            returnKeyType="next"
+            blurOnSubmit={false}
+            secureTextEntry
+            value={this.state.thirdChar}
+            onChangeText={(text) => {
+              this.setState({
+                thirdChar: text,
+                cardPinError: false,
+              });
+              if (text.length === 1) this.focusNextField(6);
+              if (text.length === 0) this.focusNextField(4);
+            }}
+          />
+        </View>
+        <View style={styles.pinCodeContainer}>
+          <TextInput
+            style={styles.pinInput}
+            ref={6}
+            maxLength={1}
+            underlineColorAndroid="transparent"
+            keyboardType="numeric"
+            returnKeyType="next"
+            blurOnSubmit={true}
+            secureTextEntry
+            value={this.state.fourthChar}
+            onChangeText={(text) => {
+              this.setState({
+                fourthChar: text,
+                cardPinError: false,
+              });
+              if (text.length === 0) this.focusNextField(5);
+            }}
+          />
+        </View>
+      </View>
+    );
+  }
+
   render() {
     const { Header } = this.props.screenProps;
 
@@ -189,87 +278,10 @@ class AddCardView extends React.Component<Props, State> {
               error={this.state.cardNumberError ? `${i18n.t('error:cardNumberError')}` : null}
             />
             <Text style={styles.text}>{i18n.t('customerShip:pin')}</Text>
-            <View style={{ flexDirection: 'row' }}>
-              <View style={styles.pinCodeContainer}>
-                <TextInput
-                  style={styles.pinInput}
-                  ref={3}
-                  maxLength={1}
-                  underlineColorAndroid="transparent"
-                  keyboardType="numeric"
-                  returnKeyType="next"
-                  blurOnSubmit={false}
-                  secureTextEntry
-                  value={this.state.firstChar}
-                  onChangeText={(text) => {
-                    this.setState({
-                      firstChar: text,
-                    });
-                    if (text.length === 1) this.focusNextField(4);
-                  }}
-                />
-              </View>
-              <View style={styles.pinCodeContainer}>
-                <TextInput
-                  style={styles.pinInput}
-                  ref={4}
-                  maxLength={1}
-                  underlineColorAndroid="transparent"
-                  keyboardType="numeric"
-                  returnKeyType="next"
-                  blurOnSubmit={false}
-                  secureTextEntry
-                  value={this.state.secondChar}
-                  onChangeText={(text) => {
-                    this.setState({
-                      secondChar: text,
-                    });
-                    if (text.length === 1) this.focusNextField(5);
-                    if (text.length === 0) this.focusNextField(3);
-
-                  }}
-                />
-              </View>
-              <View style={styles.pinCodeContainer}>
-                <TextInput
-                  style={styles.pinInput}
-                  ref={5}
-                  maxLength={1}
-                  underlineColorAndroid="transparent"
-                  keyboardType="numeric"
-                  returnKeyType="next"
-                  blurOnSubmit={false}
-                  secureTextEntry
-                  value={this.state.thirdChar}
-                  onChangeText={(text) => {
-                    this.setState({
-                      thirdChar: text,
-                    });
-                    if (text.length === 1) this.focusNextField(6);
-                    if (text.length === 0) this.focusNextField(4);
-                  }}
-                />
-              </View>
-              <View style={styles.pinCodeContainer}>
-                <TextInput
-                  style={styles.pinInput}
-                  ref={6}
-                  maxLength={1}
-                  underlineColorAndroid="transparent"
-                  keyboardType="numeric"
-                  returnKeyType="next"
-                  blurOnSubmit={true}
-                  secureTextEntry
-                  value={this.state.fourthChar}
-                  onChangeText={(text) => {
-                    this.setState({
-                      fourthChar: text,
-                    });
-                    if (text.length === 0) this.focusNextField(5);
-                  }}
-                />
-              </View>
-            </View>
+            {this.renderPinForm()}
+            {this.state.cardPinError &&
+              <Text style={styles.error}>{i18n.t('error:pinCodeError')}</Text>
+            }
 
             <TouchableOpacity
               disabled={this.state.loading}

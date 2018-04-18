@@ -30,7 +30,6 @@ export const getCards = () => {
 };
 
 export const setCards = (cards) => {
-  console.warn("beginning setcards")
   return new Promise(async (resolve, reject) => {
     try {
       const cardArray = [];

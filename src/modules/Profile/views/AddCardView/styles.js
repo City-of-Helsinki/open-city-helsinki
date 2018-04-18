@@ -6,6 +6,10 @@ styles = EStyleSheet.create({
   text: {
     fontSize: 20,
     color: '$colors.max',
+    paddingBottom: 8,
+  },
+  error: {
+    color: 'red',
   },
   description: {
     fontSize: 20,
