@@ -15,6 +15,7 @@ import {
 import { NavigationActions } from 'react-navigation';
 import i18n from 'i18next';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import { loadProfile } from 'opencityHelsinki/src/profile';
 import { removeCardFromTunnistamo } from 'src/modules/Profile/CardManager';
 import colors from 'src/config/colors';
@@ -29,12 +30,8 @@ class CardDetailView extends React.Component<Props, State> {
       cardNumber: '',
       cardPin: '',
       cardPinError: false,
+      pinError: !!this.props.navigation.state.params.card.cardPin,
     };
-  }
-
-
-  cardPinChangeListener = (value) => {
-    this.setState({ cardPin: value });
   }
 
   validateFields = () => {
@@ -57,11 +54,6 @@ class CardDetailView extends React.Component<Props, State> {
       { cancelable: false },
     );
   }
-
-  cardNumberChangeListener = (value) => {
-    this.setState({ cardNumber: value });
-  }
-
 
   goBack = () => {
     this.props.navigation.goBack();
@@ -131,10 +123,10 @@ class CardDetailView extends React.Component<Props, State> {
       NativeModules.HostCardManager.setCardInfo(cardInfo).then((response) => {
         this.setState({
           loading: false,
+          pinError: true,
         });
         refresh();
         ToastAndroid.show(`${i18n.t('customerShip:added')}`, ToastAndroid.SHORT);
-
       });
     } catch (error) {
       this.setState({
@@ -319,13 +311,30 @@ class CardDetailView extends React.Component<Props, State> {
             <View style={styles.field}>
               <Text style={styles.fieldLabel}>{i18n.t('customerShip:libraryCardNumber')}</Text>
               <Text style={styles.fieldText}>{card.cardNumber.replace(/(\d{1})\D?(\d{4})\D?(\d{5})\D?(\d{4})\D?/, '$1 $2 $3 $4')}</Text>
+              {!this.state.pinError && !card.cardPin &&
+                <Text style={[styles.fieldLabel, { color: 'red' }]}>{i18n.t('error:noPinError')}</Text>
+              }
             </View>
 
-            {!card.cardPin &&
+            {!this.state.pinError &&
               this.renderPinForm()
             }
             {this.state.cardPinError &&
               <Text style={styles.error}>{i18n.t('error:pinCodeError')}</Text>
+            }
+            {this.state.pinError &&
+              <TouchableOpacity
+                onPress={() => {
+                  this.setState({
+                    pinError: false,
+                  })
+                }}
+              >
+                <View style={styles.button}>
+                  <Icon name="cached" size={32} color="black" />
+                  <Text style={styles.buttonText}>Vaihda pin</Text>
+                </View>
+              </TouchableOpacity>
             }
 
             <TouchableOpacity onPress={() => this.onRemovePress()}>
