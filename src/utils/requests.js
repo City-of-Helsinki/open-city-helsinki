@@ -1,4 +1,4 @@
-import Config from 'opencityHelsinki/src/config/config.json';
+import Config from 'Helsinki/src/config/config.json';
 
 export const makeRequest = (url, method, headers, body, data) => {
 

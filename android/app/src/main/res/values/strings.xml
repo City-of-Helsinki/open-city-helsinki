@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">opencityHelsinki</string>
+    <string name="app_name">Helsinki</string>
     <string name="aiddescription">Helsinki AID</string>
     <string name="servicedesc">Helsinki Host Apdu Service</string>
 </resources>

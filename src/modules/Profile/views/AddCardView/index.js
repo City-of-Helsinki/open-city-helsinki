@@ -13,11 +13,11 @@ import {
 } from 'react-native';
 import i18n from 'i18next';
 import { NavigationActions } from 'react-navigation';
-import { loadProfile } from 'opencityHelsinki/src/profile';
+import { loadProfile } from 'Helsinki/src/profile';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import colors from 'src/config/colors';
-import BackIcon from 'opencityHelsinki/img/arrow_back.png';
-import FormInput from 'opencityHelsinki/src/modules/Profile/components/FormInput';
+import BackIcon from 'Helsinki/img/arrow_back.png';
+import FormInput from 'Helsinki/src/modules/Profile/components/FormInput';
 import styles from './styles';
 
 class AddCardView extends React.Component<Props, State> {

@@ -16,10 +16,10 @@ import { NavigationActions } from 'react-navigation';
 import i18n from 'i18next';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
-import { loadProfile } from 'opencityHelsinki/src/profile';
+import { loadProfile } from 'Helsinki/src/profile';
 import { removeCardFromTunnistamo } from 'src/modules/Profile/CardManager';
 import colors from 'src/config/colors';
-import BackIcon from 'opencityHelsinki/img/arrow_back.png';
+import BackIcon from 'Helsinki/img/arrow_back.png';
 import styles from './styles';
 import trash from '../../../../../img/trash.png';
 

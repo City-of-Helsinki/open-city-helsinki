@@ -12,20 +12,20 @@ import {
 } from 'react-native';
 import {
   registerDevice,
-} from 'opencityHelsinki/src/utils/authentication_keys';
+} from 'Helsinki/src/utils/authentication_keys';
 import { StackNavigator } from 'react-navigation';
 import i18n from 'i18next';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {
   doAuth,
   // doRefresh,
-} from 'opencityHelsinki/src/utils/auth';
+} from 'Helsinki/src/utils/auth';
 import {
   isAuthed,
   loadProfile,
   updateProfile,
   // deleteProfile
-} from 'opencityHelsinki/src/profile';
+} from 'Helsinki/src/profile';
 import { fetchRegisteredCards } from 'src/modules/Profile/CardManager';
 import Cards from './views/Cards';
 import AddCardView from './views/AddCardView';

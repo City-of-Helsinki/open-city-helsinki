@@ -11,11 +11,11 @@ import {
 } from 'react-native';
 import i18n from 'i18next';
 import { StackNavigator, NavigationActions } from 'react-navigation';
-import { doAuth } from 'opencityHelsinki/src/utils/auth';
+import { doAuth } from 'Helsinki/src/utils/auth';
 import { fetchRegisteredCards } from 'src/modules/Profile/CardManager';
-import { loadProfile, updateProfile, deleteProfile } from 'opencityHelsinki/src/profile';
+import { loadProfile, updateProfile, deleteProfile } from 'Helsinki/src/profile';
 import colors from 'src/config/colors';
-import BackIcon from 'opencityHelsinki/img/arrow_back.png';
+import BackIcon from 'Helsinki/img/arrow_back.png';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import styles from './styles';
 import EStyleSheet from 'react-native-extended-stylesheet';

@@ -1,4 +1,4 @@
-package com.opencityhelsinki;
+package com.helsinki;
 
 import android.app.Application;
 

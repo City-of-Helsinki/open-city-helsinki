@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header } from 'open-city-modules/src/components';
-import img from 'opencityHelsinki/img/city.png';
-import logo from 'opencityHelsinki/img/city-logo.png';
+import img from 'Helsinki/img/city.png';
+import logo from 'Helsinki/img/city-logo.png';
 import colors from 'src/config/colors';
 
 const MyHeader = (props) => {
