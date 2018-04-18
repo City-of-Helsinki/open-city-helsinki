@@ -25,6 +25,7 @@ const defaultPromotions = [
     footer: 'Ota kirjastokortti käyttöön',
     bgColor: 'orange',
     textColor: 'white',
+    targetTab: 'Profile',
   },
   {
     id: 'prom_002',
