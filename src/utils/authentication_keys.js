@@ -131,13 +131,13 @@ const getUserUUID = async () => {
   return await secureStore.get(STORE_PREFIX + 'userId');
 };
 
-export const generateToken = async () => {
+export const generateToken = async (interfaceDeviceId) => {
   const payload = {
     iss: await getDeviceID(),
     sub: await getUserUUID(),
     cnt: await getAndIncrementCounter(),
     iat: Math.floor(Date.now() / 1000),
-    azp: Config.LIBRARY_DEVICE_UUID,
+    azp: interfaceDeviceId
   };
 
   const nonce = Math.floor(Math.random() * 1000000000000000);

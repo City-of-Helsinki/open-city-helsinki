@@ -41,8 +41,8 @@ type State = {
   modalVisible: boolean,
 };
 
-async function tokenRequestListener() {
-  const deviceToken = await generateToken();
+async function tokenRequestListener(interfaceDeviceId) {
+  const deviceToken = await generateToken(interfaceDeviceId);
   NativeModules.HostCardManager.sendToken(deviceToken);
 }
 

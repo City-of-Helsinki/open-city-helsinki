@@ -8,7 +8,8 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
-import { deleteProfile } from 'opencityHelsinki/src/profile';
+import { deleteProfile, loadProfile } from 'opencityHelsinki/src/profile';
+import { getUserData } from 'src/utils/auth';
 import colors from 'src/config/colors';
 import BackIcon from 'opencityHelsinki/img/arrow_back.png';
 import styles from './styles';
@@ -17,13 +18,25 @@ class ProfileDetailView extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-
+      profile: this.props.navigation.state.params.profile,
+      name: '',
     };
   }
 
-  componentWillMount() {
-
+  async componentWillMount() {
+    this.getUserDetails();
   }
+
+  getUserDetails = async () => {
+    const { profile } = this.props.navigation.state.params;
+    try {
+      const data = await getUserData(profile.auth.accessToken);
+      this.setState({ name: data.name })
+    } catch (error) {
+      console.warn(error)
+    }
+  }
+
   onSignOutPress = () => {
     Alert.alert(
       'Haluatko kirjautua ulos?',
@@ -71,6 +84,11 @@ class ProfileDetailView extends React.Component<Props, State> {
             <Text style={styles.description}>
               Olet kirjautunut sovellukseen oma.helsinki tunnuksellasi.
             </Text>
+
+            <View style={styles.field}>
+              <Text style={styles.fieldLabel}>Kirjastokortin omistaja</Text>
+              <Text style={styles.fieldText}>{this.state.name}</Text>
+            </View>
 
             <TouchableOpacity onPress={() => this.onSignOutPress()}>
               <View style={styles.button}>
