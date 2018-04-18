@@ -152,13 +152,13 @@ class CardDetailView extends React.Component<Props, State> {
     }
   }
 
-  removeCard = () => {
+  removeCard = async () => {
     const { card } = this.props.navigation.state.params;
     const cardInfo = {
       cardNumber: card.cardNumber,
       cardPin: parseInt(card.cardPin),
     };
-
+    await removeCardFromTunnistamo(card);
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [NavigationActions.navigate({ routeName: 'Profile' })],
