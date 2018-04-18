@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
+  ActivityIndicator
 } from 'react-native';
 import i18n from 'i18next';
 import { StackNavigator, NavigationActions } from 'react-navigation';
@@ -15,17 +16,27 @@ import colors from 'src/config/colors';
 import BackIcon from 'opencityHelsinki/img/arrow_back.png';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import styles from './styles';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 class Cards extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       cards: this.props.navigation.state.params ? this.props.navigation.state.params.cards : [],
     };
   }
 
   componentWillMount() {
-    this.loadCards();
+    const { cards } = this.props.navigation.state.params;
+    console.warn(cards)
+    if (!cards || cards.length === 0) {
+      this.loadCards()
+    } else {
+      this.setState({
+        loading: false,
+      })
+    }
   }
 
   loadCards = async () => {
@@ -38,9 +49,16 @@ class Cards extends React.Component<Props, State> {
       let { profile } = this.props.navigation.state.params;
       if (!profile) profile = await loadProfile();
       const newProfile = await fetchRegisteredCards(profile)
-      this.setState({ cards: newProfile.cards, profile: newProfile });
+      this.setState({
+        cards: newProfile.cards,
+        profile: newProfile,
+        loading: false,
+      });
       // this.setState({ cards: profile.cards })
     } catch (error) {
+      this.setState({
+        loading: false,
+      });
       console.warn(error)
     }
   }
@@ -70,7 +88,16 @@ class Cards extends React.Component<Props, State> {
               {i18n.t('customerShip:linkInfo')}
             </Text>
 
-            { this.state.cards.map((card) => {
+            { this.state.loading &&
+              <View style={{ marginTop: 32, }}>
+                <ActivityIndicator
+                  size='large'
+                  color={EStyleSheet.value('$colors.med')}
+                />
+              </View>
+            }
+
+            { !this.state.loading && this.state.cards.map((card) => {
                 return (
                   <TouchableOpacity
                     onPress={() => this.props.navigation.navigate('CardDetail', {
@@ -93,7 +120,7 @@ class Cards extends React.Component<Props, State> {
               })
             }
             {/* TODO proper card hangling by cardType when several cards are supported */}
-            {!this.state.cards[0] &&
+            { !this.state.loading && !this.state.cards[0] &&
               <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('AddCard')}
               >
