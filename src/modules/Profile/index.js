@@ -22,11 +22,11 @@ import {
 } from 'opencityHelsinki/src/utils/auth';
 import {
   isAuthed,
-  // loadProfile,
+  loadProfile,
   updateProfile,
   // deleteProfile
 } from 'opencityHelsinki/src/profile';
-import { setCards } from 'opencityHelsinki/src/modules/Profile/CardManager';
+import { fetchRegisteredCards } from 'src/modules/Profile/CardManager';
 import Cards from './views/Cards';
 import AddCardView from './views/AddCardView';
 import CardDetailView from './views/CardDetailView';
@@ -49,13 +49,25 @@ class ProfileModule extends React.Component<Props, State> {
   }
 
   onAuthPressed = async () => {
-    const authed = await isAuthed();
-    this.setState({ profile: authed.profile })
-    if (authed.isAuthed) {
-      this.props.navigation.navigate('ProfileDetail', {
-        profile: authed.profile,
-      });
-    } else if (!authed) {
+
+    isAuthed().then(async (authed) => {
+      this.setState({ profile: authed.profile })
+      if (authed.isAuthed && authed.profile) {
+        this.props.navigation.navigate('ProfileDetail', {
+          profile: authed.profile,
+        });
+      } else if (!authed) {
+        // try {
+          const result = await this.authorize();
+          if (result) {
+            ToastAndroid.show('Tunnistautuminen onnistui', ToastAndroid.SHORT);
+          }
+        // } catch (error) {
+        //   ToastAndroid.show('Tunnistautuminen epäonnistui', ToastAndroid.SHORT);
+        // }
+      }
+    },
+    async (error) => {
       try {
         const result = await this.authorize();
         if (result) {
@@ -63,8 +75,22 @@ class ProfileModule extends React.Component<Props, State> {
         }
       } catch (error) {
         ToastAndroid.show('Tunnistautuminen epäonnistui', ToastAndroid.SHORT);
+      }    });
+
+  }
+
+  loadCards = async (profile) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let mProfile = profile;
+        if (!mProfile) mProfile = await loadProfile();
+        const newProfile = await fetchRegisteredCards(mProfile);
+        this.setState({ cards: newProfile.cards, profile: newProfile });
+        resolve(newProfile)
+      } catch (error) {
+        reject(error)
       }
-    }
+    })
   }
 
   goToCards = async () => {
@@ -72,9 +98,11 @@ class ProfileModule extends React.Component<Props, State> {
       const isUserAuthed = await isAuthed();
 
       if (isUserAuthed.isAuthed) {
+        const result = await this.loadCards(isUserAuthed.profile);
+
         this.props.navigation.navigate('Cards', {
-          cards: this.state.cards,
-          profile: isUserAuthed.profile,
+          cards: result.cards,
+          profile: result.profile,
         });
       } else {
         Alert.alert(
@@ -86,9 +114,11 @@ class ProfileModule extends React.Component<Props, State> {
               text: `${i18n.t('common:logIn')}`,
               onPress: async () => {
                 const mProfile = await this.authorize();
+                const result = await this.loadCards(mProfile).cards;
+
                 this.props.navigation.navigate('Cards', {
-                  cards: this.state.cards,
-                  profile: mProfile,
+                  cards: result.cards,
+                  profile: result.profile,
                 });
               },
             },
@@ -97,6 +127,7 @@ class ProfileModule extends React.Component<Props, State> {
         );
       }
     } catch (error) {
+
       console.warn(error);
     }
   }
