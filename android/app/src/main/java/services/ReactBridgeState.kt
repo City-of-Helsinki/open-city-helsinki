@@ -18,6 +18,10 @@ object ReactBridgeState {
         this.context = context
     }
 
+    fun getReactContext() : ReactContext? {
+        return this.context
+    }
+
     fun setChangeListener(listener: ChangeListener) {
         // TODO: locking?
         this.listener = listener
