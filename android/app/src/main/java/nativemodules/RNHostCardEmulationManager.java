@@ -110,8 +110,8 @@ public class RNHostCardEmulationManager extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void sendToken(String value) {
-        ReactBridgeState.INSTANCE.notifyListener(value);
+    public void sendToken(String token, String nonce) {
+        ReactBridgeState.INSTANCE.notifyListener(token, nonce);
     }
 
     @ReactMethod

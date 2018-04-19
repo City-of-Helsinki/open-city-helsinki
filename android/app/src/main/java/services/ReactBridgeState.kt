@@ -6,7 +6,7 @@ import com.facebook.react.bridge.ReactContext
 import com.facebook.react.modules.core.DeviceEventManagerModule
 
 public interface ChangeListener {
-    fun onChange(token: String)
+    fun onChange(token: String, nonce: String)
 }
 
 object ReactBridgeState {
@@ -32,8 +32,8 @@ object ReactBridgeState {
         this.context?.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)?.emit("apdu", deviceId)
     }
 
-    fun notifyListener(value: String) {
-        this.listener?.onChange(value)
+    fun notifyListener(token: String, nonce: String) {
+        this.listener?.onChange(token, nonce)
     }
     
 }
