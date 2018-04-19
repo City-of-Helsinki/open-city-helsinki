@@ -27,9 +27,11 @@ class CardDetailView extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
       cardNumber: '',
       cardPin: '',
       cardPinError: false,
+      commonError: false,
       pinError: !!this.props.navigation.state.params.card.cardPin,
     };
   }
@@ -132,27 +134,36 @@ class CardDetailView extends React.Component<Props, State> {
       this.setState({
         loading: false,
       });
-      this.setState({ commonError: `${i18n.t('error:genericCardError')}` });
+      this.setState({ cardPinError: `${i18n.t('error:genericCardError')}` });
     }
   }
 
   removeCard = async () => {
-    const { card } = this.props.navigation.state.params;
-    const cardInfo = {
-      cardNumber: card.cardNumber,
-      cardPin: parseInt(card.cardPin),
-    };
-    await removeCardFromTunnistamo(card);
-    const resetAction = NavigationActions.reset({
-      index: 0,
-      actions: [NavigationActions.navigate({ routeName: 'Profile' })],
-    });
+    try {
+      this.setState({ loading: true })
+      const { card } = this.props.navigation.state.params;
+      const cardInfo = {
+        cardNumber: card.cardNumber,
+        cardPin: parseInt(card.cardPin),
+      };
+      await removeCardFromTunnistamo(card);
+      const resetAction = NavigationActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Profile' })],
+      });
 
-    NativeModules.HostCardManager.removeCard(cardInfo).then(async (success) => {
-      if (success) {
-        this.props.navigation.dispatch(resetAction);
-      }
-    });
+      NativeModules.HostCardManager.removeCard(cardInfo).then(async (success) => {
+        if (success) {
+          this.props.navigation.dispatch(resetAction);
+        } else {
+          this.setState({ loading: false })
+        }
+      });
+    } catch(error) {
+      this.setState({ loading: false })
+      console.warn(error)
+    }
+
   }
 
   validateFields = () => {
@@ -263,19 +274,22 @@ class CardDetailView extends React.Component<Props, State> {
         <TouchableOpacity
           disabled={this.state.loading}
           onPress={() => {
-            if (this.validateFields()) this.reLinkCard();
+            if (!this.state.loading && this.validateFields()) this.reLinkCard();
           }}
         >
-          <View style={styles.button}>
-            { this.state.loading &&
+          { this.state.loading &&
+            <View style={[styles.button, { justifyContent: 'center', alignItems: 'center' }]}>
               <ActivityIndicator
                 size={'small'}
                 color={EStyleSheet.value('$colors.med')}
               />
-            }{!this.state.loading &&
+            </View>
+          }
+          { !this.state.loading &&
+            <View style={styles.button}>
               <Text style={[styles.buttonText, { justifyContent: 'center' }]}>{i18n.t('customerShip:resetPin')}</Text>
-            }
-          </View>
+            </View>
+          }
         </TouchableOpacity>
       </View>
     );
@@ -302,7 +316,9 @@ class CardDetailView extends React.Component<Props, State> {
           keyboardShouldPersistTaps
           // keyboardDismissMode={'on-drag'}
         >
-          <View style={styles.container}>
+          <View style={styles.container}
+            pointerEvents={this.state.removingCard ? 'none' : 'auto'}
+          >
             <Text style={styles.title}>{i18n.t('customerShip:libraryCard')}</Text>
             <Text style={styles.description}>
               {i18n.t('customerShip:libraryCardInfo')}
@@ -316,41 +332,70 @@ class CardDetailView extends React.Component<Props, State> {
               }
             </View>
 
+
             {!this.state.pinError &&
               this.renderPinForm()
             }
-            {this.state.cardPinError &&
-              <Text style={styles.error}>{i18n.t('error:pinCodeError')}</Text>
-            }
+
             {this.state.pinError &&
               <TouchableOpacity
                 onPress={() => {
-                  this.setState({
-                    pinError: false,
-                  })
+                  if (!this.state.loading) {
+                    this.setState({
+                      pinError: false,
+                    });
+                  }
                 }}
               >
-                <View style={styles.button}>
-                  <Icon name="cached" size={32} color="black" />
-                  <Text style={styles.buttonText}>Vaihda pin</Text>
-                </View>
+                { this.state.loading &&
+                  <View style={[styles.button, { justifyContent: 'center', alignItems: 'center' }]}>
+                    <ActivityIndicator
+                      size={'small'}
+                      color={EStyleSheet.value('$colors.med')}
+                    />
+                  </View>
+                }
+                { !this.state.loading &&
+                  <View style={styles.button}>
+                    <Icon name="cached" size={32} color="black" />
+                    <Text style={styles.buttonText}>Vaihda pin</Text>
+                  </View>
+                }
               </TouchableOpacity>
             }
 
-            <TouchableOpacity onPress={() => this.onRemovePress()}>
-              <View style={styles.button}>
-                <Image source={trash} style={{ height: 32, width: 32 }} />
-                <Text style={styles.buttonText}>{i18n.t('customerShip:forgetInfo')}</Text>
-              </View>
+            <TouchableOpacity onPress={() => {
+              if (!this.state.loading) this.onRemovePress()
+            }}>
+              { this.state.loading &&
+                <View style={[styles.button, { justifyContent: 'center', alignItems: 'center' }]}>
+                  <ActivityIndicator
+                    size={'small'}
+                    color={EStyleSheet.value('$colors.med')}
+                  />
+                </View>
+              }
+              { !this.state.loading &&
+                <View style={styles.button}>
+                  <Image source={trash} style={{ height: 32, width: 32 }} />
+                  <Text style={styles.buttonText}>{i18n.t('customerShip:forgetInfo')}</Text>
+                </View>
+              }
+
             </TouchableOpacity>
 
             <TouchableOpacity
               onPress={() => {
-                this.props.navigation.navigate('CardInfoScreen');
+                if (!this.state.loading) this.props.navigation.navigate('CardInfoScreen');
               }}
             >
               <Text style={styles.link}>{`${i18n.t('customerShip:infoAndGuide')} >`}</Text>
             </TouchableOpacity>
+            { !!this.state.commonError || this.state.cardPinError &&
+              <View>
+                <Text style={styles.error}>{'this.state.commonError'}</Text>
+              </View>
+            }
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

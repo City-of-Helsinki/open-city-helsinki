@@ -154,7 +154,7 @@ i18n
           cardRemove: 'Korttietojen poistaminen',
           cardRemovePrompt: 'Oletko varma että haluat poistaa kortin tiedot laitteesta?',
           pin: 'PIN koodi',
-          linkLibraryCard: 'Yhistä kirjastokortti',
+          linkLibraryCard: 'Yhdistä kirjastokortti',
           linkInfo: 'Voit yhdistää erilaisia kortteja oma.helsinki-tiliisi jolloin voit käyttää mobiililaitettasi kuin lähiluettava korttia.',
           resetPin: 'Aseta pin -koodi',
         },
