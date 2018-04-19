@@ -140,9 +140,7 @@ class Cards extends React.Component<Props, State> {
                     <Icon name="add-circle-outline" size={24} color="white" />
                   </View>
                   <Text style={styles.buttonText}>{i18n.t('customerShip:linkLibraryCard')}</Text>
-                  <View style={styles.buttonIcon}>
-                    <Icon name="add-circle-outline" size={24} color="white" />
-                  </View>
+
                 </View>
               </TouchableOpacity>
             }
