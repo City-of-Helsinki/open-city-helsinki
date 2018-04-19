@@ -157,8 +157,10 @@ export const generateToken = async (interfaceDeviceId) => {
   const encryptedResult = await jose.JWE.createEncrypt({
     format: 'compact',
     fields: {
-      iss: payload.iss,
+      iss: payload.iss
     },
   }, encKey).update(signedResult).final();
-  return encryptedResult;
+  return {
+    token: encryptedResult,
+    nonce: nonce.toString()};
 };

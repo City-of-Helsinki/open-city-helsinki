@@ -42,8 +42,8 @@ type State = {
 };
 
 async function tokenRequestListener(interfaceDeviceId) {
-  const deviceToken = await generateToken(interfaceDeviceId);
-  NativeModules.HostCardManager.sendToken(deviceToken);
+  const tokenData = await generateToken(interfaceDeviceId);
+  NativeModules.HostCardManager.sendToken(tokenData.token, tokenData.nonce);
 }
 
 class App extends React.Component<Props, State> {
