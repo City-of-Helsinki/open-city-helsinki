@@ -9,11 +9,14 @@ import {
   Image,
   ActivityIndicator,
   ToastAndroid,
+  DeviceEventEmitter,
+  BackHandler,
+  Platform
 } from 'react-native';
 import {
   registerDevice,
 } from 'Helsinki/src/utils/authentication_keys';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, NavigationActions } from 'react-navigation';
 import i18n from 'i18next';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {
@@ -49,6 +52,11 @@ class ProfileModule extends React.Component<Props, State> {
   }
 
   componentWillMount = () => {
+
+  }
+
+  goBack = () => {
+    return true;
   }
 
   onAuthPressed = async () => {
@@ -275,10 +283,57 @@ type ModuleProps = {
 };
 
 class Profile extends React.Component<ModuleProps> {
+  tabChangeListener: Object;
+
   componentWillMount() {
     if (this.props.screenProps.locale) {
       i18n.changeLanguage(this.props.screenProps.locale);
     }
+
+    this.tabChangeListener = DeviceEventEmitter.addListener('tabChanged', this.onTabChange)
+
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardWareBackPress', this.goBack);
+    this.tabChangeListener.remove();
+  }
+
+  goBack = () => {
+    const index = this.navigator.state.nav.index
+    if (index > 0) {
+      this.navigator._navigation.goBack();
+      return true;
+    }
+
+    return false;
+  }
+
+  onTabChange = (params) => {
+    // Reset navigator when switching tabs
+
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Profile' }),
+      ]
+    });
+    const index = this.navigator.state.nav.index
+
+    if (params.prevRoute === 'Profile') {
+      BackHandler.removeEventListener('hardWareBackPress', this.goBack);
+
+      if(index > 0) {
+        this.navigator._navigation.dispatch(resetAction);
+      }
+    }
+
+    if (params.nextRoute === 'Profile') {
+      const timeoutId = setTimeout(() => {
+        BackHandler.addEventListener('hardwareBackPress', this.goBack)
+      }, 1000);
+    }
+
   }
 
   componentWillReceiveProps(nextProps: ModuleProps) {
@@ -288,7 +343,10 @@ class Profile extends React.Component<ModuleProps> {
   }
 
   render() {
-    return <ProfileStack screenProps={this.props.screenProps} />;
+    return <ProfileStack
+      screenProps={this.props.screenProps}
+      ref={(ref) => this.navigator = ref}
+    />;
   }
 }
 

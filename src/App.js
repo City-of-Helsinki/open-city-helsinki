@@ -23,9 +23,26 @@ import map_marker from '../img/marker_pin.png';
 
 initColors(colors);
 
+const tabBarOnPress = navigation => config => {
+  const {previousScene, scene, index, jumpToIndex} = config
+  if (!scene.focused) {
+    DeviceEventEmitter.emit('tabChanged', { prevRoute: previousScene.routeName, nextRoute: scene.route.routeName });
+    jumpToIndex(scene.index)
+  }
+}
+
+const navigationOptions = ({ navigation }) => {
+  return {
+    tabBarOnPress: tabBarOnPress(navigation),
+  }
+}
+
+
+
 const Tabs = TabNavigator(tabs, {
   tabBarComponent: TabBarBottom,
   tabBarPosition: 'bottom',
+  navigationOptions: navigationOptions,
   swipeEnabled: false,
   tabBarOptions: {
     activeTintColor: colors.med,
@@ -66,7 +83,6 @@ class App extends React.Component<Props, State> {
   showModal = () => this.setState({ modalVisible: true });
   hideModal = () => this.setState({ modalVisible: false });
   render() {
-
     const screenProps = {
       colors,
       locale: 'fi',
@@ -80,7 +96,9 @@ class App extends React.Component<Props, State> {
     };
     return (
       <View style={{ flex: 1 }}>
-        <Tabs screenProps={screenProps} />
+        <Tabs
+          screenProps={screenProps}
+        />
         <CityChangeModal visible={this.state.modalVisible} onClose={this.hideModal} />
       </View>
     );
