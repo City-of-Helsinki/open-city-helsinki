@@ -27,8 +27,8 @@ class Cards extends React.Component<Props, State> {
 
     this.state = {
       loading: true,
-      cards: (this.props.navigation.state.params && this.props.navigation.state.params.cards)
-        ? this.props.navigation.state.params.cards
+      cards: (props.navigation.state.params && props.navigation.state.params.cards)
+        ? props.navigation.state.params.cards
         : [],
     };
   }
@@ -106,6 +106,8 @@ class Cards extends React.Component<Props, State> {
                     onPress={() => {
                       this.props.navigation.navigate('CardDetail', {
                         card,
+                        profile: this.state.profile,
+                        cards: this.state.cards,
                         refresh: () => this.loadCards()
                       });
                     }}
@@ -128,7 +130,10 @@ class Cards extends React.Component<Props, State> {
             {/* TODO proper card hangling by cardType when several cards are supported */}
             { !this.state.loading && !this.state.cards[0] &&
               <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('AddCard')}
+                onPress={() => this.props.navigation.navigate('AddCard', {
+                  profile: this.state.profile,
+                  cards: this.state.cards,
+                })}
               >
                 <View style={styles.connectButton}>
                   <View style={styles.buttonIcon}>

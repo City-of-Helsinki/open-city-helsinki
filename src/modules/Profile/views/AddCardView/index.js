@@ -29,6 +29,7 @@ class AddCardView extends React.Component<Props, State> {
       cardPinError: false,
       commonError: '',
       loading: false,
+      cards: [],
     };
   }
 
@@ -122,6 +123,8 @@ class AddCardView extends React.Component<Props, State> {
     const pin = this.state.firstChar + this.state.secondChar +
     this.state.thirdChar + this.state.fourthChar;
 
+    const { profile, cards } = this.props.navigation.state.params;
+
     this.setState({
       commonError: '',
       loading: true,
@@ -131,12 +134,32 @@ class AddCardView extends React.Component<Props, State> {
       cardPin: parseInt(pin),
     };
     try {
-      await this.registerCard(cardInfo);
+      const tunnistamoData = await this.registerCard(cardInfo);
+      cardInfo.tunnistamoData = tunnistamoData;
+      const cardArray = cards;
+      cardArray.push(cardInfo)
 
       NativeModules.HostCardManager.startNfcService();
+
       const resetAction = NavigationActions.reset({
-        index: 0,
-        actions: [NavigationActions.navigate({ routeName: 'Profile' })],
+        index: 2,
+        actions: [
+          NavigationActions.navigate({ routeName: 'Profile' }),
+          NavigationActions.navigate({
+            routeName: 'Cards',
+            params: {
+              cards: cardArray,
+              profile,
+            }
+          }),
+          NavigationActions.navigate({
+            routeName: 'CardDetail',
+            params : {
+              cards: cardArray,
+              profile,
+              card: cardInfo,
+            }  
+          })],
       });
 
       NativeModules.HostCardManager.setCardInfo(cardInfo).then((response) => {
