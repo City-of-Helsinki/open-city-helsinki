@@ -160,5 +160,7 @@ export const generateToken = async (interfaceDeviceId) => {
       iss: payload.iss,
     },
   }, encKey).update(signedResult).final();
-  return encryptedResult;
+  return {
+    token: encryptedResult,
+    nonce: nonce.toString()};
 };

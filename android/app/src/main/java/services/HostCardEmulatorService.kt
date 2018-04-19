@@ -28,6 +28,7 @@ class HostCardEmulatorService: ChangeListener, HostApduService() {
     var sendingData = false
     var dataBuffer: ByteBuffer? = null
     var apdu: Apdu? = null
+    var nonce: String? = null
 
     companion object {
         val TAG = "HelsinkiHostCardEmulator"
@@ -118,11 +119,18 @@ class HostCardEmulatorService: ChangeListener, HostApduService() {
     }
 
     fun isValidNonce(nonce: ByteArray): Boolean { // FIXME receive current nonce from javasript
+        if (this.nonce == null) {
+            return false
+        }
         val decoded = ASCII_CHARSET.decode(ByteBuffer.wrap(nonce)).toString()
-        return true
+        if (decoded == this.nonce) {
+            return true
+        }
+        return false
     }
 
-    override fun onChange(token: String) { // FIXME receive nonce here
+    override fun onChange(token: String, nonce: String) {
+        this.nonce = nonce
         val apdu = this.apdu
         if (!this.sendingData || apdu == null) {
             return
