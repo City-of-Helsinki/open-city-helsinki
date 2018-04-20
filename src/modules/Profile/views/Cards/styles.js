@@ -50,7 +50,7 @@ styles = EStyleSheet.create({
   buttonText: {
     color: '$colors.min',
     fontSize: 18,
-    marginLeft: 48,
+    marginLeft: 16,
   },
   cardText: {
     color: '$colors.max',

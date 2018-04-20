@@ -140,7 +140,7 @@ class Cards extends React.Component<Props, State> {
                     styles.buttonIcon,
                       {
                         marginLeft: -16,
-                        marginRight: 0,
+                        marginHorizontal: 0,
                       },
                     ]}
                   >
