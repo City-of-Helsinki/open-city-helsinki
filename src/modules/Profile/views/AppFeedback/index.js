@@ -5,6 +5,7 @@ import {
   View,
   Text,
   TextInput,
+  TouchableOpacity,
   Platform,
   ScrollView,
   UIManager,
@@ -14,11 +15,10 @@ import {
 import colors from 'src/config/colors';
 import i18n from 'i18next';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import FormInput from 'Helsinki/src/modules/Profile/components/FormInput';
 import { makeRequest } from 'Helsinki/src/utils/requests';
 import Config from 'Helsinki/src/config/config.json';
 import BackIcon from 'Helsinki/img/arrow_back.png';
-import sendEnabledIcon from 'Helsinki/img/send_enabled.png';
-import sendDisabledIcon from 'Helsinki/img/send_disabled.png';
 import styles from './styles';
 
 // View for sending feedback about the application itself
@@ -125,10 +125,10 @@ class AppFeedbackView extends Component {
               tintColor: colors.max,
             },
           }}
-          rightAction={{
-            icon: this.state.sendEnabled ? sendEnabledIcon : sendDisabledIcon,
-            action: this.onSendButtonClick.bind(this),
-          }}
+          // rightAction={{
+          //   icon: this.state.sendEnabled ? sendEnabledIcon : sendDisabledIcon,
+          //   action: this.onSendButtonClick.bind(this),
+          // }}
         />
         <View style={styles.innerContainer}>
           <View style={styles.subHeader}><Text style={styles.title}>{i18n.t('feedBack:appFeedbackViewTitle')}</Text></View>
@@ -143,10 +143,13 @@ class AppFeedbackView extends Component {
                   autoCapitalize="sentences"
                 />
               </View>
+
               <View style={styles.descriptionView}>
+                <Text style={styles.descriptionView}>{i18n.t('feedBack:descriptionPlaceholder')}</Text>
                 <TextInput
                   style={styles.descriptionText}
                   // multiline={true}
+                  underlineColorAndroid="transparent"
                   onChangeText={(text) => {
                     this.onDescriptionTextChange(text);
                   }}
@@ -154,6 +157,24 @@ class AppFeedbackView extends Component {
                   autoCapitalize="sentences"
                 />
               </View>
+              <TouchableOpacity
+                disabled={this.state.loading}
+                onPress={() => {
+                  this.onSendButtonClick.bind(this);
+                }}
+              >
+                <View style={styles.button}>
+                  { this.state.loading &&
+                    <ActivityIndicator
+                      size={'small'}
+                      color={EStyleSheet.value('$colors.med')}
+                    />
+                  }
+                  { !this.state.loading &&
+                    <Text style={styles.buttonText}>{i18n.t('common:continue')}</Text>
+                  }
+                </View>
+              </TouchableOpacity>
             </View>
           </ScrollView>
 

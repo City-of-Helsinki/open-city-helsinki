@@ -14,6 +14,11 @@ const styles = EStyleSheet.create({
   scrollView: {
     flex: 1,
   },
+  labelText: {
+    fontSize: 20,
+    color: '$colors.max',
+    marginBottom: 8,
+  },
   contentContainer: {
     // padding: 16,
     flex: 1,
@@ -34,9 +39,10 @@ const styles = EStyleSheet.create({
     marginBottom: 12,
   },
   titleText: {
-    backgroundColor: '#9b9b9b1a',
+    backgroundColor: 'white',
     height: 40,
     padding: 8,
+    borderBottomWidth: 2,
   },
   descriptionView: {
     flex: 1,
@@ -45,9 +51,24 @@ const styles = EStyleSheet.create({
   descriptionText: {
     height: 400,
     alignSelf: 'stretch',
-    backgroundColor: '#9b9b9b1a',
+    backgroundColor: 'white',
+    borderWidth: 2,
     textAlignVertical: 'top',
     padding: 8,
+  },
+  button: {
+    marginVertical: 20,
+    borderWidth: 2,
+    width: '50%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 64,
+  },
+  buttonText: {
+    color: '$colors.max',
+    fontSize: 20,
+    padding: 16,
+    fontWeight: 'bold',
   },
   attachmentContainer: {
     flexDirection: 'row',
