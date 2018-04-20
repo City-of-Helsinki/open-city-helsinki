@@ -32,14 +32,19 @@ const styles = EStyleSheet.create({
     alignSelf: 'center',
     width: Dimensions.get('window').width - 32,
   },
-  title: {
+  header: {
     fontWeight: 'bold',
     fontSize: 24,
     color: '$colors.max',
-    marginBottom: 12,
+    marginBottom: 12
+  },
+  title: {
+    fontSize: 20,
+    color: '$colors.max',
+    paddingHorizontal: 4,
   },
   titleText: {
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     height: 40,
     padding: 8,
     borderBottomWidth: 2,
@@ -51,7 +56,7 @@ const styles = EStyleSheet.create({
   descriptionText: {
     height: 400,
     alignSelf: 'stretch',
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     borderWidth: 2,
     textAlignVertical: 'top',
     padding: 8,

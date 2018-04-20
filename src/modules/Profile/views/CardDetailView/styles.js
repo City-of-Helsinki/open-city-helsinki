@@ -17,7 +17,6 @@ styles = EStyleSheet.create({
     fontSize: 24,
     color: '$colors.max',
     marginBottom: 16,
-
   },
   container: {
     padding: 20,

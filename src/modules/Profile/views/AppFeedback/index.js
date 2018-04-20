@@ -132,21 +132,21 @@ class AppFeedbackView extends Component {
           // }}
         />
         <View style={styles.innerContainer}>
-          <View style={styles.subHeader}><Text style={styles.title}>{i18n.t('feedBack:appFeedbackViewTitle')}</Text></View>
-
           <ScrollView style={styles.scrollView}>
+            <View style={styles.subHeader}><Text style={styles.header}>{i18n.t('feedBack:appFeedbackViewTitle')}</Text></View>
             <View style={styles.contentContainer}>
               <View style={styles.titleView}>
+                <Text style={styles.title}>{i18n.t('feedBack:titlePlaceholder')}</Text>
                 <TextInput
                   style={styles.titleText}
                   onChangeText={(text) => { this.setState({ titleText: text }); }}
-                  placeholder={i18n.t('feedBack:titlePlaceholder')}
+                  underlineColorAndroid="transparent"
                   autoCapitalize="sentences"
                 />
               </View>
 
               <View style={styles.descriptionView}>
-                <Text style={styles.descriptionView}>{i18n.t('feedBack:descriptionPlaceholder')}</Text>
+                <Text style={[styles.title, { marginBottom: 16 }]}>{i18n.t('feedBack:descriptionPlaceholder')}</Text>
                 <TextInput
                   style={styles.descriptionText}
                   // multiline={true}
@@ -154,7 +154,6 @@ class AppFeedbackView extends Component {
                   onChangeText={(text) => {
                     this.onDescriptionTextChange(text);
                   }}
-                  placeholder={i18n.t('feedBack:descriptionPlaceholder')}
                   autoCapitalize="sentences"
                 />
               </View>

@@ -53,9 +53,9 @@ styles = EStyleSheet.create({
     alignSelf: 'stretch',
   },
   subHeader: {
-    backgroundColor: '#D9DADD',
+    // backgroundColor: '#D9DADD',
     width: '100%',
-    paddingVertical: 24,
+    marginVertical: 24,
     paddingHorizontal: 16,
   },
   loading: {
