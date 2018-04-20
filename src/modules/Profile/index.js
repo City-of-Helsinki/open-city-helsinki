@@ -62,33 +62,22 @@ class ProfileModule extends React.Component<Props, State> {
   }
 
   onAuthPressed = async () => {
-
-    isAuthed().then(async (authed) => {
+    const authed = await isAuthed();
       this.setState({ profile: authed.profile })
       if (authed.isAuthed && authed.profile) {
         this.props.navigation.navigate('ProfileDetail', {
           profile: authed.profile,
         });
-      } else if (!authed) {
-        // try {
+      } else if (!authed.isAuthed) {
+        try {
           const result = await this.authorize();
           if (result) {
             ToastAndroid.show('Tunnistautuminen onnistui', ToastAndroid.SHORT);
           }
-        // } catch (error) {
-        //   ToastAndroid.show('Tunnistautuminen epäonnistui', ToastAndroid.SHORT);
-        // }
-      }
-    },
-    async (error) => {
-      try {
-        const result = await this.authorize();
-        if (result) {
-          ToastAndroid.show('Tunnistautuminen onnistui', ToastAndroid.SHORT);
+        } catch (error) {
+          ToastAndroid.show('Tunnistautuminen epäonnistui', ToastAndroid.SHORT);
         }
-      } catch (error) {
-        ToastAndroid.show('Tunnistautuminen epäonnistui', ToastAndroid.SHORT);
-      }    });
+      }
   }
 
   loadCards = async (profile) => {

@@ -5,12 +5,13 @@ import {
   NativeModules,
   DeviceEventEmitter,
 } from 'react-native';
-import { TabNavigator, TabBarBottom } from 'react-navigation';
+import { TabNavigator, TabBarBottom, StackNavigator, NavigationActions } from 'react-navigation';
 import { withProps } from 'recompose';
 import { initColors } from 'open-city-modules';
 import { translate } from 'react-i18next';
 import { generateToken } from 'src/utils/authentication_keys';
 import mapStyles from 'src/style';
+import SplashScreen from 'src/components/SplashScreen';
 import tabs from 'src/config/tabs';
 import Header from 'src/config/header';
 import CityChangeModal from 'src/components/CityChangeModal';
@@ -52,6 +53,40 @@ const Tabs = TabNavigator(tabs, {
     labelStyle: { fontSize: 12 },
   },
 });
+
+const MainStack = StackNavigator(
+  {
+    SplashScreen: {
+      screen: SplashScreen,
+    },
+    Tabs: {
+      screen: Tabs,
+    }
+  },
+  {
+    navigationOptions: {
+      header: null,
+      gesturesEnabled: false,
+    },
+  },
+)
+
+const defaultGetStateForAction = MainStack.router.getStateForAction;
+MainStack.router.getStateForAction = (action, state) => {
+  if (
+    state &&
+    action.type === NavigationActions.BACK &&
+    (
+      state.routes[state.index].routeName === 'Tabs' ||
+      state.routes[state.index].routeName === 'SplashScreen'
+    )
+  ) {
+    // Returning null indicates stack end, and triggers exit
+    console.warn(state.routes)
+    return null;
+  }
+  return defaultGetStateForAction(action, state);
+};
 
 type Props = { i18n: any };
 type State = {
@@ -96,7 +131,7 @@ class App extends React.Component<Props, State> {
     };
     return (
       <View style={{ flex: 1 }}>
-        <Tabs
+        <MainStack
           screenProps={screenProps}
         />
         <CityChangeModal visible={this.state.modalVisible} onClose={this.hideModal} />

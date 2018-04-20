@@ -11,6 +11,7 @@ import {
   UIManager,
   LayoutAnimation,
   StyleSheet,
+  ToastAndroid
 } from 'react-native';
 import colors from 'src/config/colors';
 import i18n from 'i18next';
@@ -98,7 +99,7 @@ class AppFeedbackView extends Component {
       this.setState({
         spinnerVisible: false,
       });
-      // ToastAndroid.show('Lähettäminen onnistui', ToastAndroid.SHORT);
+      ToastAndroid.show('Lähettäminen onnistui', ToastAndroid.SHORT);
       this.props.navigation.goBack();
     } catch (error) {
       Alert.alert(

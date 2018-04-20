@@ -10,11 +10,11 @@ const MyHeader = (props) => {
     <Header
       // title="Helsinki App"
       headerImage={logo}
-      rightAction={{
-        icon: img,
-        style: { tintColor: colors.max },
-        action: defaultRightAction,
-      }}
+      // rightAction={{
+      //   icon: img,
+      //   style: { tintColor: colors.max },
+      //   action: defaultRightAction,
+      // }}
       {...props}
     />
   );
