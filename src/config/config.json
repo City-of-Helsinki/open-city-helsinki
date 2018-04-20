@@ -6,4 +6,9 @@
   "OPENID_CLIENT_ID": "OPENID CLIENT ID",
   "OPENID_REDIRECT_URL": "opencityhelsinki://auth/callback",
   "OPENID_SCOPES": ["openid", "profile", "identities", "devices"],
+  "OPEN311_SEND_SERVICE_URL": "https://asiointi.hel.fi/palautews/rest/v1/requests.json",
+  "OPEN311_SEND_SERVICE_API_KEY": "OPEN 311 API KEY",
+  "OPEN311_DESCRIPTION_MIN_LENGTH": 10,
+  "OPEN311_DESCRIPTION_MAX_LENGTH": 5000,
+  "APP_FEEDBACK_SERVICE_CODE": 2802,
 }

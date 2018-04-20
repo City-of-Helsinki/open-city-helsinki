@@ -36,10 +36,12 @@ import CardDetailView from './views/CardDetailView';
 import ProfileDetailView from './views/ProfileDetailView';
 import CardUsage from './views/CardUsage';
 import AboutApp from './views/AboutApp';
+import AppFeedbackView from './views/AppFeedback';
 import styles from './styles';
 import smile from '../../../img/smile.png';
 import ticket from '../../../img/ticket.png';
 import globe from '../../../img/globe.png';
+import comment from '../../../img/comment.png';
 
 class ProfileModule extends React.Component<Props, State> {
   constructor(props) {
@@ -146,6 +148,10 @@ class ProfileModule extends React.Component<Props, State> {
     this.props.navigation.navigate('AboutApp');
   }
 
+  goToAppFeedBack = () => {
+    this.props.navigation.navigate('AppFeedbackView');
+  }
+
   authorize = async () => {
     try {
       this.setState({ loading: true });
@@ -231,6 +237,20 @@ class ProfileModule extends React.Component<Props, State> {
               </Text>
             </View>
           </TouchableOpacity>
+          <TouchableOpacity
+            disabled={this.state.loading}
+            onPress={() => this.goToAppFeedBack()}
+          >
+            <View style={styles.menuButton}>
+              <Image
+                source={comment}
+                style={styles.buttonIcon}
+              />
+              <Text style={styles.buttonText}>
+                {i18n.t('profileTab:appFeedback')}
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
         { this.state.loading &&
           <View style={styles.loading}>
@@ -268,6 +288,9 @@ const ProfileStack = StackNavigator(
     },
     AboutApp: {
       screen: AboutApp,
+    },
+    AppFeedbackView: {
+      screen: AppFeedbackView,
     },
   },
   {
