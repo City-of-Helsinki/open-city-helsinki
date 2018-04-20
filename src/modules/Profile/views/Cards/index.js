@@ -127,7 +127,7 @@ class Cards extends React.Component<Props, State> {
                 );
               })
             }
-            {/* TODO proper card hangling by cardType when several cards are supported */}
+            {/* TODO proper card handling by cardType when several cards are supported */}
             { !this.state.loading && !this.state.cards[0] &&
               <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('AddCard', {
@@ -136,7 +136,14 @@ class Cards extends React.Component<Props, State> {
                 })}
               >
                 <View style={styles.connectButton}>
-                  <View style={styles.buttonIcon}>
+                  <View style={[
+                    styles.buttonIcon,
+                      {
+                        marginLeft: -16,
+                        marginRight: 0,
+                      },
+                    ]}
+                  >
                     <Icon name="add-circle-outline" size={24} color="white" />
                   </View>
                   <Text style={styles.buttonText}>{i18n.t('customerShip:linkLibraryCard')}</Text>

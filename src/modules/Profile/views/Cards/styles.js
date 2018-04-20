@@ -38,7 +38,7 @@ styles = EStyleSheet.create({
   },
   buttonIcon: {
     alignSelf: 'center',
-    marginLeft: -16,
+    marginHorizontal: 16,
   },
   card: {
     flexDirection: 'row',
@@ -50,7 +50,7 @@ styles = EStyleSheet.create({
   buttonText: {
     color: '$colors.min',
     fontSize: 18,
-    marginLeft: 16,
+    marginLeft: 48,
   },
   cardText: {
     color: '$colors.max',

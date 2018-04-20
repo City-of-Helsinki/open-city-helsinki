@@ -337,6 +337,12 @@ class CardDetailView extends React.Component<Props, State> {
               this.renderPinForm()
             }
 
+            { this.state.cardPinError &&
+              <View>
+                <Text style={styles.error}>{this.state.commonError}</Text>
+              </View>
+            }
+
             {this.state.pinError &&
               <TouchableOpacity
                 onPress={() => {
@@ -393,7 +399,7 @@ class CardDetailView extends React.Component<Props, State> {
             </TouchableOpacity>
             { !!this.state.commonError || this.state.cardPinError &&
               <View>
-                <Text style={styles.error}>{'this.state.commonError'}</Text>
+                <Text style={styles.error}>{this.state.commonError}</Text>
               </View>
             }
           </View>
