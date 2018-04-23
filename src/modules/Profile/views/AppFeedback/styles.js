@@ -48,6 +48,7 @@ const styles = EStyleSheet.create({
     height: 40,
     padding: 8,
     borderBottomWidth: 2,
+    marginBottom: 16,
   },
   descriptionView: {
     flex: 1,

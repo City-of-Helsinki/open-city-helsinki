@@ -56,9 +56,6 @@ const Tabs = TabNavigator(tabs, {
 
 const MainStack = StackNavigator(
   {
-    SplashScreen: {
-      screen: SplashScreen,
-    },
     Tabs: {
       screen: Tabs,
     }
