@@ -30,6 +30,8 @@ class AppFeedbackView extends Component {
     this.state = {
       descriptionText: '',
       titleText: '',
+      nameText: '',
+      emailText: '',
       sendEnabled: false,
     };
 
@@ -93,6 +95,8 @@ class AppFeedbackView extends Component {
     data.append('service_code', Config.APP_FEEDBACK_SERVICE_CODE);
     data.append('description', this.state.descriptionText);
     data.append('title', this.state.titleText !== null ? this.state.titleText : '');
+    data.append('name', this.state.nameText !== null ? this.state.nameText : '');
+    data.append('email', this.state.emailText !== null ? this.state.emailText : '');
 
     try {
       const result = await makeRequest(url, 'POST', headers, data)
@@ -157,10 +161,28 @@ class AppFeedbackView extends Component {
                   autoCapitalize="sentences"
                 />
               </View>
+              <View style={[styles.titleView, { marginTop: 12 }]}>
+                <Text style={styles.title}>{i18n.t('feedBack:namePlaceholder')}</Text>
+                <TextInput
+                  style={styles.titleText}
+                  onChangeText={(text) => { this.setState({ nameText: text }); }}
+                  underlineColorAndroid="transparent"
+                  autoCapitalize="sentences"
+                />
+              </View>
+              <View style={[styles.titleView, { marginTop: 12 }]}>
+                <Text style={styles.title}>{i18n.t('feedBack:emailPlaceholder')}</Text>
+                <TextInput
+                  style={styles.titleText}
+                  onChangeText={(text) => { this.setState({ emailText: text }); }}
+                  underlineColorAndroid="transparent"
+                  autoCapitalize="sentences"
+                />
+              </View>
               <TouchableOpacity
                 disabled={this.state.loading}
                 onPress={() => {
-                  this.onSendButtonClick.bind(this);
+                  this.onSendButtonClick();
                 }}
               >
                 <View style={styles.button}>
