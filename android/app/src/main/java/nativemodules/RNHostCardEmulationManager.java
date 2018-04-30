@@ -61,10 +61,10 @@ public class RNHostCardEmulationManager extends ReactContextBaseJavaModule {
         try {
             cardInfo = new CardInfo(
                     map.getString(CARD_NUMBER),
-                    map.getInt(CARD_PIN)
+                    map.getString(CARD_PIN)
             );
             Set<String> cards = getPreferences().getStringSet("libraryCards", new HashSet<String>());
-            cards.add(cardInfo.getCardNumber() + "/" + Integer.toString(cardInfo.getCardPin()));
+            cards.add(cardInfo.getCardNumber() + "/" + cardInfo.getCardPin());
 
             getPreferences().edit().putStringSet("libraryCards", cards).commit();
 
@@ -84,7 +84,7 @@ public class RNHostCardEmulationManager extends ReactContextBaseJavaModule {
         try {
             cardInfo = new CardInfo(
                     map.getString(CARD_NUMBER),
-                    0000
+                    "0000"
             );
             Set<String> cards = getPreferences().getStringSet("libraryCards", new HashSet<String>());
             String cardStr = cardInfo.getCardNumber();

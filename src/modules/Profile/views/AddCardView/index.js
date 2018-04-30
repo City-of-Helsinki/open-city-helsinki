@@ -131,7 +131,7 @@ class AddCardView extends React.Component<Props, State> {
     });
     const cardInfo = {
       cardNumber: this.state.cardNumber.replace(/\s/g, ''),
-      cardPin: parseInt(pin),
+      cardPin: pin,
     };
     try {
       const tunnistamoData = await this.registerCard(cardInfo);

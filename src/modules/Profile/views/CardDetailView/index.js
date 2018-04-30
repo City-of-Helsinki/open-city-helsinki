@@ -111,7 +111,7 @@ class CardDetailView extends React.Component<Props, State> {
     });
     const cardInfo = {
       cardNumber: card.cardNumber,
-      cardPin: parseInt(pin),
+      cardPin: pin,
     };
     try {
       await this.registerCard(cardInfo);
@@ -144,7 +144,7 @@ class CardDetailView extends React.Component<Props, State> {
       const { card } = this.props.navigation.state.params;
       const cardInfo = {
         cardNumber: card.cardNumber,
-        cardPin: parseInt(card.cardPin),
+        cardPin: card.cardPin,
       };
       await removeCardFromTunnistamo(card);
       const resetAction = NavigationActions.reset({

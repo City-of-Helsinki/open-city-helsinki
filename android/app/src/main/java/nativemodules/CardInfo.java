@@ -9,10 +9,10 @@ import java.util.regex.Pattern;
 public class CardInfo {
 
     private String cardNumber;
-    private Integer cardPin;
+    private String cardPin;
     private final Pattern nfcCardNumberPattern = Pattern.compile("^\\d{14}$");
 
-    public CardInfo(String cardNumber, int cardPin) {
+    public CardInfo(String cardNumber, String cardPin) {
       setCardNumber(cardNumber);
       setCardPin(cardPin);
     }
@@ -30,11 +30,11 @@ public class CardInfo {
 
     }
 
-    public Integer getCardPin() {
+    public String getCardPin() {
         return cardPin;
     }
 
-    public void setCardPin(Integer cardPin) {
+    public void setCardPin(String cardPin) {
         this.cardPin = cardPin;
     }
 
