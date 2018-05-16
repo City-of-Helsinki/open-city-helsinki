@@ -45,21 +45,21 @@ const tabs = {
   HomeView: {
     screen: withProps({})(HomeViewModule),
     navigationOptions: () => ({
-      tabBarIcon: () => (<Image style={{ height: 32, width: 32 }} source={home} />),
+      tabBarIcon: ({ focused, tintColor }) => (<Image source={home} resizeMode='contain' style={{ height: 24, width: 24, tintColor: tintColor }} />),
       tabBarLabel: `${i18n.t('tabs:home')}`,
     }),
   },
   Feedback: {
     screen: withProps({ showSubHeader: false })(FeedbackModule),
     navigationOptions: () => ({
-      tabBarIcon: () => (<Image source={pencil} style={{ height: 32, width: 32 }} />),
+      tabBarIcon: ({ focused, tintColor }) => (<Image source={pencil} resizeMode='contain' style={{ height: 24, width: 24, tintColor: tintColor }} />),
       tabBarLabel: `${i18n.t('tabs:feedback')}`,
     }),
   },
   Profile: {
     screen: translate('profileTab')(Profile),
     navigationOptions: () => ({
-      tabBarIcon: () => (<Image source={profile} style={{ height: 32, width: 32 }} />),
+      tabBarIcon: ({ focused, tintColor }) => (<Image source={profile} resizeMode='contain' style={{ height: 24, width: 24, tintColor: tintColor }} />),
       tabBarLabel: `${i18n.t('tabs:profile')}`,
     }),
   },

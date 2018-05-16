@@ -45,10 +45,8 @@ const Tabs = TabNavigator(tabs, {
   navigationOptions: navigationOptions,
   swipeEnabled: false,
   tabBarOptions: {
-    activeTintColor: colors.med,
-    activeBackgroundColor: colors.min,
-    inactiveTintColor: colors.max,
-    inactiveBackgroundColor: colors.min,
+    activeTintColor: colors.max,
+    inactiveTintColor: '#525a65',
     labelStyle: { fontSize: 12 },
   },
 });
