@@ -65,15 +65,17 @@ class ProfileDetailView extends React.Component<Props, State> {
     const { card } = this.props.navigation.state.params
     return (
       <KeyboardAvoidingView style={{ flex: 1 }}>
-        <Header
-          leftAction={{
-            icon: BackIcon,
-            action: this.goBack,
-            style: {
-              tintColor: colors.max,
-            },
-          }}
-        />
+        {!!Header &&
+          <Header
+            leftAction={{
+              icon: BackIcon,
+              action: this.goBack,
+              style: {
+                tintColor: colors.max,
+              },
+            }}
+          />
+        }
 
         <ScrollView
           style={{ flex: 1, backgroundColor: colors.min }}

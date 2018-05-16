@@ -122,19 +122,21 @@ class AppFeedbackView extends Component {
 
     return (
       <View style={styles.container}>
-        <Header
-          leftAction={{
-            icon: BackIcon,
-            action: this.goBack,
-            style: {
-              tintColor: colors.max,
-            },
-          }}
-          // rightAction={{
-          //   icon: this.state.sendEnabled ? sendEnabledIcon : sendDisabledIcon,
-          //   action: this.onSendButtonClick.bind(this),
-          // }}
-        />
+        {!!Header &&
+          <Header
+            leftAction={{
+              icon: BackIcon,
+              action: this.goBack,
+              style: {
+                tintColor: colors.max,
+              },
+            }}
+            // rightAction={{
+            //   icon: this.state.sendEnabled ? sendEnabledIcon : sendDisabledIcon,
+            //   action: this.onSendButtonClick.bind(this),
+            // }}
+          />
+        }
         <View style={styles.innerContainer}>
           <ScrollView style={styles.scrollView}>
             <View style={styles.subHeader}><Text style={styles.header}>{i18n.t('feedBack:appFeedbackViewTitle')}</Text></View>

@@ -301,15 +301,17 @@ class CardDetailView extends React.Component<Props, State> {
 
     return (
       <KeyboardAvoidingView style={{ flex: 1 }}>
-        <Header
-          leftAction={{
-            icon: BackIcon,
-            action: this.goBack,
-            style: {
-              tintColor: colors.max,
-            },
-          }}
-        />
+        {!!Header &&
+          <Header
+            leftAction={{
+              icon: BackIcon,
+              action: this.goBack,
+              style: {
+                tintColor: colors.max,
+              },
+            }}
+          />
+        }
 
         <ScrollView
           style={{ flex: 1, backgroundColor: colors.min }}

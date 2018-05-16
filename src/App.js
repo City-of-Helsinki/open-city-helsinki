@@ -30,14 +30,13 @@ const tabBarOnPress = navigation => config => {
     DeviceEventEmitter.emit('tabChanged', { prevRoute: previousScene.routeName, nextRoute: scene.route.routeName });
     jumpToIndex(scene.index)
   }
-}
+};
 
 const navigationOptions = ({ navigation }) => {
   return {
     tabBarOnPress: tabBarOnPress(navigation),
-  }
-}
-
+  };
+};
 
 
 const Tabs = TabNavigator(tabs, {
@@ -58,7 +57,7 @@ const MainStack = StackNavigator(
   {
     Tabs: {
       screen: Tabs,
-    }
+    },
   },
   {
     navigationOptions: {
@@ -66,7 +65,7 @@ const MainStack = StackNavigator(
       gesturesEnabled: false,
     },
   },
-)
+);
 
 const defaultGetStateForAction = MainStack.router.getStateForAction;
 MainStack.router.getStateForAction = (action, state) => {
@@ -119,11 +118,13 @@ class App extends React.Component<Props, State> {
       colors,
       locale: 'fi',
       // locale: this.props.i18n.language,
-      Header: this.Header,
+      // Header: this.Header,
+      showHeader: false,
       heroBanner: heroBanner,
       mainImage: linkedEventDecorator,
       marker: map_marker,
       customMapStyle: mapStyles,
+
       showFeed: false,
     };
     return (

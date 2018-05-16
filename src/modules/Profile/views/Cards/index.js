@@ -75,15 +75,17 @@ class Cards extends React.Component<Props, State> {
 
     return (
       <View style={{ flex: 1 }}>
-        <Header
-          leftAction={{
-            icon: BackIcon,
-            action: this.goBack,
-            style: {
-              tintColor: colors.max,
-            },
-          }}
-        />
+        {!!Header &&
+          <Header
+            leftAction={{
+              icon: BackIcon,
+              action: this.goBack,
+              style: {
+                tintColor: colors.max,
+              },
+            }}
+          />
+        }
         <View style={styles.subHeader}><Text style={styles.title}>{i18n.t('profileTab:info') + ' / ' + i18n.t('customerShip:cards')}</Text></View>
         <ScrollView style={{ flex: 1, backgroundColor: '#94C2E8' }}>
           <View style={styles.container}>

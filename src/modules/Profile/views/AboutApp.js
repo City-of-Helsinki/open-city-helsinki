@@ -34,15 +34,17 @@ class AboutApp extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <Header
-          leftAction={{
-            icon: BackIcon,
-            action: this.goBack,
-            style: {
-              tintColor: colors.max,
-            },
-          }}
-        />
+        {!!Header &&
+          <Header
+            leftAction={{
+              icon: BackIcon,
+              action: this.goBack,
+              style: {
+                tintColor: colors.max,
+              },
+            }}
+          />
+        }
 
         <ScrollView
           style={{

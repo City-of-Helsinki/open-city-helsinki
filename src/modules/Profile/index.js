@@ -178,7 +178,9 @@ class ProfileModule extends React.Component<Props, State> {
 
     return (
       <View style={{ flex: 1 }}>
-        <Header />
+        {!!Header &&
+          <Header />
+        }
         <View style={styles.subHeader}><Text style={styles.title}>{i18n.t('profileTab:info')}</Text></View>
 
         <View style={styles.container}>
@@ -255,40 +257,35 @@ class ProfileModule extends React.Component<Props, State> {
   }
 }
 
-const ProfileStack = StackNavigator(
-  {
-    Profile: {
-      screen: ProfileModule,
-    },
-    Cards: {
-      screen: Cards,
-    },
-    AddCard: {
-      screen: AddCardView,
-    },
-    CardDetail: {
-      screen: CardDetailView,
-    },
-    ProfileDetail: {
-      screen: ProfileDetailView,
-    },
-    CardInfoScreen: {
-      screen: CardUsage,
-    },
-    AboutApp: {
-      screen: AboutApp,
-    },
-    AppFeedbackView: {
-      screen: AppFeedbackView,
-    },
-  },
-  {
+const ProfileStack = StackNavigator({
+  Profile: {
+    screen: ProfileModule,
     navigationOptions: {
       header: null,
-      gesturesEnabled: false,
     },
   },
-);
+  Cards: {
+    screen: Cards,
+  },
+  AddCard: {
+    screen: AddCardView,
+  },
+  CardDetail: {
+    screen: CardDetailView,
+  },
+  ProfileDetail: {
+    screen: ProfileDetailView,
+  },
+  CardInfoScreen: {
+    screen: CardUsage,
+  },
+  AboutApp: {
+    screen: AboutApp,
+  },
+  AppFeedbackView: {
+    screen: AppFeedbackView,
+  },
+});
 
 type ModuleProps = {
   screenProps: { locale: string },
