@@ -1,4 +1,5 @@
 PODS:
+  - AppAuth (0.92.0)
   - GoogleMaps (2.4.0):
     - GoogleMaps/Maps (= 2.4.0)
   - GoogleMaps/Base (2.4.0)
@@ -47,6 +48,7 @@ PODS:
   - yoga (0.50.3.React)
 
 DEPENDENCIES:
+  - AppAuth (>= 0.91)
   - GoogleMaps
   - react-native-maps (from `../node_modules/react-native-maps`)
   - React/BatchedBridge (from `../node_modules/react-native`)
@@ -75,12 +77,13 @@ EXTERNAL SOURCES:
     :path: ../node_modules/react-native/ReactCommon/yoga
 
 SPEC CHECKSUMS:
+  AppAuth: 3f4f1d6d85ad631d0bbf15ffcdc10c447face97a
   GoogleMaps: 8436ab5d1c25e36915b2f7416d0c8e3fa2e76c61
   React: 0ba6cae888dc82dc47d6d5f3090615e1b5f6f3e7
   react-native-maps: 016cff46e0ae7ad4c1b1143a1aa2044e9983a544
   RNVectorIcons: c1821d56c775cc5a3bca66c77dfc8cb4a90d27e2
   yoga: faecc6be81ca7823ccbb470b93a1b228499fa1c0
 
-PODFILE CHECKSUM: 06982e1f5953fe4268d0f2faeb5755cf54fe4724
+PODFILE CHECKSUM: e73eacf4daf3477f1d76efb5a0eb6fad9efb4f59
 
 COCOAPODS: 1.3.1

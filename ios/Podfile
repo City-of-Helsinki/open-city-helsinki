@@ -21,7 +21,7 @@
    pod 'GoogleMaps'
    pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-
+   pod 'AppAuth', '>= 0.91'
    pod 'react-native-maps', :path => '../node_modules/react-native-maps'
 
  end

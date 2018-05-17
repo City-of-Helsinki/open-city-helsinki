@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -41,6 +42,7 @@
 		4F60169EBFD54024B89D147E /* libRCTImageResizer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E51FE05C971B454AADCF3B9E /* libRCTImageResizer.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		5EE3A926B25146BC8C9839CA /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D14B06E8DD4443D686F56CB2 /* FontAwesome.ttf */; };
+		68D59851844340928900318A /* libRNAppAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE5C0F6E142413EA3D489D2 /* libRNAppAuth.a */; };
 		7531A2ED1EF4488D9A2D4F5E /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9180820504CB4A5D957C4A18 /* Feather.ttf */; };
 		7718A3FA925BBB9A984E7616 /* libPods-Helsinki.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A52FF5A3488CC40EF5EC2588 /* libPods-Helsinki.a */; };
 		7E77065EC4174B39BAEDE515 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB12FFC797AD49CC95228BD0 /* MaterialCommunityIcons.ttf */; };
@@ -71,7 +73,6 @@
 		D5A85ABF201B6813003E9BC2 /* DummyView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A85AAB201B6812003E9BC2 /* DummyView.m */; };
 		D5A85AC0201B6813003E9BC2 /* RCTConvert+GMSMapViewType.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A85AAD201B6812003E9BC2 /* RCTConvert+GMSMapViewType.m */; };
 		FAFAF81477354857B935C207 /* libFastImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB3C6C72A79F48FFA89A5220 /* libFastImage.a */; };
-		68D59851844340928900318A /* libRNAppAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE5C0F6E142413EA3D489D2 /* libRNAppAuth.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -362,6 +363,13 @@
 			remoteGlobalIDString = 9936F32F1F5F2E5B0010BF04;
 			remoteInfo = "privatedata-tvOS";
 		};
+		D5E99C8C20AD92790057196E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CAC4D9DCD68C42CEA006A135 /* RNAppAuth.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNAppAuth;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -399,12 +407,14 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		874869BA008E40E4A14F03C1 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		8DE5C0F6E142413EA3D489D2 /* libRNAppAuth.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAppAuth.a; sourceTree = "<group>"; };
 		9180820504CB4A5D957C4A18 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		99ED3C66D9A941C8894DA51C /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		A52FF5A3488CC40EF5EC2588 /* libPods-Helsinki.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Helsinki.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		B222F53290424451ADB92E39 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		C4482F6B09AE9495FAD48D7A /* Pods-Helsinki.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Helsinki.release.xcconfig"; path = "Pods/Target Support Files/Pods-Helsinki/Pods-Helsinki.release.xcconfig"; sourceTree = "<group>"; };
+		CAC4D9DCD68C42CEA006A135 /* RNAppAuth.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAppAuth.xcodeproj; path = "../node_modules/react-native-app-auth/ios/RNAppAuth.xcodeproj"; sourceTree = "<group>"; };
 		CB3C6C72A79F48FFA89A5220 /* libFastImage.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libFastImage.a; sourceTree = "<group>"; };
 		D14B06E8DD4443D686F56CB2 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		D15C6E39B44B4BFC9E7D5EBC /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
@@ -451,8 +461,6 @@
 		E51FE05C971B454AADCF3B9E /* libRCTImageResizer.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTImageResizer.a; sourceTree = "<group>"; };
 		EC70AABDD32746108E80134E /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		FF54CFCEAF99481081F41085 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		CAC4D9DCD68C42CEA006A135 /* RNAppAuth.xcodeproj */ = {isa = PBXFileReference; name = "RNAppAuth.xcodeproj"; path = "../node_modules/react-native-app-auth/ios/RNAppAuth.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		8DE5C0F6E142413EA3D489D2 /* libRNAppAuth.a */ = {isa = PBXFileReference; name = "libRNAppAuth.a"; path = "libRNAppAuth.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -761,6 +769,7 @@
 				E51FE05C971B454AADCF3B9E /* libRCTImageResizer.a */,
 				53396F929B824741AE50FC4F /* libAirMaps.a */,
 				CB3C6C72A79F48FFA89A5220 /* libFastImage.a */,
+				8DE5C0F6E142413EA3D489D2 /* libRNAppAuth.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -841,6 +850,14 @@
 			);
 			name = AirGoogleMaps;
 			path = "../../open-city-modules/node_modules/react-native-maps/lib/ios/AirGoogleMaps";
+			sourceTree = "<group>";
+		};
+		D5E99C8920AD92790057196E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5E99C8D20AD92790057196E /* libRNAppAuth.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1012,6 +1029,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = D5E99C8920AD92790057196E /* Products */;
+					ProjectRef = CAC4D9DCD68C42CEA006A135 /* RNAppAuth.xcodeproj */;
 				},
 				{
 					ProductGroup = D5A8597A201B6116003E9BC2 /* Products */;
@@ -1306,6 +1327,13 @@
 			remoteRef = D5A859A6201B611A003E9BC2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		D5E99C8D20AD92790057196E /* libRNAppAuth.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNAppAuth.a;
+			remoteRef = D5E99C8C20AD92790057196E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1560,7 +1588,6 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
-					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Helsinki.app/Helsinki";
@@ -1596,7 +1623,6 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
-					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Helsinki.app/Helsinki";
@@ -1628,7 +1654,6 @@
 				);
 				PRODUCT_NAME = Helsinki;
 				VERSIONING_SYSTEM = "apple-generic";
-					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 			};
 			name = Debug;
 		};
@@ -1656,7 +1681,6 @@
 				);
 				PRODUCT_NAME = Helsinki;
 				VERSIONING_SYSTEM = "apple-generic";
-					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 			};
 			name = Release;
 		};
@@ -1701,8 +1725,6 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 			};
 			name = Debug;
 		};
@@ -1747,8 +1769,6 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"$(SRCROOT)/../node_modules/react-native-app-auth/ios",
 			};
 			name = Release;
 		};
@@ -1797,7 +1817,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
