@@ -11,4 +11,6 @@
   "OPEN311_DESCRIPTION_MIN_LENGTH": 10,
   "OPEN311_DESCRIPTION_MAX_LENGTH": 5000,
   "APP_FEEDBACK_SERVICE_CODE": 2802,
+  "SENTRY_ENDPOINT": "enter sentry api keyvalue and endpoint url specified in sentry config",
+  "PIWIK_ENDPOINT": "https://analytics.hel.ninja/piwik/"
 }

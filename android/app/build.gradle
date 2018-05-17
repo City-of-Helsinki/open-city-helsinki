@@ -143,6 +143,8 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-sentry')
+    compile project(':react-native-piwik')
     compile project(':react-native-app-auth')
     compile project(':react-native-fast-image')
     compile project(':react-native-maps')

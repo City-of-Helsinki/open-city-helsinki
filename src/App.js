@@ -21,7 +21,8 @@ import i18n from 'src/config/translations';
 import heroBanner from '../img/main-hero-decoration.png';
 import linkedEventDecorator from '../img/main-image-decoration.png';
 import map_marker from '../img/marker_pin.png';
-
+import { captureMessage } from 'src/utils/sentryUtils';
+import { Sentry } from 'react-native-sentry';
 initColors(colors);
 
 const tabBarOnPress = navigation => config => {
@@ -44,6 +45,8 @@ const Tabs = TabNavigator(tabs, {
   tabBarPosition: 'bottom',
   navigationOptions: navigationOptions,
   swipeEnabled: false,
+  lazyLoad: true,
+  animationEnabled: false,
   tabBarOptions: {
     activeTintColor: colors.max,
     inactiveTintColor: '#525a65',
@@ -122,8 +125,9 @@ class App extends React.Component<Props, State> {
       mainImage: linkedEventDecorator,
       marker: map_marker,
       customMapStyle: mapStyles,
-
+      showHero: false,
       showFeed: false,
+      showEvents: false,
     };
     return (
       <View style={{ flex: 1 }}>

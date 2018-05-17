@@ -3,6 +3,8 @@ package com.helsinki;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import io.sentry.RNSentryPackage;
+import de.bonify.reactnativepiwik.PiwikPackage;
 import com.reactlibrary.RNAppAuthPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.airbnb.android.react.maps.MapsPackage;
@@ -31,14 +33,16 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNAppAuthPackage(),
-            new FastImageViewPackage(),
-            new MapsPackage(),
-            new ImageResizerPackage(),
-            new ImagePickerPackage(),
-            new VectorIconsPackage(),
-	    new RNHostCardEmulationPackage(),
-              new RNDeviceInfo()
+          new RNSentryPackage(MainApplication.this),
+          new PiwikPackage(),
+          new RNAppAuthPackage(),
+          new FastImageViewPackage(),
+          new MapsPackage(),
+          new ImageResizerPackage(),
+          new ImagePickerPackage(),
+          new VectorIconsPackage(),
+          new RNHostCardEmulationPackage(),
+          new RNDeviceInfo()
       );
     }
 
