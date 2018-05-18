@@ -12,6 +12,7 @@ import home from '../../img/home.png';
 import pencil from '../../img/pencil.png';
 import profile from '../../img/profile.png';
 import CardImage from '../../img/hand_card.png';
+import colors from 'src/config/colors';
 // import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // import i18n from 'src/config/translations';
 
@@ -23,17 +24,17 @@ const defaultPromotions = [
     body: 'Voit käyttää nyt puhelimesi lähilukuominaisuutta kirjastokorttina',
     image: CardImage,
     footer: 'Ota kirjastokortti käyttöön',
-    bgColor: 'orange',
+    bgColor: colors.tram,
     textColor: 'white',
     targetTab: 'Profile',
   },
-  {
-    id: 'prom_002',
-    title: 'Toinen mainos',
-    body: 'Tässä toinen geneerinen mainosteksti',
-    bgColor: 'purple',
-    textColor: 'white',
-  },
+  // {
+  //   id: 'prom_002',
+  //   title: 'Toinen mainos',
+  //   body: 'Tässä toinen geneerinen mainosteksti',
+  //   bgColor: 'purple',
+  //   textColor: 'white',
+  // },
 ];
 
 configureFeedback(feedbackConfig);

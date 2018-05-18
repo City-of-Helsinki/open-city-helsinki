@@ -49,7 +49,7 @@ const Tabs = TabNavigator(tabs, {
   animationEnabled: false,
   tabBarOptions: {
     activeTintColor: colors.max,
-    inactiveTintColor: '#525a65',
+    inactiveTintColor: colors.darkgray,
     labelStyle: { fontSize: 12 },
   },
 });
@@ -120,7 +120,9 @@ class App extends React.Component<Props, State> {
       locale: 'fi',
       // locale: this.props.i18n.language,
       // Header: this.Header,
+      homeViewBGColor: colors.fog,
       showHeader: false,
+      showHero: false,
       heroBanner: heroBanner,
       mainImage: linkedEventDecorator,
       marker: map_marker,
