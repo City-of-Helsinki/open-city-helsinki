@@ -14,12 +14,7 @@ styles = EStyleSheet.create({
     fontWeight: 'bold',
     fontSize: 24,
     color: '$colors.max',
-  },
-  subHeader: {
-    backgroundColor: '#D9DADD',
-    width: '100%',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    marginBottom: 16,
   },
   menuButton: {
     flexDirection: 'row',
@@ -38,7 +33,7 @@ styles = EStyleSheet.create({
   },
   buttonIcon: {
     alignSelf: 'center',
-    marginHorizontal: 16,
+    marginHorizontal: 8,
   },
   card: {
     flexDirection: 'row',
@@ -46,6 +41,7 @@ styles = EStyleSheet.create({
     paddingVertical: 16,
     marginVertical: 16,
     marginHorizontal: 0,
+    borderWidth: 2,
   },
   buttonText: {
     color: '$colors.min',
@@ -59,8 +55,12 @@ styles = EStyleSheet.create({
   },
   container: {
     padding: 20,
-    backgroundColor: '#94C2E8',
+    backgroundColor: '$colors.min',
     flex: 1,
+  },
+  scrollViewContainer: {
+    // padding: 20,
+    // flex: 1,
   },
   button: {
     marginVertical: 20,

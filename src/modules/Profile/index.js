@@ -30,6 +30,8 @@ import {
   // deleteProfile
 } from 'Helsinki/src/profile';
 import { fetchRegisteredCards } from 'src/modules/Profile/CardManager';
+import colors from 'src/config/colors';
+import { getUserData } from 'src/utils/auth';
 import Cards from './views/Cards';
 import AddCardView from './views/AddCardView';
 import CardDetailView from './views/CardDetailView';
@@ -37,6 +39,7 @@ import ProfileDetailView from './views/ProfileDetailView';
 import CardUsage from './views/CardUsage';
 import AboutApp from './views/AboutApp';
 import AppFeedbackView from './views/AppFeedback';
+import Wave from './components/Wave';
 import styles from './styles';
 import smile from '../../../img/smile.png';
 import ticket from '../../../img/ticket.png';
@@ -50,11 +53,33 @@ class ProfileModule extends React.Component<Props, State> {
       profile: null,
       cards: [],
       loading: false,
+      name: null,
+      isAuthed: false,
     };
+
+    this.isAuthed = this.isAuthed.bind(this);
   }
 
-  componentWillMount = () => {
+  componentWillMount() {
+    this.isAuthed();
+  }
 
+  isAuthed = async () => {
+    const authed = await isAuthed();
+    if (authed.profile) {
+      try {
+        const data = await getUserData(authed.profile.auth.accessToken);
+        const firstName = data.name.split(' ')[0];
+        const lastName = data.name.split(' ')[1];
+        this.setState({
+          isAuthed: true,
+          firstName: firstName,
+          lastName: lastName,
+        });
+      } catch (error) {
+        console.warn(error);
+      }
+    }
   }
 
   goBack = () => {
@@ -63,21 +88,22 @@ class ProfileModule extends React.Component<Props, State> {
 
   onAuthPressed = async () => {
     const authed = await isAuthed();
-      this.setState({ profile: authed.profile })
-      if (authed.isAuthed && authed.profile) {
-        this.props.navigation.navigate('ProfileDetail', {
-          profile: authed.profile,
-        });
-      } else if (!authed.isAuthed) {
-        try {
-          const result = await this.authorize();
-          if (result) {
-            ToastAndroid.show('Tunnistautuminen onnistui', ToastAndroid.SHORT);
-          }
-        } catch (error) {
-          ToastAndroid.show('Tunnistautuminen epäonnistui', ToastAndroid.SHORT);
+    this.setState({ profile: authed.profile })
+    if (authed.isAuthed && authed.profile) {
+      this.props.navigation.navigate('ProfileDetail', {
+        profile: authed.profile,
+      });
+    } else if (!authed.isAuthed) {
+      try {
+        const result = await this.authorize();
+        if (result) {
+          this.isAuthed();
+          ToastAndroid.show('Tunnistautuminen onnistui', ToastAndroid.SHORT);
         }
+      } catch (error) {
+        ToastAndroid.show('Tunnistautuminen epäonnistui', ToastAndroid.SHORT);
       }
+    }
   }
 
   loadCards = async (profile) => {
@@ -115,6 +141,7 @@ class ProfileModule extends React.Component<Props, State> {
               text: `${i18n.t('common:logIn')}`,
               onPress: async () => {
                 const mProfile = await this.authorize();
+                this.isAuthed();
                 // const result = await this.loadCards(mProfile).cards;
 
                 this.props.navigation.navigate('Cards', {
@@ -177,13 +204,36 @@ class ProfileModule extends React.Component<Props, State> {
     const { Header } = this.props.screenProps;
 
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         {!!Header &&
           <Header />
         }
-        <View style={styles.subHeader}><Text style={styles.title}>{i18n.t('profileTab:info')}</Text></View>
-
-        <View style={styles.container}>
+        {!!this.state.isAuthed &&
+          <View
+            style={styles.subHeader}
+          >
+            <Text style={styles.title}>
+              {this.state.firstName}
+            </Text>
+            <Text style={styles.title}>
+              {this.state.lastName}
+            </Text>
+          </View>
+        }
+        {!this.state.isAuthed &&
+          <View
+            style={styles.subHeader}
+          >
+            <Text style={styles.title}>
+              {i18n.t('profileTab:info')}
+            </Text>
+          </View>
+        }
+        <Wave
+          topColor={colors.min}
+          bottomColor={colors.copper}
+        />
+        <View style={styles.buttonContainer}>
 
           <TouchableOpacity
             disabled={this.state.loading}

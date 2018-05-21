@@ -29,7 +29,7 @@ styles = EStyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '$colors.min',
     padding: 16,
-    marginVertical: 4,
+    marginVertical: 2,
   },
   buttonText: {
     color: '$colors.max',
@@ -37,8 +37,13 @@ styles = EStyleSheet.create({
     fontWeight: 'bold',
   },
   container: {
-    padding: 20,
-    backgroundColor: '#94C2E8',
+    // padding: 20,
+    backgroundColor: '$colors.min',
+    flex: 1,
+  },
+  buttonContainer: {
+    padding: 16,
+    backgroundColor: '$colors.copper',
     flex: 1,
   },
   button: {
@@ -53,10 +58,9 @@ styles = EStyleSheet.create({
     alignSelf: 'stretch',
   },
   subHeader: {
-    // backgroundColor: '#D9DADD',
-    width: '100%',
+    backgroundColor: '$colors.min',
     marginVertical: 24,
-    paddingHorizontal: 16,
+    marginHorizontal: 24,
   },
   loading: {
     width: '100%',

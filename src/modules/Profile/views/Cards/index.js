@@ -74,7 +74,7 @@ class Cards extends React.Component<Props, State> {
     const { Header } = this.props.screenProps;
 
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         {!!Header &&
           <Header
             leftAction={{
@@ -86,21 +86,15 @@ class Cards extends React.Component<Props, State> {
             }}
           />
         }
-        <View style={styles.subHeader}><Text style={styles.title}>{i18n.t('profileTab:info') + ' / ' + i18n.t('customerShip:cards')}</Text></View>
-        <ScrollView style={{ flex: 1, backgroundColor: '#94C2E8' }}>
-          <View style={styles.container}>
+        <Text style={styles.title}>
+          {i18n.t('profileTab:customerShip')}
+        </Text>
+
+        <ScrollView>
+          <View style={styles.scrollViewContainer}>
             <Text style={styles.description}>
               {i18n.t('customerShip:linkInfo')}
             </Text>
-
-            {/* { this.state.loading &&
-              <View style={{ marginTop: 32, }}>
-                <ActivityIndicator
-                  size='large'
-                  color={EStyleSheet.value('$colors.med')}
-                />
-              </View>
-            } */}
 
             { !this.state.loading && this.state.cards.map((card) => {
                 return (
@@ -137,18 +131,15 @@ class Cards extends React.Component<Props, State> {
                   cards: this.state.cards,
                 })}
               >
-                <View style={styles.connectButton}>
-                  <View style={[
-                    styles.buttonIcon,
-                      {
-                        marginLeft: -16,
-                        marginHorizontal: 0,
-                      },
-                    ]}
-                  >
-                    <Icon name="add-circle-outline" size={24} color="white" />
+                <View style={styles.card}>
+                  <View style={styles.buttonIcon}>
+                    <Icon name="add-circle-outline" size={24} color="black" />
                   </View>
-                  <Text style={styles.buttonText}>{i18n.t('customerShip:linkLibraryCard')}</Text>
+                  <Text
+                    style={styles.cardText}
+                  >
+                      {i18n.t('customerShip:linkLibraryCard')}
+                  </Text>
 
                 </View>
               </TouchableOpacity>
