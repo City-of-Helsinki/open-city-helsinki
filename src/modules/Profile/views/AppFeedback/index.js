@@ -131,10 +131,6 @@ class AppFeedbackView extends Component {
                 tintColor: colors.max,
               },
             }}
-            // rightAction={{
-            //   icon: this.state.sendEnabled ? sendEnabledIcon : sendDisabledIcon,
-            //   action: this.onSendButtonClick.bind(this),
-            // }}
           />
         }
         <View style={styles.innerContainer}>
@@ -155,7 +151,7 @@ class AppFeedbackView extends Component {
                 <Text style={[styles.title, { marginBottom: 16 }]}>{i18n.t('feedBack:descriptionPlaceholder')}</Text>
                 <TextInput
                   style={styles.descriptionText}
-                  // multiline={true}
+                  multiline={true}
                   underlineColorAndroid="transparent"
                   onChangeText={(text) => {
                     this.onDescriptionTextChange(text);
@@ -188,14 +184,14 @@ class AppFeedbackView extends Component {
                 }}
               >
                 <View style={styles.button}>
-                  { this.state.loading &&
+                  {this.state.loading &&
                     <ActivityIndicator
-                      size={'small'}
+                      size="small"
                       color={EStyleSheet.value('$colors.med')}
                     />
                   }
-                  { !this.state.loading &&
-                    <Text style={styles.buttonText}>{i18n.t('common:continue')}</Text>
+                  {!this.state.loading &&
+                    <Text style={styles.buttonText}>{i18n.t('common:send')}</Text>
                   }
                 </View>
               </TouchableOpacity>

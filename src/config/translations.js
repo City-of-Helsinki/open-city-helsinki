@@ -17,6 +17,7 @@ i18n
           logIn: 'Log in',
           cancel: 'Cancel',
           continue: 'Continue',
+          send: 'Send',
         },
         tabs: {
           home: 'Home',
@@ -124,6 +125,7 @@ i18n
           logIn: 'Kirjaudu',
           cancel: 'Peruuta',
           continue: 'Jatka',
+          send: 'Lähetä',
         },
         tabs: {
           home: 'Koti',

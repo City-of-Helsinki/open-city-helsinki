@@ -7,12 +7,12 @@ const styles = EStyleSheet.create({
     backgroundColor: '#fafafa',
   },
   innerContainer: {
-    flexDirection: 'column',
-    padding: 20,
     flex: 1,
+    paddingBottom: 16,
   },
   scrollView: {
     flex: 1,
+    padding: 20,
   },
   labelText: {
     fontSize: 20,
@@ -55,7 +55,7 @@ const styles = EStyleSheet.create({
     marginTop: 8,
   },
   descriptionText: {
-    height: 400,
+    height: 100,
     alignSelf: 'stretch',
     backgroundColor: 'transparent',
     borderWidth: 2,
