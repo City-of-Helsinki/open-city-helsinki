@@ -23,6 +23,9 @@ import linkedEventDecorator from '../img/main-image-decoration.png';
 import map_marker from '../img/marker_pin.png';
 import { captureMessage } from 'src/utils/sentryUtils';
 import { Sentry } from 'react-native-sentry';
+import Piwik from 'react-native-piwik'
+import CustomMapMarker from 'src/components/CustomMapMarker';
+
 initColors(colors);
 
 const tabBarOnPress = navigation => config => {
@@ -31,6 +34,8 @@ const tabBarOnPress = navigation => config => {
     DeviceEventEmitter.emit('tabChanged', { prevRoute: previousScene.routeName, nextRoute: scene.route.routeName });
     jumpToIndex(scene.index)
   }
+  Piwik.trackScreen(`/${scene.route.routeName}`, scene.route.routeName)
+
 };
 
 const navigationOptions = ({ navigation }) => {
@@ -79,7 +84,6 @@ MainStack.router.getStateForAction = (action, state) => {
     )
   ) {
     // Returning null indicates stack end, and triggers exit
-    console.warn(state.routes)
     return null;
   }
   return defaultGetStateForAction(action, state);
@@ -122,14 +126,14 @@ class App extends React.Component<Props, State> {
       // Header: this.Header,
       homeViewBGColor: colors.fog,
       showHeader: false,
-      showHero: false,
       heroBanner: heroBanner,
       mainImage: linkedEventDecorator,
       marker: map_marker,
       customMapStyle: mapStyles,
-      showHero: false,
+      showHero: true,
       showFeed: false,
-      showEvents: false,
+      piwik: Piwik,
+      customMapMarker: CustomMapMarker
     };
     return (
       <View style={{ flex: 1 }}>
