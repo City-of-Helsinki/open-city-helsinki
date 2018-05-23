@@ -26,6 +26,8 @@
 		19D5F60F615D49A2B84C959F /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 724631BE2BCA4622B3D5901F /* libRNVectorIcons.a */; };
 		1B01625D4BE5464EB73BD95B /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478D1ED4804A482A864DF8CA /* Ionicons.ttf */; };
 		1D20F356E64C41D88D18DA6A /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC70AABDD32746108E80134E /* Entypo.ttf */; };
+		2347C28720B54A36003FE692 /* libBNFPiwik.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2347C28620B549EE003FE692 /* libBNFPiwik.a */; };
+		2347C28B20B54AFB003FE692 /* piwiktracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2347C28820B54AFB003FE692 /* piwiktracker.xcdatamodeld */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -138,6 +140,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
+		};
+		2347C28520B549EE003FE692 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2347C28120B549ED003FE692 /* BNFPiwik.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = BNFPiwik;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -393,6 +402,9 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Helsinki/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Helsinki/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		2347C28120B549ED003FE692 /* BNFPiwik.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BNFPiwik.xcodeproj; path = "../node_modules/react-native-piwik/ios/BNFPiwik.xcodeproj"; sourceTree = "<group>"; };
+		2347C28920B54AFB003FE692 /* piwiktracker v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "piwiktracker v2.xcdatamodel"; sourceTree = "<group>"; };
+		2347C28A20B54AFB003FE692 /* piwiktracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = piwiktracker.xcdatamodel; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Helsinki-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Helsinki-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Helsinki-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Helsinki-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		345469F14C8746F2AE293FC1 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -489,6 +501,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+				2347C28720B54A36003FE692 /* libBNFPiwik.a in Frameworks */,
 				19D5F60F615D49A2B84C959F /* libRNVectorIcons.a in Frameworks */,
 				942284A722414B29AA5E843A /* libRNImagePicker.a in Frameworks */,
 				4F60169EBFD54024B89D147E /* libRCTImageResizer.a in Frameworks */,
@@ -608,6 +621,7 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				2347C28820B54AFB003FE692 /* piwiktracker.xcdatamodeld */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
@@ -637,6 +651,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2347C28220B549ED003FE692 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2347C28620B549EE003FE692 /* libBNFPiwik.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -658,6 +680,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				2347C28120B549ED003FE692 /* BNFPiwik.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -849,7 +872,7 @@
 				D5A85AAD201B6812003E9BC2 /* RCTConvert+GMSMapViewType.m */,
 			);
 			name = AirGoogleMaps;
-			path = "../../open-city-modules/node_modules/react-native-maps/lib/ios/AirGoogleMaps";
+			path = "../node_modules/react-native-maps/lib/ios/AirGoogleMaps";
 			sourceTree = "<group>";
 		};
 		D5E99C8920AD92790057196E /* Products */ = {
@@ -974,6 +997,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 2347C28220B549ED003FE692 /* Products */;
+					ProjectRef = 2347C28120B549ED003FE692 /* BNFPiwik.xcodeproj */;
+				},
 				{
 					ProductGroup = D5A8595A201B6116003E9BC2 /* Products */;
 					ProjectRef = 06D41C58880445D194CF935E /* FastImage.xcodeproj */;
@@ -1108,6 +1135,13 @@
 			fileType = archive.ar;
 			path = libReact.a;
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2347C28620B549EE003FE692 /* libBNFPiwik.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBNFPiwik.a;
+			remoteRef = 2347C28520B549EE003FE692 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */ = {
@@ -1492,6 +1526,7 @@
 				D5A85AB6201B6813003E9BC2 /* AIRGoogleMapManager.m in Sources */,
 				D5A85ABD201B6813003E9BC2 /* AIRGoogleMapUrlTile.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				2347C28B20B54AFB003FE692 /* piwiktracker.xcdatamodeld in Sources */,
 				D5A85AB8201B6813003E9BC2 /* AIRGoogleMapMarkerManager.m in Sources */,
 				D5A85ABB201B6813003E9BC2 /* AIRGoogleMapPolyline.m in Sources */,
 				D5A85AB4201B6813003E9BC2 /* AIRGoogleMapCircle.m in Sources */,
@@ -1957,6 +1992,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2347C28820B54AFB003FE692 /* piwiktracker.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2347C28920B54AFB003FE692 /* piwiktracker v2.xcdatamodel */,
+				2347C28A20B54AFB003FE692 /* piwiktracker.xcdatamodel */,
+			);
+			currentVersion = 2347C28920B54AFB003FE692 /* piwiktracker v2.xcdatamodel */;
+			name = piwiktracker.xcdatamodeld;
+			path = "../node_modules/react-native-piwik/ios/PiwikTracker/piwiktracker.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }
