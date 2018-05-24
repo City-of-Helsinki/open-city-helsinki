@@ -4,14 +4,13 @@ import {
   View,
   Text,
   TouchableOpacity,
-  NativeModules,
   Alert,
   Image,
   ActivityIndicator,
   ToastAndroid,
   DeviceEventEmitter,
   BackHandler,
-  Platform
+  Platform,
 } from 'react-native';
 import {
   registerDevice,
@@ -248,18 +247,20 @@ class ProfileModule extends React.Component<Props, State> {
               <Text style={styles.buttonText}> {i18n.t('profileTab:myHelsinki')}</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity
-            disabled={this.state.loading}
-            onPress={() => this.goToCards()}
-          >
-            <View style={styles.menuButton}>
-              <Image
-                source={ticket}
-                style={styles.buttonIcon}
-              />
-              <Text style={styles.buttonText}>{i18n.t('profileTab:customerShip')}</Text>
-            </View>
-          </TouchableOpacity>
+          {Platform.OS === 'android' &&
+            <TouchableOpacity
+              disabled={this.state.loading}
+              onPress={() => this.goToCards()}
+            >
+              <View style={styles.menuButton}>
+                <Image
+                  source={ticket}
+                  style={styles.buttonIcon}
+                />
+                <Text style={styles.buttonText}>{i18n.t('profileTab:customerShip')}</Text>
+              </View>
+            </TouchableOpacity>
+          }
           <TouchableOpacity
             disabled={this.state.loading}
             onPress={() => this.goToInfo()}
