@@ -12,6 +12,7 @@ const Wave = (props: { topColor?: string, bottomColor?: string, style?: any }) =
       width: screenWidth,
       height: screenWidth / ASPECT_RATIO,
       backgroundColor: props.bottomColor,
+      tintColor: props.topColor,
     }, props.style]}
     tintColor={props.topColor}
   />
