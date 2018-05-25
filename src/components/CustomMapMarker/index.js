@@ -6,7 +6,7 @@ import {
 import EStyleSheet from 'react-native-extended-stylesheet';
 import MarkerPin from 'Helsinki/img/marker_pin_helsinki.png';
 
-const MARKER_IMAGE_SIZE = 32;
+const MARKER_IMAGE_SIZE = 24;
 
 
 const styles = EStyleSheet.create({

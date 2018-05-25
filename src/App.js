@@ -125,6 +125,7 @@ class App extends React.Component<Props, State> {
       // locale: this.props.i18n.language,
       // Header: this.Header,
       homeViewBGColor: colors.fog,
+      coatColor: colors.coat,
       showHeader: false,
       heroBanner: heroBanner,
       mainImage: linkedEventDecorator,
