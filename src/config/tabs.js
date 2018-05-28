@@ -20,7 +20,7 @@ import colors from 'src/config/colors';
 const defaultPromotions = [
   {
     id: 'prom_001',
-    title: 'Puhelimesta kirjastokortiksi',
+    title: 'kirjastokortti puhelimeen',
     body: 'Voit käyttää nyt puhelimesi lähilukuominaisuutta kirjastokorttina',
     image: CardImage,
     footer: 'Ota kirjastokortti käyttöön',
@@ -28,13 +28,15 @@ const defaultPromotions = [
     textColor: 'white',
     targetTab: 'Profile',
   },
-  // {
-  //   id: 'prom_002',
-  //   title: 'Toinen mainos',
-  //   body: 'Tässä toinen geneerinen mainosteksti',
-  //   bgColor: 'purple',
-  //   textColor: 'white',
-  // },
+  {
+    id: 'prom_002',
+    title: 'Kuoppa tiessä?',
+    body: 'Anna palautetta kaupungille ja seuraa asiasi etenemistä kartalla',
+    image: pencil,
+    bgColor: colors.suomenlinna,
+    textColor: 'white',
+    targetTab: 'Feedback',
+  },
 ];
 
 configureFeedback(feedbackConfig);

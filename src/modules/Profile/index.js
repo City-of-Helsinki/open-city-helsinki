@@ -211,11 +211,8 @@ class ProfileModule extends React.Component<Props, State> {
           <View
             style={styles.subHeader}
           >
-            <Text style={styles.title}>
-              {this.state.firstName}
-            </Text>
-            <Text style={styles.title}>
-              {this.state.lastName}
+            <Text style={styles.profileTitle}>
+              {this.state.firstName + ' ' + this.state.lastName}
             </Text>
           </View>
         }
@@ -223,7 +220,7 @@ class ProfileModule extends React.Component<Props, State> {
           <View
             style={styles.subHeader}
           >
-            <Text style={styles.title}>
+            <Text style={styles.profileTitle}>
               {i18n.t('profileTab:info')}
             </Text>
           </View>

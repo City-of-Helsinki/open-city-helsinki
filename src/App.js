@@ -127,6 +127,8 @@ class App extends React.Component<Props, State> {
       homeViewBGColor: colors.fog,
       coatColor: colors.coat,
       showHeader: false,
+      separateHomeViewSections: true,
+      hearingsBGColor: colors.min,
       heroBanner: heroBanner,
       mainImage: linkedEventDecorator,
       marker: map_marker,

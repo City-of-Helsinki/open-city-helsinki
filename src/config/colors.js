@@ -24,7 +24,7 @@ const colors: ColorSet = {
   lightgray: '#ebedf1',
   max: '#000000',
   med: '#0000bf',
-  min: '#FFFFFF'
+  min: '#FFFFFF',
 };
 
 export default colors;
