@@ -291,7 +291,7 @@ class AddCardView extends React.Component<Props, State> {
           <View style={styles.container}>
             <Text style={styles.title}>{i18n.t('customerShip:linkLibraryCard')}</Text>
             <Text style={styles.description}>
-              {i18n.t('customerShip:linkInfo')}
+              {i18n.t('customerShip:linkInfoLibraryCard')}
             </Text>
 
             <FormInput

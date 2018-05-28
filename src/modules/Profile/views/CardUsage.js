@@ -23,33 +23,33 @@ class CardUsage extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <Header
-          leftAction={{
-            icon: BackIcon,
-            action: this.goBack,
-            style: {
-              tintColor: colors.max,
-            },
-          }}
-        />
+        {!!Header &&
+          <Header
+            leftAction={{
+              icon: BackIcon,
+              action: this.goBack,
+              style: {
+                tintColor: colors.max,
+              },
+            }}
+          />
+        }
 
         <ScrollView
           style={{ flex: 1, backgroundColor: colors.min }}
         >
-          {/* <View style={styles.container}> */}
-            <View style={styles.row}>
-              <Text style={styles.bulletPoint}>1.</Text>
-              <Text style={styles.infoTitle}>{i18n.t('info:phoneUsage')}</Text>
-            </View>
-            <View style={styles.row}>
-              <Text style={styles.bulletPoint}>2.</Text>
-              <Text style={styles.infoTitle}>{i18n.t('info:borrowing')}</Text>
-            </View>
-            <View style={styles.row}>
-              <Text style={styles.bulletPoint}>3.</Text>
-              <Text style={styles.infoTitle}>{i18n.t('info:followOrders')}</Text>
-            </View>
-          {/* </View> */}
+          <View style={styles.row}>
+            <Text style={styles.bulletPoint}>1.</Text>
+            <Text style={styles.infoTitle}>{i18n.t('info:phoneUsage')}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.bulletPoint}>2.</Text>
+            <Text style={styles.infoTitle}>{i18n.t('info:borrowing')}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.bulletPoint}>3.</Text>
+            <Text style={styles.infoTitle}>{i18n.t('info:followOrders')}</Text>
+          </View>
         </ScrollView>
       </View>
     );

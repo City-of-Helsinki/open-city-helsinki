@@ -29,10 +29,11 @@ class CardDetailView extends React.Component<Props, State> {
     this.state = {
       loading: false,
       cardNumber: '',
-      cardPin: '',
+      // cardPin: '',
       cardPinError: false,
       commonError: false,
       pinError: !!this.props.navigation.state.params.card.cardPin,
+      cardPin: this.props.navigation.state.params.card.cardPin ? this.props.navigation.state.params.card.cardPin : '',
     };
   }
 
@@ -126,6 +127,7 @@ class CardDetailView extends React.Component<Props, State> {
         this.setState({
           loading: false,
           pinError: true,
+          cardPin: pin,
         });
         refresh();
         ToastAndroid.show(`${i18n.t('customerShip:added')}`, ToastAndroid.SHORT);
@@ -156,14 +158,13 @@ class CardDetailView extends React.Component<Props, State> {
         if (success) {
           this.props.navigation.dispatch(resetAction);
         } else {
-          this.setState({ loading: false })
+          this.setState({ loading: false });
         }
       });
-    } catch(error) {
-      this.setState({ loading: false })
-      console.warn(error)
+    } catch (error) {
+      this.setState({ loading: false });
+      console.log(error);
     }
-
   }
 
   validateFields = () => {
@@ -322,9 +323,11 @@ class CardDetailView extends React.Component<Props, State> {
             pointerEvents={this.state.removingCard ? 'none' : 'auto'}
           >
             <Text style={styles.title}>{i18n.t('customerShip:libraryCard')}</Text>
-            <Text style={styles.description}>
-              {i18n.t('customerShip:libraryCardInfo')}
-            </Text>
+            {!!this.state.cardPin &&
+              <Text style={styles.description}>
+                {i18n.t('customerShip:libraryCardInfo')}
+              </Text>
+            }
 
             <View style={styles.field}>
               <Text style={styles.fieldLabel}>{i18n.t('customerShip:libraryCardNumber')}</Text>
@@ -372,9 +375,11 @@ class CardDetailView extends React.Component<Props, State> {
               </TouchableOpacity>
             }
 
-            <TouchableOpacity onPress={() => {
-              if (!this.state.loading) this.onRemovePress()
-            }}>
+            <TouchableOpacity
+              onPress={() => {
+                if (!this.state.loading) this.onRemovePress()
+              }}
+            >
               { this.state.loading &&
                 <View style={[styles.button, { justifyContent: 'center', alignItems: 'center' }]}>
                   <ActivityIndicator

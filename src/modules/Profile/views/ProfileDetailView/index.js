@@ -85,7 +85,7 @@ class ProfileDetailView extends React.Component<Props, State> {
           <View style={styles.container}>
             <Text style={styles.title}>oma.helsinki</Text>
             <Text style={styles.description}>
-              Olet kirjautunut sovellukseen oma.helsinki tunnuksellasi.
+              Olet kirjautunut sovellukseen oma.helsinki-tunnuksellasi.
             </Text>
 
             <View style={styles.field}>
