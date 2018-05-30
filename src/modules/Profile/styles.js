@@ -14,6 +14,7 @@ styles = EStyleSheet.create({
     fontWeight: 'bold',
     fontSize: 30,
     color: '$colors.max',
+    paddingVertical: 32,
   },
   infoTitle: {
     fontSize: 16,
@@ -48,7 +49,7 @@ styles = EStyleSheet.create({
   },
   buttonContainer: {
     padding: 16,
-    paddingTop: 60,
+    paddingTop: 32,
     backgroundColor: '$colors.copper',
     flex: 1,
   },
@@ -65,7 +66,6 @@ styles = EStyleSheet.create({
   },
   subHeader: {
     backgroundColor: '$colors.min',
-    marginVertical: 60,
     marginHorizontal: 24,
   },
   loading: {
