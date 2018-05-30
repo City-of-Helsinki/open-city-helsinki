@@ -126,7 +126,7 @@ class App extends React.Component<Props, State> {
       // Header: this.Header,
       homeViewBGColor: colors.fog,
       coatColor: colors.coat,
-      floatingButtonBGCOlor: colors.suomenlinna,
+      // floatingButtonBGCOlor: colors.suomenlinna,
       heroBGColor: colors.summer,
       showHeader: false,
       separateHomeViewSections: true,
