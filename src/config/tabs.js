@@ -20,7 +20,7 @@ import colors from 'src/config/colors';
 const defaultPromotions = [
   {
     id: 'prom_001',
-    title: 'kirjastokortti puhelimeen',
+    title: 'Kirjastokortti puhelimeen',
     body: 'Voit käyttää nyt puhelimesi lähilukuominaisuutta kirjastokorttina',
     image: CardImage,
     footer: 'Ota kirjastokortti käyttöön',

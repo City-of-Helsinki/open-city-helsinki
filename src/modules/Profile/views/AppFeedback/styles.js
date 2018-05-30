@@ -8,11 +8,11 @@ const styles = EStyleSheet.create({
   },
   innerContainer: {
     flex: 1,
-    paddingBottom: 16,
   },
   scrollView: {
     flex: 1,
     padding: 20,
+
   },
   labelText: {
     fontSize: 20,
@@ -55,7 +55,7 @@ const styles = EStyleSheet.create({
     marginTop: 8,
   },
   descriptionText: {
-    height: 100,
+    minHeight: 100,
     alignSelf: 'stretch',
     backgroundColor: 'transparent',
     borderWidth: 2,

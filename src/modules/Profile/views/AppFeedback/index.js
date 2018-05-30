@@ -11,7 +11,8 @@ import {
   UIManager,
   LayoutAnimation,
   StyleSheet,
-  ToastAndroid
+  ToastAndroid,
+  KeyboardAvoidingView
 } from 'react-native';
 import colors from 'src/config/colors';
 import i18n from 'i18next';
@@ -26,7 +27,6 @@ import styles from './styles';
 class AppFeedbackView extends Component {
   constructor(props, context) {
     super(props, context);
-
     this.state = {
       descriptionText: '',
       titleText: '',
@@ -40,7 +40,6 @@ class AppFeedbackView extends Component {
   }
 
   componentWillMount() {
-    // this.initializeSpringAnimation();
   }
 
   goBack = () => {
@@ -133,8 +132,13 @@ class AppFeedbackView extends Component {
             }}
           />
         }
-        <View style={styles.innerContainer}>
-          <ScrollView style={styles.scrollView}>
+        <KeyboardAvoidingView
+          behavior={'postion' || 'height' || 'padding'}
+          style={styles.innerContainer}
+        >
+          <ScrollView
+            ref={(ref) => this.scroll = ref}
+            style={styles.scrollView}>
             <View style={styles.subHeader}><Text style={styles.header}>{i18n.t('feedBack:appFeedbackViewTitle')}</Text></View>
             <View style={styles.contentContainer}>
               <View style={styles.titleView}>
@@ -150,8 +154,11 @@ class AppFeedbackView extends Component {
               <View style={styles.descriptionView}>
                 <Text style={[styles.title, { marginBottom: 16 }]}>{i18n.t('feedBack:descriptionPlaceholder')}</Text>
                 <TextInput
-                  style={styles.descriptionText}
+                  style={[styles.descriptionText]}
                   multiline={true}
+                  onLayout={(e) => {
+                    this.scroll.scrollTo({x: 0, y: e.nativeEvent.layout.y + e.nativeEvent.layout.height})
+                  }}
                   underlineColorAndroid="transparent"
                   onChangeText={(text) => {
                     this.onDescriptionTextChange(text);
@@ -184,21 +191,21 @@ class AppFeedbackView extends Component {
                 }}
               >
                 <View style={styles.button}>
-                  {this.state.loading &&
+                  { this.state.loading &&
                     <ActivityIndicator
-                      size="small"
+                      size={'small'}
                       color={EStyleSheet.value('$colors.med')}
                     />
                   }
-                  {!this.state.loading &&
-                    <Text style={styles.buttonText}>{i18n.t('common:send')}</Text>
+                  { !this.state.loading &&
+                    <Text style={styles.buttonText}>{i18n.t('common:continue')}</Text>
                   }
                 </View>
               </TouchableOpacity>
             </View>
           </ScrollView>
 
-        </View>
+        </KeyboardAvoidingView>
         {this.state.spinnerVisible &&
           <View style={{ ...StyleSheet.absoluteFillObject, justifyContent: 'center', alignItems: 'center' }}>
             <ActivityIndicator

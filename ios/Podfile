@@ -24,6 +24,8 @@
    pod 'AppAuth', '>= 0.91'
    pod 'react-native-maps', :path => '../node_modules/react-native-maps'
 
+   pod 'SentryReactNative', :path => '../node_modules/react-native-sentry'
+
  end
 
  post_install do |installer|
