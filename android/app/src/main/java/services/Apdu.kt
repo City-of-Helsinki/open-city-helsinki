@@ -73,6 +73,7 @@ class Apdu {
         ERROR(0x6f),
         INSTRUCTION_NOT_SUPPORTED(0x6d),
         CHAINED_RESPONSE(0x61),
+        AUTHENTICATION_ERROR(0x98),
         CLASS_NOT_SUPPORTED(0x6e);
         fun toByte(): Byte {
             return (this.value and 0xFF).toByte()
