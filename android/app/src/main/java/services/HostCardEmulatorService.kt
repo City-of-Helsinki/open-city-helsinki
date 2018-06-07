@@ -4,6 +4,7 @@ import android.nfc.cardemulation.HostApduService
 import android.os.Bundle
 import android.os.Binder
 import android.util.Log
+import android.content.Intent
 import android.preference.PreferenceManager
 
 import java.nio.ByteBuffer
@@ -86,19 +87,21 @@ class HostCardEmulatorService: ChangeListener, HostApduService() {
                 // Receive nonce
                 if (apdu.data != null) {
                     if (isValidNonce(apdu.data)) {
-                        val ctx = ReactBridgeState.getReactContext()
-                        if (ctx != null) {
-                            val prefs = ctx.getSharedPreferences("local_storage", 0)
-                            // FIXME: support multiple cards/pins?
-                            val card = prefs.getStringSet("libraryCards", HashSet<String>()).firstOrNull()
-                            if (card != null) {
-                                val (number, pin) = card.split("/")
-                                Log.d(TAG, pin)
-                                return logResponse(dataResponse(pin.toByteArray(ASCII_CHARSET), Apdu.Status.SUCCESS))
-                            }
+                        // val ctx = ReactBridgeState.getReactContext()
+                        // if (ctx != null) {
+                        val prefs = getSharedPreferences("local_storage", 0)
+                        // FIXME: support multiple cards/pins?
+                        val card = prefs.getStringSet("libraryCards", HashSet<String>()).firstOrNull()
+                        if (card != null) {
+                            val (number, pin) = card.split("/")
+                            Log.d(TAG, pin)
+                            return logResponse(dataResponse(pin.toByteArray(ASCII_CHARSET), Apdu.Status.SUCCESS))
                         }
+                        // }
                     }
-                    return logResponse(defaultErrorResponse())
+                    else {
+                        return logResponse(statusResponse(Apdu.Status.AUTHENTICATION_ERROR, 0x62))
+                    }
                 }
             }
         }
@@ -107,7 +110,13 @@ class HostCardEmulatorService: ChangeListener, HostApduService() {
             apdu.parameter1 == 1 && apdu.parameter2 == 1 &&
             applicationSelected && interfaceDeviceId != null) {
                 ReactBridgeState.setChangeListener(this)
-                ReactBridgeState.sendEvent(interfaceDeviceId)
+                Log.d(TAG, "context is not null")
+                val service = Intent(this, HeadlessJavaScriptNfcService::class.java)
+                val bundle = Bundle()
+                bundle.putString("interfaceDeviceId", interfaceDeviceId)
+                service.putExtras(bundle)
+                startService(service)
+                // ReactBridgeState.sendEvent(interfaceDeviceId)
                 this.sendingData = true
                 this.apdu = apdu
                 return null
@@ -120,16 +129,19 @@ class HostCardEmulatorService: ChangeListener, HostApduService() {
 
     fun isValidNonce(nonce: ByteArray): Boolean { // FIXME receive current nonce from javasript
         if (this.nonce == null) {
+            Log.d(TAG, "current nonce is null")
             return false
         }
         val decoded = ASCII_CHARSET.decode(ByteBuffer.wrap(nonce)).toString()
         if (decoded == this.nonce) {
             return true
         }
+        Log.d(TAG, "current nonce is not the same as received")
         return false
     }
 
     override fun onChange(token: String, nonce: String) {
+        Log.d(TAG, "onChangeListener")
         this.nonce = nonce
         val apdu = this.apdu
         if (!this.sendingData || apdu == null) {
