@@ -143,6 +143,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-secure-key-store')
     compile project(':react-native-sentry')
     compile project(':react-native-piwik')
     compile project(':react-native-app-auth')

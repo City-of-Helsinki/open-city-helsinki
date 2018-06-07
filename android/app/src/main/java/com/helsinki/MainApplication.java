@@ -3,6 +3,7 @@ package com.helsinki;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactlibrary.securekeystore.RNSecureKeyStorePackage;
 import io.sentry.RNSentryPackage;
 import de.bonify.reactnativepiwik.PiwikPackage;
 import com.reactlibrary.RNAppAuthPackage;
@@ -33,6 +34,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNSecureKeyStorePackage(),
           new RNSentryPackage(MainApplication.this),
           new PiwikPackage(),
           new RNAppAuthPackage(),

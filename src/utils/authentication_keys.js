@@ -1,27 +1,10 @@
 import jose from 'node-jose';
 import Config from 'Helsinki/src/config/config.json';
 import DeviceInfo from 'react-native-device-info';
-
-// FIXME: replace with https://github.com/pradeep1991singh/react-native-secure-key-store
-// const secureStore = scatteredStore.create('secure');
-class MockSecureStore {
-  constructor() {
-    this.store = {};
-  }
-  get(key) {
-    return this.store[key];
-  }
-  set(key, val) {
-    this.store[key] = val;
-  }
-  remove(key) {
-    delete this.store[key];
-  }
-}
-const secureStore = new MockSecureStore();
+import RNSecureKeyStore from 'react-native-secure-key-store';
 
 const TUNNISTAMO_API_BASE = 'https://api.hel.fi/sso-test';
-const STORE_PREFIX = 'tunnistamo/';
+const STORE_PREFIX = 'tunnistamo.';
 
 let keystore = jose.JWK.createKeyStore();
 
@@ -39,31 +22,22 @@ export const registerDevice = async (accessToken) => {
   const url = TUNNISTAMO_API_BASE + '/v1/user_device/';
   const signKey = await generateECKeyPair();
   // Save keypair
-  await secureStore.set(STORE_PREFIX + 'privateKey', JSON.stringify(signKey.toJSON(true)));
+  await RNSecureKeyStore.set(STORE_PREFIX + 'privateKey', JSON.stringify(signKey.toJSON(true)));
 
   const data = {
     os: 'android',
     os_version: systemVersion,
     app_version: appVersion,
     device_model: deviceModel,
-    public_key: signKey.toJSON(),
+    public_key: signKey.toJSON()
   };
-
-  //
-  // const data = {
-  //   os: 'android', // FIXME
-  //   os_version: '7.1', // FIXME
-  //   app_version: '0.1.1', // FIXME
-  //   device_model: 'LG G5', // FIXME
-  //   public_key: signKey.toJSON(),
-  // };
 
   let res = await fetch(url, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + accessToken,
+      'Authorization': 'Bearer ' + accessToken
     },
   });
 
@@ -74,16 +48,16 @@ export const registerDevice = async (accessToken) => {
   res = await res.json();
 
   const deviceId = res.id;
-  await secureStore.set(STORE_PREFIX + 'deviceId', deviceId);
-  await secureStore.set(STORE_PREFIX + 'userId', res.user);
+  await RNSecureKeyStore.set(STORE_PREFIX + 'deviceId', deviceId);
+  await RNSecureKeyStore.set(STORE_PREFIX + 'userId', res.user);
 
   const encKey = await keystore.add(res.secret_key);
-  await secureStore.set(STORE_PREFIX + 'secretKey', JSON.stringify(encKey.toJSON(true)));
-  await secureStore.set(STORE_PREFIX + 'authCounter', 0);
+  await RNSecureKeyStore.set(STORE_PREFIX + 'secretKey', JSON.stringify(encKey.toJSON(true)));
+  await RNSecureKeyStore.set(STORE_PREFIX + 'authCounter', '0');
 };
 
 export const unregisterDevice = async (accessToken) => {
-  const deviceId = await secureStore.get(STORE_PREFIX + 'deviceId');
+  const deviceId = await RNSecureKeyStore.get(STORE_PREFIX + 'deviceId');
 
   if (!deviceId) throw new Error('Device not registered yet');
 
@@ -91,22 +65,22 @@ export const unregisterDevice = async (accessToken) => {
   let res = await fetch(url, {
     method: 'DELETE',
     headers: {
-      'Authorization': 'Bearer ' + accessToken,
-    },
+      'Authorization': 'Bearer ' + accessToken
+    }
   });
 
   if (res.status !== 204) throw new Error("Device unregistration failed");
 
-  await secureStore.remove(STORE_PREFIX + 'deviceId');
-  await secureStore.remove(STORE_PREFIX + 'privateKey');
-  await secureStore.remove(STORE_PREFIX + 'secretKey');
-  await secureStore.remove(STORE_PREFIX + 'userId');
+  await RNSecureKeyStore.remove(STORE_PREFIX + 'deviceId');
+  await RNSecureKeyStore.remove(STORE_PREFIX + 'privateKey');
+  await RNSecureKeyStore.remove(STORE_PREFIX + 'secretKey');
+  await RNSecureKeyStore.remove(STORE_PREFIX + 'userId');
 };
 
 const generateECKeyPair = async () => {
   const keyProps = {
     alg: 'ES256',
-    use: 'sig',
+    use: 'sig'
   };
 
   const key = await keystore.generate('EC', 'P-256', keyProps);
@@ -114,21 +88,21 @@ const generateECKeyPair = async () => {
 };
 
 const getAndIncrementCounter = async () => {
-  let counter = await secureStore.get(STORE_PREFIX + 'authCounter');
+  let counter = await RNSecureKeyStore.get(STORE_PREFIX + 'authCounter');
 
   counter = parseInt(counter, 10);
   counter++;
-  await secureStore.set(STORE_PREFIX + 'authCounter', counter);
+  await RNSecureKeyStore.set(STORE_PREFIX + 'authCounter', counter.toString());
 
   return counter;
 };
 
 const getDeviceID = async () => {
-  return await secureStore.get(STORE_PREFIX + 'deviceId');
+  return await RNSecureKeyStore.get(STORE_PREFIX + 'deviceId');
 };
 
 const getUserUUID = async () => {
-  return await secureStore.get(STORE_PREFIX + 'userId');
+  return await RNSecureKeyStore.get(STORE_PREFIX + 'userId');
 };
 
 export const generateToken = async (interfaceDeviceId) => {
@@ -142,12 +116,12 @@ export const generateToken = async (interfaceDeviceId) => {
 
   const nonce = Math.floor(Math.random() * 1000000000000000);
 
-  await secureStore.set(STORE_PREFIX + 'nonce', nonce);
+  await RNSecureKeyStore.set(STORE_PREFIX + 'nonce', nonce.toString());
   payload.nonce = nonce;
 
-  let signKey = await secureStore.get(STORE_PREFIX + 'privateKey');
+  let signKey = await RNSecureKeyStore.get(STORE_PREFIX + 'privateKey');
   signKey = await jose.JWK.asKey(JSON.parse(signKey));
-  let encKey = await secureStore.get(STORE_PREFIX + 'secretKey');
+  let encKey = await RNSecureKeyStore.get(STORE_PREFIX + 'secretKey');
   encKey = await jose.JWK.asKey(JSON.parse(encKey));
 
   const signedResult = await jose.JWS.createSign({format: 'compact'}, signKey)
