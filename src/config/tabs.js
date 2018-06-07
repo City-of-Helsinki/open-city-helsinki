@@ -45,20 +45,20 @@ configureHomeView(homeviewConfig, null, defaultPromotions);
 
 
 const tabs = {
-  HomeView: {
-    screen: withProps({})(HomeViewModule),
-    navigationOptions: () => ({
-      tabBarIcon: ({ focused, tintColor }) => (<Image source={home} resizeMode='contain' style={{ height: 24, width: 24, tintColor: tintColor, marginTop: 8 }} />),
-      tabBarLabel: `${i18n.t('tabs:home')}`,
-    }),
-  },
-  Feedback: {
-    screen: withProps({ showSubHeader: false })(FeedbackModule),
-    navigationOptions: () => ({
-      tabBarIcon: ({ focused, tintColor }) => (<Image source={pencil} resizeMode='contain' style={{ height: 24, width: 24, tintColor: tintColor, marginTop: 8 }} />),
-      tabBarLabel: `${i18n.t('tabs:feedback')}`,
-    }),
-  },
+  // HomeView: {
+  //   screen: withProps({})(HomeViewModule),
+  //   navigationOptions: () => ({
+  //     tabBarIcon: ({ focused, tintColor }) => (<Image source={home} resizeMode='contain' style={{ height: 24, width: 24, tintColor: tintColor, marginTop: 8 }} />),
+  //     tabBarLabel: `${i18n.t('tabs:home')}`,
+  //   }),
+  // },
+  // Feedback: {
+  //   screen: withProps({ showSubHeader: false })(FeedbackModule),
+  //   navigationOptions: () => ({
+  //     tabBarIcon: ({ focused, tintColor }) => (<Image source={pencil} resizeMode='contain' style={{ height: 24, width: 24, tintColor: tintColor, marginTop: 8 }} />),
+  //     tabBarLabel: `${i18n.t('tabs:feedback')}`,
+  //   }),
+  // },
   Profile: {
     screen: translate('profileTab')(Profile),
     navigationOptions: () => ({
