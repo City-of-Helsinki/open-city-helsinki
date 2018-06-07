@@ -1,6 +1,6 @@
 <host-apdu-service xmlns:android="http://schemas.android.com/apk/res/android"
-    android:description="@string/servicedesc">
-    <!--android:requiredDeviceUnlock="true">-->
+    android:description="@string/servicedesc"
+    android:requireDeviceUnlock="true">
     <aid-group
         android:description="@string/aiddescription"
         android:category="other">
