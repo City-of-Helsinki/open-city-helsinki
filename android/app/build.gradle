@@ -104,8 +104,8 @@ android {
         applicationId "fi.hel.helsinki"
         minSdkVersion 19
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode 9
+        versionName "1.0.0"
         manifestPlaceholders = [
           appAuthRedirectScheme: 'opencityhelsinki'
         ]
