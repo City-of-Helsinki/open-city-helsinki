@@ -196,7 +196,7 @@ i18n
           networkErrorButton: 'OK',
         },
         info: {
-          phoneUsage: 'Aseta puhelimesi lainausautomaatin yhteydessä olevan pienen nfc-lukijan päälle. Sovelluksen ei tarvitse olla auki lainaustapahtuman aikana, mutta puhelimen tulee olla avattuna. Kirjastokortin PIN-koodia tarvitse syöttää automaattiin.',
+          phoneUsage: 'Aseta puhelimesi lainausautomaatin yhteydessä olevan pienen nfc-lukijan päälle. Sovelluksen tulee olla auki lainaustapahtuman ajan. Kirjastokortin PIN-koodia ei tarvitse syöttää lainausautomaattiin.',
           borrowing: 'Aseta lainaamasi kirja lainausautomaatin tason päälle. Automaatti ilmoittaa onnistuneesta lainaustapahtumasta.',
           followOrders: 'Seuraa lainausautomaatin näytön ohjeita lopettaaksesi lainaustapahtuman.',
           appInfo: 'Helsinki-sovellus on osallistumista edistävä kokeiluvaiheen mobiilialusta kaupunkilaisille. Sovellus on avointa lähdekoodia, joten käyttäjät voivat myös kehittää ja ehdottaa parannuksia.',
