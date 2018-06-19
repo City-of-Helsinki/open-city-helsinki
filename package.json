@@ -15,7 +15,7 @@
 		"moment": "2.22.1",
 		"node-jose": "0.11.0",
 		"node-libs-browser": "2.0.0",
-		"open-city-modules": "git+ssh://git@github.com/6aika/open-city-modules.git#develop",
+		"open-city-modules": "git+ssh://git@github.com/6aika/open-city-modules.git#v0.1.1",
 		"react": "16.0.0",
 		"react-i18next": "7.0.2",
 		"react-native": "0.50.3",
