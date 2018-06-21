@@ -18,7 +18,7 @@ export const doAuth = () => {
         updateProfile(profile);
         resolve(profile)
       } catch (error) {
-        console.warn(error)
+        console.log(error)
         reject(error)
       }
   });
@@ -35,7 +35,7 @@ export const doRefresh = (refreshToken) => {
       profile = await updateProfile(profile);
       resolve(profile);
     } catch (error) {
-      console.warn(error)
+      console.log(error)
       reject(error);
     }
   });

@@ -1,4 +1,4 @@
-package com.helsinki;
+package fi.hel.helsinki;
 
 import android.app.Application;
 

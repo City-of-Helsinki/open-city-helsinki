@@ -76,7 +76,7 @@ class ProfileModule extends React.Component<Props, State> {
           lastName: lastName,
         });
       } catch (error) {
-        console.warn(error);
+        console.log(error);
       }
     }
   }
@@ -124,10 +124,7 @@ class ProfileModule extends React.Component<Props, State> {
       const isUserAuthed = await isAuthed();
 
       if (isUserAuthed.isAuthed) {
-        // const result = await this.loadCards(isUserAuthed.profile);
-
         this.props.navigation.navigate('Cards', {
-          // cards: result.cards,
           profile: isUserAuthed.profile,
         });
       } else {
@@ -141,10 +138,7 @@ class ProfileModule extends React.Component<Props, State> {
               onPress: async () => {
                 const mProfile = await this.authorize();
                 this.isAuthed();
-                // const result = await this.loadCards(mProfile).cards;
-
                 this.props.navigation.navigate('Cards', {
-                  // cards: result.cards,
                   profile: mProfile,
                 });
               },
@@ -154,8 +148,7 @@ class ProfileModule extends React.Component<Props, State> {
         );
       }
     } catch (error) {
-
-      console.warn(error);
+      console.log(error);
     }
   }
 
@@ -239,7 +232,6 @@ class ProfileModule extends React.Component<Props, State> {
               <Image
                 style={styles.buttonIcon}
                 source={smile}
-                // TODO fix color tint
               />
               <Text style={styles.buttonText}> {i18n.t('profileTab:myHelsinki')}</Text>
             </View>

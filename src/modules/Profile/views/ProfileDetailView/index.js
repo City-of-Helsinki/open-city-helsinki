@@ -34,7 +34,7 @@ class ProfileDetailView extends React.Component<Props, State> {
       const data = await getUserData(profile.auth.accessToken);
       this.setState({ name: data.name })
     } catch (error) {
-      console.warn(error)
+      console.log(error)
     }
   }
 

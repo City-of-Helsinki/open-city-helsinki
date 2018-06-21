@@ -101,16 +101,24 @@ android {
     buildToolsVersion "25.0.1"
 
     defaultConfig {
-        applicationId "com.helsinki"
+        applicationId "fi.hel.helsinki"
         minSdkVersion 19
         targetSdkVersion 22
-        versionCode 1
-        versionName "0.1.0"
+        versionCode 10
+        versionName "1.0.0"
         manifestPlaceholders = [
           appAuthRedirectScheme: 'opencityhelsinki'
         ]
         ndk {
             abiFilters "armeabi-v7a", "x86"
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file(OPEN_CITY_APP_STORE_FILE)
+            storePassword OPEN_CITY_APP_STORE_PASSWORD
+            keyAlias OPEN_CITY_APP_KEY_ALIAS
+            keyPassword OPEN_CITY_APP_KEY_PASSWORD
         }
     }
     splits {
@@ -125,6 +133,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release

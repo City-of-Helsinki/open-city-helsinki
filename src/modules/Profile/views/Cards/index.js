@@ -19,8 +19,8 @@ import BackIcon from 'Helsinki/img/arrow_back.png';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import styles from './styles';
 import EStyleSheet from 'react-native-extended-stylesheet';
-class Cards extends React.Component<Props, State> {
 
+class Cards extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -45,7 +45,6 @@ class Cards extends React.Component<Props, State> {
   }
 
   loadCards = async () => {
-
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
 
     try {
@@ -57,12 +56,11 @@ class Cards extends React.Component<Props, State> {
         profile: newProfile,
         loading: false,
       });
-      // this.setState({ cards: profile.cards })
     } catch (error) {
       this.setState({
         loading: false,
       });
-      console.warn(error)
+      console.log(error)
     }
   }
 

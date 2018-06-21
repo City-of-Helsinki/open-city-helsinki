@@ -31,11 +31,6 @@ export const registerDevice = async (accessToken) => {
   const appVersion = DeviceInfo.getVersion();
   const deviceModel = DeviceInfo.getModel();
 
-  console.warn("os " + os);
-  console.warn("osVersion " + systemVersion);
-  console.warn("appVersion " + appVersion);
-  console.warn("deviceModel " + deviceModel);
-
   const url = TUNNISTAMO_API_BASE + '/v1/user_device/';
   const signKey = await generateECKeyPair();
   // Save keypair

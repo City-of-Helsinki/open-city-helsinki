@@ -82,6 +82,7 @@ class AppFeedbackView extends Component {
   }
 
   async sendFeedback() {
+    this.setState({ loading: true });
     const url = Config.OPEN311_SEND_SERVICE_URL;
     const headers = {
       'Content-Type': 'multipart/form-data',
@@ -101,6 +102,7 @@ class AppFeedbackView extends Component {
       const result = await makeRequest(url, 'POST', headers, data)
       this.setState({
         spinnerVisible: false,
+        loading: false,
       });
       ToastAndroid.show('Lähettäminen onnistui', ToastAndroid.SHORT);
       this.props.navigation.goBack();
@@ -190,16 +192,12 @@ class AppFeedbackView extends Component {
                   this.onSendButtonClick();
                 }}
               >
-                <View style={styles.button}>
-                  { this.state.loading &&
-                    <ActivityIndicator
-                      size={'small'}
-                      color={EStyleSheet.value('$colors.med')}
-                    />
-                  }
-                  { !this.state.loading &&
-                    <Text style={styles.buttonText}>{i18n.t('common:continue')}</Text>
-                  }
+                <View style={[styles.button, { opacity: this.state.loading ? 0.5 : 1 }]}>
+                  <Text
+                    style={styles.buttonText}
+                  >
+                    {i18n.t('common:continue')}
+                  </Text>
                 </View>
               </TouchableOpacity>
             </View>
