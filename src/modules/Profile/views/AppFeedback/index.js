@@ -95,7 +95,7 @@ class AppFeedbackView extends Component {
     data.append('service_code', Config.APP_FEEDBACK_SERVICE_CODE);
     data.append('description', this.state.descriptionText);
     data.append('title', this.state.titleText !== null ? this.state.titleText : '');
-    data.append('name', this.state.nameText !== null ? this.state.nameText : '');
+    data.append('first_name', this.state.nameText);
     data.append('email', this.state.emailText !== null ? this.state.emailText : '');
 
     try {
